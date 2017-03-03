@@ -5,7 +5,7 @@ namespace Mozlite.Data.Migrations.Models
     /// <summary>
     /// 数据库实例。
     /// </summary>
-    [Table("$__Migrations")]
+    [Table("core_Migrations")]
     public class Migration
     {
         /// <summary>

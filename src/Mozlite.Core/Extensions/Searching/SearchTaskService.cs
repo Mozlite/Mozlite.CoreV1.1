@@ -31,12 +31,12 @@ namespace Mozlite.Extensions.Searching
         /// <summary>
         /// 名称。
         /// </summary>
-        public override string Name => "搜索引擎服务";
+        public override string Name => Resources.Task_Searching_Name;
 
         /// <summary>
         /// 描述。
         /// </summary>
-        public override string Description => "对数据库中某些列进行分词，生成搜索需求文档，提供前天搜索服务。";
+        public override string Description => Resources.Task_Searching_Description;
 
         /// <summary>
         /// 执行间隔时间。

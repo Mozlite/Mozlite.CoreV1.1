@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户组声明类。
     /// </summary>
-    [Table("Roles_Claims")]
+    [Table("core_Roles_Claims")]
     public class IdentityRoleClaim
     {
         /// <summary>

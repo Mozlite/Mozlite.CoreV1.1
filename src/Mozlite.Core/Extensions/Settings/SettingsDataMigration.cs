@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Settings
     /// <summary>
     /// 数据库迁移。
     /// </summary>
-    public class SiteSettingsMigration : DataMigration<SettingsAdapter>
+    public class SettingsDataMigration : DataMigration<SettingsAdapter>
     {
         /// <summary>
         /// 创建操作。

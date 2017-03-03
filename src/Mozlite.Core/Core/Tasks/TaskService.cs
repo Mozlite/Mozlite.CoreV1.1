@@ -25,7 +25,7 @@ namespace Mozlite.Core.Tasks
         /// <summary>
         /// 扩展名称，即服务的分类。
         /// </summary>
-        public virtual string ExtensionName => "global";
+        public virtual string ExtensionName => "core";
 
         /// <summary>
         /// 执行间隔时间。

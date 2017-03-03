@@ -121,10 +121,10 @@
     <value>管理员</value>
   </data>
   <data name="ArgumentIsEmpty" xml:space="preserve">
-    <value>The string argument '{0}' cannot be empty.</value>
+    <value>参数'{0}'不能为空。</value>
   </data>
   <data name="ArgumentPropertyNull" xml:space="preserve">
-    <value>The property '{0}' of the argument '{1}' cannot be null.</value>
+    <value>参数'{1}'的'{0}'属性不能为空。</value>
   </data>
   <data name="ArgumentStatus_Completed" xml:space="preserve">
     <value>完成</value>
@@ -142,88 +142,70 @@
     <value>浏览文件</value>
   </data>
   <data name="CollectionArgumentIsEmpty" xml:space="preserve">
-    <value>The collection argument '{0}' must contain at least one element.</value>
+    <value>参数'{0}'集合最少需要包含一个值。</value>
   </data>
   <data name="DataAction_Created" xml:space="preserve">
-    <value>恭喜你，你已经成功添加了“{0}”！</value>
+    <value>恭喜你，你已经成功添加了“{0}”。</value>
   </data>
   <data name="DataAction_CreatedFailured" xml:space="preserve">
-    <value>很抱歉，添加“{0}”失败了！</value>
+    <value>很抱歉，添加“{0}”失败了。</value>
   </data>
   <data name="DataAction_Deleted" xml:space="preserve">
-    <value>恭喜你，你已经成功删除了所选择的{0}！</value>
+    <value>恭喜你，你已经成功删除了所选择的{0}。</value>
   </data>
   <data name="DataAction_DeletedFailured" xml:space="preserve">
-    <value>很抱歉，删除“{0}”失败了！</value>
+    <value>很抱歉，删除“{0}”失败了。</value>
   </data>
   <data name="DataAction_DeletedFailuredItemsNotEmpty" xml:space="preserve">
-    <value>很抱歉，删除“{0}”失败了，因为包含的子项不为空！</value>
+    <value>很抱歉，删除“{0}”失败了，因为包含的子项不为空。</value>
   </data>
   <data name="DataAction_Duplicate" xml:space="preserve">
-    <value>很抱歉，“{0}”已经存在，操作失败!</value>
+    <value>很抱歉，“{0}”已经存在，操作失败。</value>
   </data>
   <data name="DataAction_Success" xml:space="preserve">
-    <value>恭喜你，你已经成功完成了“{0}”！</value>
+    <value>恭喜你，你已经成功完成了“{0}”。</value>
   </data>
   <data name="DataAction_UnknownError" xml:space="preserve">
-    <value>很抱歉，发生了未知错误，操作失败，请重试！</value>
+    <value>很抱歉，发生了未知错误，操作失败，请重试。</value>
   </data>
   <data name="DataAction_Updated" xml:space="preserve">
-    <value>恭喜你，你已经成功更新了“{0}”！</value>
+    <value>恭喜你，你已经成功更新了“{0}”。</value>
   </data>
   <data name="DataAction_UpdatedFailured" xml:space="preserve">
-    <value>很抱歉，更新“{0}”失败了！</value>
+    <value>很抱歉，更新“{0}”失败了。</value>
   </data>
   <data name="DuplicateAnnotation" xml:space="preserve">
-    <value>'{0}'添加错误，因为已经存在一个同样名称的扩展属性！</value>
+    <value>'{0}'添加错误，因为已经存在一个同样名称的扩展属性。</value>
   </data>
   <data name="InvalidEntityType" xml:space="preserve">
-    <value>The entity type '{0}' provided for the argument '{1}' must be a reference type.</value>
+    <value>参数 '{1}'的实体类型'{0}'必须是一个引用类型。</value>
   </data>
   <data name="InvalidPropertiesExpression" xml:space="preserve">
-    <value>The properties expression '{0}' is not valid. The expression should represent a property access: 't =&gt; t.MyProperty'. When specifying multiple properties use an anonymous type: 't =&gt; new {{ t.MyProperty1, t.MyProperty2 }}'.</value>
+    <value>属性表达式'{0}'不正确， 表达式必须提供一种属性访问，如： 't =&gt; t.MyProperty'；如果式多个属性，需要如下代码表示：'t =&gt; new {{ t.MyProperty1, t.MyProperty2 }}'。</value>
   </data>
   <data name="InvalidPropertyExpression" xml:space="preserve">
-    <value>The expression '{0}' is not a valid property expression. The expression should represent a property access: 't =&gt; t.MyProperty'.</value>
+    <value>属性表达式'{0}'不正确， 表达式必须提供一种属性访问，如： 't =&gt; t.MyProperty'。</value>
   </data>
   <data name="MediaFileUploadPathIsError" xml:space="preserve">
-    <value>上传路径不正确，当前文件所属实例不明确！</value>
+    <value>上传路径不正确，当前文件所属实例不明确。</value>
   </data>
   <data name="MigrationError" xml:space="preserve">
-    <value>The migration is error:{0}.</value>
+    <value>数据迁移出错：{0}。</value>
   </data>
   <data name="NoGetter" xml:space="preserve">
-    <value>The property '{0}' of entity type '{1}' does not have a getter. </value>
+    <value>类型“{1}”的属性“{0}”必须包含get访问器。</value>
   </data>
   <data name="NoSetter" xml:space="preserve">
-    <value>The property '{0}' of entity type '{1}' does not have a setter.</value>
-  </data>
-  <data name="ObjectStatus_Closed" xml:space="preserve">
-    <value>关闭</value>
-  </data>
-  <data name="ObjectStatus_Completed" xml:space="preserve">
-    <value>完成</value>
-  </data>
-  <data name="ObjectStatus_Disabled" xml:space="preserve">
-    <value>禁用</value>
-  </data>
-  <data name="ObjectStatus_Disapproved" xml:space="preserve">
-    <value>验证失败</value>
-  </data>
-  <data name="ObjectStatus_Normal" xml:space="preserve">
-    <value>正常</value>
-  </data>
-  <data name="ObjectStatus_PaddingApproved" xml:space="preserve">
-    <value>等待验证</value>
-  </data>
-  <data name="ObjectStatus_Spider" xml:space="preserve">
-    <value>采集</value>
+    <value>类型“{1}”的属性“{0}”必须包含set访问器。</value>
   </data>
   <data name="PleaseSelectFirstAndThenUpload" xml:space="preserve">
-    <value>请先选择文件后在进行上传！</value>
+    <value>请先选择文件后在进行上传。</value>
   </data>
   <data name="PrimaryKeyIsAlreadySetted" xml:space="preserve">
-    <value>表格的主键已经设置过了，不能重复设置！</value>
+    <value>表格的主键已经设置过了，不能重复设置。</value>
+  </data>
+  <data name="RandomNumberGenerator_SizeInvalid" xml:space="preserve">
+    <value>字节大小必须能被 8 整除。</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>会员</value>
@@ -231,19 +213,25 @@
   <data name="TaskExecuteError" xml:space="preserve">
     <value>[服务]{0}执行错误：{1}。</value>
   </data>
+  <data name="Task_Searching_Description" xml:space="preserve">
+    <value>对数据库中某些列进行分词，生成搜索需求文档，提供前天搜索服务。</value>
+  </data>
+  <data name="Task_Searching_Name" xml:space="preserve">
+    <value>搜索引擎服务</value>
+  </data>
   <data name="UnknownOperation" xml:space="preserve">
-    <value>The operation of '{0}' cannot be found in '{1}'.</value>
+    <value>在“{1}”找不到“{0}”的操作符。</value>
   </data>
   <data name="UnsupportedRecurse" xml:space="preserve">
-    <value>实体“{0}”不支持递归查询！</value>
+    <value>实体“{0}”不支持递归查询。</value>
   </data>
   <data name="UnsupportedType" xml:space="preserve">
-    <value>The data type of '{0}' is not supported.</value>
+    <value>数据类型'{0}'暂时还不支持。</value>
   </data>
   <data name="UploadFailured" xml:space="preserve">
-    <value>上传文件失败，请重试！</value>
+    <value>上传文件失败，请重试。</value>
   </data>
   <data name="UploadSuccess" xml:space="preserve">
-    <value>你已经成功上传了文件！</value>
+    <value>你已经成功上传了文件。</value>
   </data>
 </root>

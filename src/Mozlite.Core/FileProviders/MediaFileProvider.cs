@@ -164,7 +164,7 @@ namespace Mozlite.FileProviders
             var path = GetTempFileName(Guid.NewGuid().ToString());
             if (!await file.SaveToAsync(path))
                 return null;
-            return await CreateAsync(path, Path.GetExtension(file.FileName) ?? ".png", file.FileName, isUnique, file.ContentType, file.Length, mediaType, targetId, directoryId);
+            return await CreateAsync(path, Path.GetExtension(file.FileName), file.FileName, isUnique, file.ContentType, file.Length, mediaType, targetId, directoryId);
         }
 
         /// <inheritdoc />
@@ -181,7 +181,7 @@ namespace Mozlite.FileProviders
                 if (media != null)
                     return await CreateAsync(media, path, file);
             }
-            return await CreateAsync(path, Md5(path), Path.GetExtension(file.FileName) ?? ".png", file.FileName, file.ContentType, file.Length, mediaType, targetId, directoryId);
+            return await CreateAsync(path, Md5(path), Path.GetExtension(file.FileName), file.FileName, file.ContentType, file.Length, mediaType, targetId, directoryId);
         }
 
         /// <summary>
@@ -265,6 +265,8 @@ namespace Mozlite.FileProviders
             var mediaFile = await _repository.FindAsync(m => m.FileId == storage.FileId);
             if (mediaFile != null && isUnique)
                 return mediaFile.Url;
+            if (string.IsNullOrWhiteSpace(extension))
+                extension = ".png";
             mediaFile = new MediaFileInfo();
             mediaFile.Id = Guid.NewGuid();
             mediaFile.Extension = extension;
@@ -300,6 +302,8 @@ namespace Mozlite.FileProviders
             mediaFile.Id = mediaId ?? Guid.NewGuid();
             if (await _repository.BeginTransactionAsync(async db =>
             {
+                if (string.IsNullOrWhiteSpace(extension))
+                    extension = ".png";
                 var storages = db.As<StorageFileInfo>();
                 storage.Name = md5;
                 storage.Length = length;

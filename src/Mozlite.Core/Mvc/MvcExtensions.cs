@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Mozlite.Extensions.Identity;
 using Mozlite.Mvc.Routing;
 
 namespace Mozlite.Mvc
@@ -55,6 +57,27 @@ namespace Mozlite.Mvc
                 return ipAddress?.Split(':').FirstOrDefault();
             }
             return null;
+        }
+
+        private const string UserIdClaimDefine = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+        /// <summary>
+        /// 获取当前登陆用户的Id。
+        /// </summary>
+        /// <param name="claims">当前用户接口实例。</param>
+        /// <returns>返回用户Id，如果未登录则返回0。</returns>
+        public static int GetUserId(this ClaimsPrincipal claims)
+        {
+            return claims.FindFirstValue(UserIdClaimDefine).AsInt32() ?? 0;
+        }
+
+        /// <summary>
+        /// 获取当前用户的用户名称。
+        /// </summary>
+        /// <param name="claims">当前用户接口实例。</param>
+        /// <returns>返回用户名称，如果未登录则返回“Anonymous”。</returns>
+        public static string GetUserName(this ClaimsPrincipal claims)
+        {
+            return claims.FindFirstValue(ClaimsIdentity.DefaultNameClaimType) ?? IdentitySettings.Anonymous;
         }
 
         /// <summary>
@@ -112,6 +135,20 @@ namespace Mozlite.Mvc
                 return null;
             if (format != null)
                 content = string.Format(format, content);
+            return helper.Raw(content);
+        }
+
+        /// <summary>
+        /// 显示内容的HTML字符串，如果<paramref name="content"/>为空则显示<paramref name="replacement"/>字符串。
+        /// </summary>
+        /// <param name="helper">HTML辅助接口实例对象。</param>
+        /// <param name="content">当前要显示的内容。</param>
+        /// <param name="replacement">替换显示的字符串。</param>
+        /// <returns>返回要显示的HTML字符串。</returns>
+        public static IHtmlContent Alt(this IHtmlHelper helper, string content, string replacement)
+        {
+            if (string.IsNullOrWhiteSpace(content))
+                content = replacement;
             return helper.Raw(content);
         }
 

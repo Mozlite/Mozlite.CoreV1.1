@@ -1,7 +1,5 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Mozlite.Extensions.Identity;
 using Mozlite.Extensions;
 using Mozlite.Mvc.Messages;
 
@@ -344,31 +342,18 @@ namespace Mozlite.Mvc.Controllers
             {
                 if (_userId == -1)
                 {
-                    string userid = User.FindFirstValue(UserIdClaimType);
-                    _userId = userid.AsInt32() ?? 0;
+                    _userId = User.GetUserId();
                 }
                 return _userId;
             }
         }
 
         private string _userName;
+
         /// <summary>
         /// 当前用户名称。
         /// </summary>
-        protected string UserName => _userName ?? (_userName = User.FindFirstValue(UserNameClaimType) ?? IdentitySettings.Anonymous);
-
-        /// <summary>
-        /// 用户名称声明类型。
-        /// </summary>
-        protected virtual string UserNameClaimType
-            => ClaimsIdentity.DefaultNameClaimType;
-
-        /// <summary>
-        /// 用户ID声明类型。
-        /// </summary>
-        protected virtual string UserIdClaimType
-            => "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
-
+        protected string UserName => _userName ?? (_userName = User.GetUserName());
         #endregion
     }
 }

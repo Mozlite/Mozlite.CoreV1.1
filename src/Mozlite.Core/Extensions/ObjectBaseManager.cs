@@ -1,14 +1,13 @@
-using System;
 using System.Threading.Tasks;
 using Mozlite.Data;
 
 namespace Mozlite.Extensions
 {
     /// <summary>
-    /// 对象管理基类。
+    /// 对象管理实现基类。
     /// </summary>
-    /// <typeparam name="TModel">模型类型。</typeparam>
-    public abstract class ObjectManager<TModel> : IObjectManager<TModel> where TModel : IObject
+    /// <typeparam name="TModel">实体类型。</typeparam>
+    public abstract class ObjectBaseManager<TModel> : IObjectBaseManager<TModel> where TModel : IObjectBase
     {
         /// <summary>
         /// 数据库操作接口。
@@ -18,7 +17,7 @@ namespace Mozlite.Extensions
         /// 初始化类<see cref="ObjectManager{TModel}"/>。
         /// </summary>
         /// <param name="repository">数据库操作接口。</param>
-        protected ObjectManager(IRepository<TModel> repository)
+        protected ObjectBaseManager(IRepository<TModel> repository)
         {
             Database = repository;
         }
@@ -96,7 +95,7 @@ namespace Mozlite.Extensions
         /// </summary>
         /// <param name="id">实体Id。</param>
         /// <returns>返回模型实例对象。</returns>
-        public virtual TModel Get(int id)
+        public virtual TModel Find(int id)
         {
             return Database.Find(x => x.Id == id);
         }
@@ -104,51 +103,11 @@ namespace Mozlite.Extensions
         /// <summary>
         /// 获取模型实例。
         /// </summary>
-        /// <param name="guid">Guid。</param>
-        /// <returns>返回模型实例对象。</returns>
-        public virtual TModel Get(Guid guid)
-        {
-            return Database.Find(x => x.Guid == guid);
-        }
-
-        /// <summary>
-        /// 获取模型实例。
-        /// </summary>
-        /// <param name="key">唯一键。</param>
-        /// <returns>返回模型实例对象。</returns>
-        public virtual TModel Get(string key)
-        {
-            return Database.Find(x => x.Key == key);
-        }
-
-        /// <summary>
-        /// 获取模型实例。
-        /// </summary>
         /// <param name="id">实体Id。</param>
         /// <returns>返回模型实例对象。</returns>
-        public virtual async Task<TModel> GetAsync(int id)
+        public virtual async Task<TModel> FindAsync(int id)
         {
             return await Database.FindAsync(x => x.Id == id);
-        }
-
-        /// <summary>
-        /// 获取模型实例。
-        /// </summary>
-        /// <param name="guid">Guid。</param>
-        /// <returns>返回模型实例对象。</returns>
-        public virtual async Task<TModel> GetAsync(Guid guid)
-        {
-            return await Database.FindAsync(x => x.Guid == guid);
-        }
-
-        /// <summary>
-        /// 获取模型实例。
-        /// </summary>
-        /// <param name="key">唯一键。</param>
-        /// <returns>返回模型实例对象。</returns>
-        public virtual async Task<TModel> GetAsync(string key)
-        {
-            return await Database.FindAsync(x => x.Key == key);
         }
 
         /// <summary>
@@ -212,27 +171,51 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// 设置状态。
+        /// 添加实例。
         /// </summary>
-        /// <param name="ids">Id集合，以“,”分割。</param>
-        /// <param name="status">对象状态实例。</param>
-        /// <returns>返回设置结果。</returns>
-        public virtual bool SetStatus(string ids, ObjectStatus status)
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual DataResult Create(TModel model)
         {
-            var intIds = ids.SplitToInt32();
-            return Database.Update(x => x.Id.Included(intIds), new { status });
+            if (IsDulicate(model))
+                return DataAction.Duplicate;
+            return DataResult.FromResult(Database.Create(model), DataAction.Created);
         }
 
         /// <summary>
-        /// 设置状态。
+        /// 添加实例。
         /// </summary>
-        /// <param name="ids">Id集合，以“,”分割。</param>
-        /// <param name="status">对象状态实例。</param>
-        /// <returns>返回设置结果。</returns>
-        public virtual async Task<bool> SetStatusAsync(string ids, ObjectStatus status)
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual async Task<DataResult> CreateAsync(TModel model)
         {
-            var intIds = ids.SplitToInt32();
-            return await Database.UpdateAsync(x => x.Id.Included(intIds), new { status });
+            if (await IsDulicateAsync(model))
+                return DataAction.Duplicate;
+            return DataResult.FromResult(await Database.CreateAsync(model), DataAction.Created);
+        }
+
+        /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual DataResult Update(TModel model)
+        {
+            if (IsDulicate(model))
+                return DataAction.Duplicate;
+            return DataResult.FromResult(Database.Update(model), DataAction.Updated);
+        }
+
+        /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual async Task<DataResult> UpdateAsync(TModel model)
+        {
+            if (await IsDulicateAsync(model))
+                return DataAction.Duplicate;
+            return DataResult.FromResult(await Database.UpdateAsync(model), DataAction.Updated);
         }
     }
 }

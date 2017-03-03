@@ -30,7 +30,7 @@ namespace Mozlite
 
                 if (size % bitsPerByte != 0)
                 {
-                    throw new ArgumentException("字节大小必须能被 8 整除。", nameof(size));
+                    throw new ArgumentException(Resources.RandomNumberGenerator_SizeInvalid, nameof(size));
                 }
 
                 var strengthInBytes = size / bitsPerByte;

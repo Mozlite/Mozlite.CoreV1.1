@@ -7,7 +7,7 @@ namespace Mozlite.Core.Tasks
     /// <summary>
     /// 后台任务。
     /// </summary>
-    [Table("Tasks")]
+    [Table("core_Tasks")]
     public class TaskDescriptor
     {
         /// <summary>

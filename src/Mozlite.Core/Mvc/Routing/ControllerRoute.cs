@@ -39,7 +39,7 @@ namespace Mozlite.Mvc.Routing
             if (Type == RouteType.Backend)
                 builder.AppendFormat("{0}/", backend ?? "backend");
             else
-                builder.AppendFormat("{0}/", usercenter ?? "my");
+                builder.AppendFormat("{0}/", usercenter ?? "self");
             if (Area != null)
                 builder.AppendFormat("{0}/", Area);
             if (!string.IsNullOrEmpty(RouteName))

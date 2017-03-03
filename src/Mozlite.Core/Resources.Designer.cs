@@ -69,7 +69,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The string argument &apos;{0}&apos; cannot be empty. 类似的本地化字符串。
+        ///    查找与 参数&apos;{0}&apos;不能为空。 类似的本地化字符串。
         /// </summary>
         public static string ArgumentIsEmpty {
             get {
@@ -78,7 +78,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The property &apos;{0}&apos; of the argument &apos;{1}&apos; cannot be null. 类似的本地化字符串。
+        ///    查找与 参数&apos;{1}&apos;的&apos;{0}&apos;属性不能为空。 类似的本地化字符串。
         /// </summary>
         public static string ArgumentPropertyNull {
             get {
@@ -132,7 +132,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The collection argument &apos;{0}&apos; must contain at least one element. 类似的本地化字符串。
+        ///    查找与 参数&apos;{0}&apos;集合最少需要包含一个值。 类似的本地化字符串。
         /// </summary>
         public static string CollectionArgumentIsEmpty {
             get {
@@ -141,7 +141,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 恭喜你，你已经成功添加了“{0}”！ 类似的本地化字符串。
+        ///    查找与 恭喜你，你已经成功添加了“{0}”。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_Created {
             get {
@@ -150,7 +150,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，添加“{0}”失败了！ 类似的本地化字符串。
+        ///    查找与 很抱歉，添加“{0}”失败了。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_CreatedFailured {
             get {
@@ -159,7 +159,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 恭喜你，你已经成功删除了所选择的{0}！ 类似的本地化字符串。
+        ///    查找与 恭喜你，你已经成功删除了所选择的{0}。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_Deleted {
             get {
@@ -168,7 +168,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，删除“{0}”失败了！ 类似的本地化字符串。
+        ///    查找与 很抱歉，删除“{0}”失败了。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_DeletedFailured {
             get {
@@ -177,7 +177,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，删除“{0}”失败了，因为包含的子项不为空！ 类似的本地化字符串。
+        ///    查找与 很抱歉，删除“{0}”失败了，因为包含的子项不为空。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_DeletedFailuredItemsNotEmpty {
             get {
@@ -186,7 +186,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，“{0}”已经存在，操作失败! 类似的本地化字符串。
+        ///    查找与 很抱歉，“{0}”已经存在，操作失败。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_Duplicate {
             get {
@@ -195,7 +195,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 恭喜你，你已经成功完成了“{0}”！ 类似的本地化字符串。
+        ///    查找与 恭喜你，你已经成功完成了“{0}”。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_Success {
             get {
@@ -204,7 +204,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，发生了未知错误，操作失败，请重试！ 类似的本地化字符串。
+        ///    查找与 很抱歉，发生了未知错误，操作失败，请重试。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_UnknownError {
             get {
@@ -213,7 +213,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 恭喜你，你已经成功更新了“{0}”！ 类似的本地化字符串。
+        ///    查找与 恭喜你，你已经成功更新了“{0}”。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_Updated {
             get {
@@ -222,7 +222,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 很抱歉，更新“{0}”失败了！ 类似的本地化字符串。
+        ///    查找与 很抱歉，更新“{0}”失败了。 类似的本地化字符串。
         /// </summary>
         public static string DataAction_UpdatedFailured {
             get {
@@ -231,7 +231,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 &apos;{0}&apos;添加错误，因为已经存在一个同样名称的扩展属性！ 类似的本地化字符串。
+        ///    查找与 &apos;{0}&apos;添加错误，因为已经存在一个同样名称的扩展属性。 类似的本地化字符串。
         /// </summary>
         public static string DuplicateAnnotation {
             get {
@@ -240,7 +240,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The entity type &apos;{0}&apos; provided for the argument &apos;{1}&apos; must be a reference type. 类似的本地化字符串。
+        ///    查找与 参数 &apos;{1}&apos;的实体类型&apos;{0}&apos;必须是一个引用类型。 类似的本地化字符串。
         /// </summary>
         public static string InvalidEntityType {
             get {
@@ -249,7 +249,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The properties expression &apos;{0}&apos; is not valid. The expression should represent a property access: &apos;t =&gt; t.MyProperty&apos;. When specifying multiple properties use an anonymous type: &apos;t =&gt; new {{ t.MyProperty1, t.MyProperty2 }}&apos;. 类似的本地化字符串。
+        ///    查找与 属性表达式&apos;{0}&apos;不正确， 表达式必须提供一种属性访问，如： &apos;t =&gt; t.MyProperty&apos;；如果式多个属性，需要如下代码表示：&apos;t =&gt; new {{ t.MyProperty1, t.MyProperty2 }}&apos;。 类似的本地化字符串。
         /// </summary>
         public static string InvalidPropertiesExpression {
             get {
@@ -258,7 +258,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The expression &apos;{0}&apos; is not a valid property expression. The expression should represent a property access: &apos;t =&gt; t.MyProperty&apos;. 类似的本地化字符串。
+        ///    查找与 属性表达式&apos;{0}&apos;不正确， 表达式必须提供一种属性访问，如： &apos;t =&gt; t.MyProperty&apos;。 类似的本地化字符串。
         /// </summary>
         public static string InvalidPropertyExpression {
             get {
@@ -267,7 +267,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 上传路径不正确，当前文件所属实例不明确！ 类似的本地化字符串。
+        ///    查找与 上传路径不正确，当前文件所属实例不明确。 类似的本地化字符串。
         /// </summary>
         public static string MediaFileUploadPathIsError {
             get {
@@ -276,7 +276,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The migration is error:{0}. 类似的本地化字符串。
+        ///    查找与 数据迁移出错：{0}。 类似的本地化字符串。
         /// </summary>
         public static string MigrationError {
             get {
@@ -285,7 +285,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The property &apos;{0}&apos; of entity type &apos;{1}&apos; does not have a getter.  类似的本地化字符串。
+        ///    查找与 类型“{1}”的属性“{0}”必须包含get访问器。 类似的本地化字符串。
         /// </summary>
         public static string NoGetter {
             get {
@@ -294,7 +294,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The property &apos;{0}&apos; of entity type &apos;{1}&apos; does not have a setter. 类似的本地化字符串。
+        ///    查找与 类型“{1}”的属性“{0}”必须包含set访问器。 类似的本地化字符串。
         /// </summary>
         public static string NoSetter {
             get {
@@ -303,70 +303,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 关闭 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Closed {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Closed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 完成 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Completed {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Completed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 禁用 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Disabled {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Disabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 验证失败 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Disapproved {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Disapproved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 正常 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Normal {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Normal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 等待验证 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_PaddingApproved {
-            get {
-                return ResourceManager.GetString("ObjectStatus_PaddingApproved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 采集 类似的本地化字符串。
-        /// </summary>
-        public static string ObjectStatus_Spider {
-            get {
-                return ResourceManager.GetString("ObjectStatus_Spider", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    查找与 请先选择文件后在进行上传！ 类似的本地化字符串。
+        ///    查找与 请先选择文件后在进行上传。 类似的本地化字符串。
         /// </summary>
         public static string PleaseSelectFirstAndThenUpload {
             get {
@@ -375,11 +312,20 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 表格的主键已经设置过了，不能重复设置！ 类似的本地化字符串。
+        ///    查找与 表格的主键已经设置过了，不能重复设置。 类似的本地化字符串。
         /// </summary>
         public static string PrimaryKeyIsAlreadySetted {
             get {
                 return ResourceManager.GetString("PrimaryKeyIsAlreadySetted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 字节大小必须能被 8 整除。 类似的本地化字符串。
+        /// </summary>
+        public static string RandomNumberGenerator_SizeInvalid {
+            get {
+                return ResourceManager.GetString("RandomNumberGenerator_SizeInvalid", resourceCulture);
             }
         }
         
@@ -393,6 +339,24 @@ namespace Mozlite {
         }
         
         /// <summary>
+        ///    查找与 对数据库中某些列进行分词，生成搜索需求文档，提供前天搜索服务。 类似的本地化字符串。
+        /// </summary>
+        public static string Task_Searching_Description {
+            get {
+                return ResourceManager.GetString("Task_Searching_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 搜索引擎服务 类似的本地化字符串。
+        /// </summary>
+        public static string Task_Searching_Name {
+            get {
+                return ResourceManager.GetString("Task_Searching_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    查找与 [服务]{0}执行错误：{1}。 类似的本地化字符串。
         /// </summary>
         public static string TaskExecuteError {
@@ -402,7 +366,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The operation of &apos;{0}&apos; cannot be found in &apos;{1}&apos;. 类似的本地化字符串。
+        ///    查找与 在“{1}”找不到“{0}”的操作符。 类似的本地化字符串。
         /// </summary>
         public static string UnknownOperation {
             get {
@@ -411,7 +375,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 实体“{0}”不支持递归查询！ 类似的本地化字符串。
+        ///    查找与 实体“{0}”不支持递归查询。 类似的本地化字符串。
         /// </summary>
         public static string UnsupportedRecurse {
             get {
@@ -420,7 +384,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 The data type of &apos;{0}&apos; is not supported. 类似的本地化字符串。
+        ///    查找与 数据类型&apos;{0}&apos;暂时还不支持。 类似的本地化字符串。
         /// </summary>
         public static string UnsupportedType {
             get {
@@ -429,7 +393,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 上传文件失败，请重试！ 类似的本地化字符串。
+        ///    查找与 上传文件失败，请重试。 类似的本地化字符串。
         /// </summary>
         public static string UploadFailured {
             get {
@@ -438,7 +402,7 @@ namespace Mozlite {
         }
         
         /// <summary>
-        ///    查找与 你已经成功上传了文件！ 类似的本地化字符串。
+        ///    查找与 你已经成功上传了文件。 类似的本地化字符串。
         /// </summary>
         public static string UploadSuccess {
             get {

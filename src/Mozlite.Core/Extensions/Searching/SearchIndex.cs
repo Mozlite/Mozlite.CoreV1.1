@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Searching
     /// <summary>
     /// 搜索实例对象。
     /// </summary>
-    [Table("Searching_Indexes")]
+    [Table("core_Searching_Indexes")]
     public class SearchIndex
     {
         /// <summary>

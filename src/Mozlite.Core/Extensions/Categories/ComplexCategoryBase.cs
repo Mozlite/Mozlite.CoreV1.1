@@ -8,7 +8,7 @@ namespace Mozlite.Extensions.Categories
     /// 多级分类基类。
     /// </summary>
     /// <typeparam name="TCategory">分类实例类型。</typeparam>
-    public abstract class ComplexCategoryBase<TCategory> : CategoryBase, IRecursable<TCategory>
+    public abstract class ComplexCategoryBase<TCategory> : CategoryBase, IParentable<TCategory>
         where TCategory : ComplexCategoryBase<TCategory>, new()
     {
         private readonly IList<TCategory> _children = new List<TCategory>();

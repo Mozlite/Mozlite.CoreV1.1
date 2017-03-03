@@ -3,7 +3,6 @@
   "copyright": "www.mozlite.com",
   "description": "基于ASP.NET Core 1.0的快速开发框架！",
   "version": "1.0.0-*",
-
   "dependencies": {
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
@@ -15,10 +14,14 @@
     "System.Data.Common": "4.1.0",
     "System.Data.SqlClient": "4.1.0"
   },
-
   "frameworks": {
     "netstandard1.6": {
       "imports": "dnxcore50"
     }
+  },
+  "buildOptions": {
+    "optimize": true,
+    "languageVersion": "csharp6",
+    "platform": "anycpu"
   }
 }

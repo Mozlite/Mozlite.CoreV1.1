@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Mozlite.Core {
+namespace Mozlite {
     using System;
     using System.Reflection;
     

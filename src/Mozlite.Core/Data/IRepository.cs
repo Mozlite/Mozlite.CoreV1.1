@@ -28,13 +28,7 @@ namespace Mozlite.Data
         /// <param name="timeout">等待命令执行所需的时间（以秒为单位）。默认值为 30 秒。</param>
         /// <returns>返回事务实例对象。</returns>
         bool BeginTransaction(Func<ITransactionRepository<TModel>, bool> executor, int timeout = 30);
-
-        /// <summary>
-        /// 实例化一个查询实例。
-        /// </summary>
-        [Obsolete("这个是属性将有方法AsQueryable()替代，防止这个实例化当成一个属性来用！")]
-        IQueryable<TModel> Query { get; }
-
+        
         /// <summary>
         /// 实例化一个查询实例，这个实例相当于实例化一个查询类，不能当作属性直接调用。
         /// </summary>

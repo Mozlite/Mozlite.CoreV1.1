@@ -5,8 +5,8 @@ namespace Mozlite.Extensions
     /// <summary>
     /// 递归接口。
     /// </summary>
-    public interface IRecursable<TModel> : IEnumerable<TModel>
-        where TModel : IRecursable<TModel>
+    public interface IParentable<TModel> : IEnumerable<TModel>
+        where TModel : IParentable<TModel>
     {
         /// <summary>
         /// 唯一Id。

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Caching.Memory;
+﻿using System.Linq;
 using Mozlite.Data;
+using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Mozlite.Extensions.Categories
 {
@@ -28,7 +28,7 @@ namespace Mozlite.Extensions.Categories
         /// <returns>返回分类包含列表。</returns>
         public TCategory GetChildren(int id)
         {
-            var categories = Database.AsQueryable().RecurseChildren(c => c.Id == id);
+            var categories = Database.AsQueryable().LoadChildren(c => c.Id == id);
             return GetCategory(categories, id);
         }
 
@@ -52,7 +52,7 @@ namespace Mozlite.Extensions.Categories
         /// <returns>返回分类包含列表。</returns>
         public TCategory GetParent(int id)
         {
-            var categories = Database.AsQueryable().RecurseParents(c => c.Id == id);
+            var categories = Database.AsQueryable().LoadParents(c => c.Id == id);
             return GetCategory(categories, 0);
         }
 

@@ -67,13 +67,7 @@ namespace Mozlite.Data.Internal
                         executor(new TransactionRepository<TModel>(transaction, Logger, _model, Entity, SqlHelper,
                             SqlGenerator)), timeout);
         }
-
-        /// <summary>
-        /// 实例化一个查询实例。
-        /// </summary>
-        [Obsolete("这个是属性将有方法AsQueryable()替代，防止这个实例化当成一个属性来用！")]
-        public IQueryable<TModel> Query => new QueryContext<TModel>(_model, SqlHelper, _visitorFactory, SqlGenerator, _db);
-
+        
         /// <summary>
         /// 分页获取实例列表。
         /// </summary>

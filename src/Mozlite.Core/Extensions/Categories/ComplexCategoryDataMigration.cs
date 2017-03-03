@@ -1,5 +1,4 @@
-﻿using Mozlite.Data.Migrations;
-using Mozlite.Data.Migrations.Builders;
+﻿using Mozlite.Data.Migrations.Builders;
 
 namespace Mozlite.Extensions.Categories
 {

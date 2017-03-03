@@ -212,14 +212,14 @@ namespace Mozlite.Data
         /// </summary>
         /// <param name="expression">条件表达式。</param>
         /// <returns>返回数据实例列表。</returns>
-        IEnumerable<TModel> RecurseChildren(Expression<Predicate<TModel>> expression);
+        IEnumerable<TModel> LoadChildren(Expression<Predicate<TModel>> expression);
 
         /// <summary>
         /// 递归查询父级数据。
         /// </summary>
         /// <param name="expression">条件表达式。</param>
         /// <returns>返回数据实例列表。</returns>
-        IEnumerable<TModel> RecurseParents(Expression<Predicate<TModel>> expression);
+        IEnumerable<TModel> LoadParents(Expression<Predicate<TModel>> expression);
 
         /// <summary>
         /// 递归查询子集数据。
@@ -227,7 +227,7 @@ namespace Mozlite.Data
         /// <param name="expression">条件表达式。</param>
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据实例列表。</returns>
-        Task<IEnumerable<TModel>> RecurseChildrenAsync(Expression<Predicate<TModel>> expression,
+        Task<IEnumerable<TModel>> LoadChildrenAsync(Expression<Predicate<TModel>> expression,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace Mozlite.Data
         /// <param name="expression">条件表达式。</param>
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据实例列表。</returns>
-        Task<IEnumerable<TModel>> RecurseParentsAsync(Expression<Predicate<TModel>> expression,
+        Task<IEnumerable<TModel>> LoadParentsAsync(Expression<Predicate<TModel>> expression,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

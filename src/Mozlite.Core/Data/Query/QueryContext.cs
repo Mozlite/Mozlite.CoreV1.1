@@ -633,9 +633,9 @@ namespace Mozlite.Data.Query
         /// </summary>
         /// <param name="expression">条件表达式。</param>
         /// <returns>返回数据实例列表。</returns>
-        public IEnumerable<TModel> RecurseChildren(Expression<Predicate<TModel>> expression)
+        public IEnumerable<TModel> LoadChildren(Expression<Predicate<TModel>> expression)
         {
-            if (typeof(IRecursable<>).IsAssignableFrom(Entity.ClrType))
+            if (typeof(IParentable<>).IsAssignableFrom(Entity.ClrType))
                 throw new NotSupportedException(string.Format(Resources.UnsupportedRecurse, Entity.Name));
             var sql = _sqlGenerator.Recurse(Entity, expression);
             return Load(sql);
@@ -646,9 +646,9 @@ namespace Mozlite.Data.Query
         /// </summary>
         /// <param name="expression">条件表达式。</param>
         /// <returns>返回数据实例列表。</returns>
-        public IEnumerable<TModel> RecurseParents(Expression<Predicate<TModel>> expression)
+        public IEnumerable<TModel> LoadParents(Expression<Predicate<TModel>> expression)
         {
-            if (typeof(IRecursable<>).IsAssignableFrom(Entity.ClrType))
+            if (typeof(IParentable<>).IsAssignableFrom(Entity.ClrType))
                 throw new NotSupportedException(string.Format(Resources.UnsupportedRecurse, Entity.Name));
             var sql = _sqlGenerator.Recurse(Entity, expression, true);
             return Load(sql);
@@ -660,9 +660,9 @@ namespace Mozlite.Data.Query
         /// <param name="expression">条件表达式。</param>
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据实例列表。</returns>
-        public Task<IEnumerable<TModel>> RecurseChildrenAsync(Expression<Predicate<TModel>> expression, CancellationToken cancellationToken = new CancellationToken())
+        public Task<IEnumerable<TModel>> LoadChildrenAsync(Expression<Predicate<TModel>> expression, CancellationToken cancellationToken = new CancellationToken())
         {
-            if (typeof(IRecursable<>).IsAssignableFrom(Entity.ClrType))
+            if (typeof(IParentable<>).IsAssignableFrom(Entity.ClrType))
                 throw new NotSupportedException(string.Format(Resources.UnsupportedRecurse, Entity.Name));
             var sql = _sqlGenerator.Recurse(Entity, expression);
             return LoadAsync(sql, cancellationToken);
@@ -674,9 +674,9 @@ namespace Mozlite.Data.Query
         /// <param name="expression">条件表达式。</param>
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据实例列表。</returns>
-        public Task<IEnumerable<TModel>> RecurseParentsAsync(Expression<Predicate<TModel>> expression, CancellationToken cancellationToken = new CancellationToken())
+        public Task<IEnumerable<TModel>> LoadParentsAsync(Expression<Predicate<TModel>> expression, CancellationToken cancellationToken = new CancellationToken())
         {
-            if (typeof(IRecursable<>).IsAssignableFrom(Entity.ClrType))
+            if (typeof(IParentable<>).IsAssignableFrom(Entity.ClrType))
                 throw new NotSupportedException(string.Format(Resources.UnsupportedRecurse, Entity.Name));
             var sql = _sqlGenerator.Recurse(Entity, expression, true);
             return LoadAsync(sql, cancellationToken);

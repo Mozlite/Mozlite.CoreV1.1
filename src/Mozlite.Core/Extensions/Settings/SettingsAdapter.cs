@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Settings
     /// <summary>
     /// 网站配置数据库操作适配器。
     /// </summary>
-    [Table("core_SiteSettings")]
+    [Table("SiteSettings")]
     public class SettingsAdapter
     {
         /// <summary>

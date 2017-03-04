@@ -6,7 +6,7 @@ namespace Mozlite.Core.Tasks
     /// <summary>
     /// 服务参数实例。
     /// </summary>
-    [Table("core_Tasks_Arguments")]
+    [Table("Tasks_Arguments")]
     public class TaskArgument
     {
         /// <summary>

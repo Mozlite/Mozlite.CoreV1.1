@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Mozlite.Core;
 using Mozlite.Extensions.Identity;
 using Mozlite.Mvc.Routing;
 
@@ -28,12 +29,14 @@ namespace Mozlite.Mvc
         public static IApplicationBuilder UseMvcDefault(this IApplicationBuilder app, IConfiguration configuration)
         {
             var section = configuration.GetSection("routes");
+            var backend = section["backend"] ?? Configuration.DefaultBackendDir;
+            var userCenter = section["usercenter"] ?? Configuration.DefaultUserCenterDir;
             return app.UseMvc(builder =>
              {
                  var routes = app.ApplicationServices.GetRequiredService<ControllerRouteCollection>();
                  foreach (var route in routes)
                  {
-                     builder.MapLowerCaseRoute($"{route.Area}-{route.ControllerName}", route.ToRoute(section["backend"], section["usercenter"]), new { controller = route.ControllerName, action = "index", area = route.Area });
+                     builder.MapLowerCaseRoute($"{route.Area}-{route.ControllerName}", route.ToRoute(backend, userCenter), new { controller = route.ControllerName, action = "index", area = route.Area });
                  }
                  builder.MapLowerCaseRoute("area-default", "{area:exists}/{controller}/{action=Index}/{id?}")
                         .MapLowerCaseRoute("default", "{controller=Home}/{action=Index}/{id?}");

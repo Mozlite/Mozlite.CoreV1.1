@@ -89,6 +89,8 @@ namespace Mozlite.Core
         /// <param name="services">服务集合。</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            //添加配置类
+            services.AddSingleton(service => new Configuration(_configuration));
             ConfigureAssembliesServices(services);
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc()

@@ -6,7 +6,7 @@ namespace Mozlite.Extensions.Searching
     /// <summary>
     /// 搜索分词表。
     /// </summary>
-    [Table("core_Searchings")]
+    [Table("Searchings")]
     public class SearchDescriptor
     {
         /// <summary>

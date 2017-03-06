@@ -6,7 +6,7 @@ namespace Mozlite.FileProviders
     /// <summary>
     /// 媒体文件。
     /// </summary>
-    [Table("core_Medias_Files")]
+    [Table("Medias_Files")]
     public class MediaFileInfo
     {
         /// <summary>

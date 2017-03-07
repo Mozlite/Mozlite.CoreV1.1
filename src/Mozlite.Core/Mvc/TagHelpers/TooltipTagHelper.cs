@@ -8,7 +8,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// Tooltip标签。
     /// </summary>
     [HtmlTargetElement("i", Attributes = AttributeName)]
-    public class TooltipTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+    public class TooltipTagHelper : TagHelperBase
     {
         private const string AttributeName = "x-tip";
 

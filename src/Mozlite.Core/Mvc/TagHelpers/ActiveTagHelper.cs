@@ -7,7 +7,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 当前激活标签。
     /// </summary>
     [HtmlTargetElement("*", Attributes = AttributeName + "," + ValueAttributeName)]
-    public class ActiveTagHelper : ViewContextableTagHelper
+    public class ActiveTagHelper : ViewContextableTagHelperBase
     {
         private const string AttributeName = "x-current";
         private const string ValueAttributeName = "x-value";

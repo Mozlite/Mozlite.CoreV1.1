@@ -9,7 +9,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 状态标签。
     /// </summary>
     [HtmlTargetElement("x:status", Attributes = AttributeName)]
-    public class StatusTagHelper : TagHelper
+    public class StatusTagHelper : TagHelperBase
     {
         private const string TrueAttributeName = "x-true";
         private const string FalseAttributeName = "x-false";

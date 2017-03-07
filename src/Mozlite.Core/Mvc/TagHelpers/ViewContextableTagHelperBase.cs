@@ -8,7 +8,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 可访问<see cref="ViewContext"/>实例的标记。
     /// </summary>
-    public abstract class ViewContextableTagHelper : TagHelper
+    public abstract class ViewContextableTagHelperBase : TagHelperBase
     {
         /// <summary>
         /// 试图上下文。

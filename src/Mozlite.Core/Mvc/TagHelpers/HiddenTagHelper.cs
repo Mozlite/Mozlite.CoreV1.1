@@ -7,7 +7,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// </summary>
     [HtmlTargetElement("*", Attributes = NullAttributeName)]
     [HtmlTargetElement("*", Attributes = AttributeName)]
-    public class HiddenTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+    public class HiddenTagHelper : TagHelperBase
     {
         private const string AttributeName = "x-hidden";
         private const string NullAttributeName = "x-null-hidden";

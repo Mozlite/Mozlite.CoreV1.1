@@ -9,7 +9,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 下拉列表框基类。
     /// </summary>
-    public abstract class SelectableTagHelper : ViewContextableTagHelper
+    public abstract class SelectableTagHelper : ViewContextableTagHelperBase
     {
         private const string AttributeName = "x-first-text";
         private const string ValueAttributeName = "x-first-value";

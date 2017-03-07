@@ -11,7 +11,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 分页标签。
     /// </summary> 
     [HtmlTargetElement("x:page")]
-    public class PageTagHelper : ViewContextableTagHelper
+    public class PageTagHelper : ViewContextableTagHelperBase
     {
         private const string ActionAttributeName = "x-action";
         private const string ControllerAttributeName = "x-controller";

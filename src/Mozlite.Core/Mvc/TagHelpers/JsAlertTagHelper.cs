@@ -8,7 +8,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 警告窗口。
     /// </summary>
     [HtmlTargetElement("x:jsalert")]
-    public class JsAlertTagHelper : ViewContextableTagHelper
+    public class JsAlertTagHelper : ViewContextableTagHelperBase
     {
         /// <summary>
         /// 访问并呈现当前标签实例。

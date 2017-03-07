@@ -6,7 +6,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 标记基类。
     /// </summary>
-    public abstract class TagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+    public abstract class TagHelperBase : TagHelper
     {
         /// <summary>
         /// 访问并呈现当前标签实例。

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿#if DEBUG
+using System.Threading.Tasks;
 using Mozlite.Core;
 
 namespace Mozlite.Mvc.Tools
@@ -17,3 +18,4 @@ namespace Mozlite.Mvc.Tools
         Task<bool> ParseAsync(string fileName, string dirName);
     }
 }
+#endif

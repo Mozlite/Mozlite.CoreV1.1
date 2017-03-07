@@ -174,8 +174,17 @@
   <data name="DataAction_UpdatedFailured" xml:space="preserve">
     <value>很抱歉，更新“{0}”失败了。</value>
   </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM月dd日</value>
+  </data>
+  <data name="DaysBefore" xml:space="preserve">
+    <value>{0} 天前</value>
+  </data>
   <data name="DuplicateAnnotation" xml:space="preserve">
     <value>'{0}'添加错误，因为已经存在一个同样名称的扩展属性。</value>
+  </data>
+  <data name="HoursBefore" xml:space="preserve">
+    <value>{0} 小时前</value>
   </data>
   <data name="InvalidEntityType" xml:space="preserve">
     <value>参数 '{1}'的实体类型'{0}'必须是一个引用类型。</value>
@@ -186,17 +195,32 @@
   <data name="InvalidPropertyExpression" xml:space="preserve">
     <value>属性表达式'{0}'不正确， 表达式必须提供一种属性访问，如： 't =&gt; t.MyProperty'。</value>
   </data>
+  <data name="JustNow" xml:space="preserve">
+    <value>刚刚</value>
+  </data>
+  <data name="LastPage" xml:space="preserve">
+    <value>上一页</value>
+  </data>
   <data name="MediaFileUploadPathIsError" xml:space="preserve">
     <value>上传路径不正确，当前文件所属实例不明确。</value>
   </data>
   <data name="MigrationError" xml:space="preserve">
     <value>数据迁移出错：{0}。</value>
   </data>
+  <data name="MunitesBefore" xml:space="preserve">
+    <value>{0} 分钟前</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>下一页</value>
+  </data>
   <data name="NoGetter" xml:space="preserve">
     <value>类型“{1}”的属性“{0}”必须包含get访问器。</value>
   </data>
   <data name="NoSetter" xml:space="preserve">
     <value>类型“{1}”的属性“{0}”必须包含set访问器。</value>
+  </data>
+  <data name="NumberPage" xml:space="preserve">
+    <value>第{0}页</value>
   </data>
   <data name="PleaseSelectFirstAndThenUpload" xml:space="preserve">
     <value>请先选择文件后在进行上传。</value>
@@ -233,5 +257,8 @@
   </data>
   <data name="UploadSuccess" xml:space="preserve">
     <value>你已经成功上传了文件。</value>
+  </data>
+  <data name="YearDateFormat" xml:space="preserve">
+    <value>yyyy年MM月dd日</value>
   </data>
 </root>

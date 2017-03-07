@@ -231,11 +231,38 @@ namespace Mozlite {
         }
         
         /// <summary>
+        ///    查找与 MM月dd日 类似的本地化字符串。
+        /// </summary>
+        public static string DateFormat {
+            get {
+                return ResourceManager.GetString("DateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 {0} 天前 类似的本地化字符串。
+        /// </summary>
+        public static string DaysBefore {
+            get {
+                return ResourceManager.GetString("DaysBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    查找与 &apos;{0}&apos;添加错误，因为已经存在一个同样名称的扩展属性。 类似的本地化字符串。
         /// </summary>
         public static string DuplicateAnnotation {
             get {
                 return ResourceManager.GetString("DuplicateAnnotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 {0} 小时前 类似的本地化字符串。
+        /// </summary>
+        public static string HoursBefore {
+            get {
+                return ResourceManager.GetString("HoursBefore", resourceCulture);
             }
         }
         
@@ -267,6 +294,24 @@ namespace Mozlite {
         }
         
         /// <summary>
+        ///    查找与 刚刚 类似的本地化字符串。
+        /// </summary>
+        public static string JustNow {
+            get {
+                return ResourceManager.GetString("JustNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 上一页 类似的本地化字符串。
+        /// </summary>
+        public static string LastPage {
+            get {
+                return ResourceManager.GetString("LastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    查找与 上传路径不正确，当前文件所属实例不明确。 类似的本地化字符串。
         /// </summary>
         public static string MediaFileUploadPathIsError {
@@ -285,6 +330,24 @@ namespace Mozlite {
         }
         
         /// <summary>
+        ///    查找与 {0} 分钟前 类似的本地化字符串。
+        /// </summary>
+        public static string MunitesBefore {
+            get {
+                return ResourceManager.GetString("MunitesBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 下一页 类似的本地化字符串。
+        /// </summary>
+        public static string NextPage {
+            get {
+                return ResourceManager.GetString("NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    查找与 类型“{1}”的属性“{0}”必须包含get访问器。 类似的本地化字符串。
         /// </summary>
         public static string NoGetter {
@@ -299,6 +362,15 @@ namespace Mozlite {
         public static string NoSetter {
             get {
                 return ResourceManager.GetString("NoSetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 第{0}页 类似的本地化字符串。
+        /// </summary>
+        public static string NumberPage {
+            get {
+                return ResourceManager.GetString("NumberPage", resourceCulture);
             }
         }
         
@@ -407,6 +479,15 @@ namespace Mozlite {
         public static string UploadSuccess {
             get {
                 return ResourceManager.GetString("UploadSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    查找与 yyyy年MM月dd日 类似的本地化字符串。
+        /// </summary>
+        public static string YearDateFormat {
+            get {
+                return ResourceManager.GetString("YearDateFormat", resourceCulture);
             }
         }
     }

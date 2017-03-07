@@ -11,7 +11,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 多级分类下拉列表。
     /// </summary>
-    public abstract class ComplexCategorySelectListTagHelper<TCategory> : SelectableTagHelper
+    public abstract class ComplexCategorySelectListTagHelper<TCategory> : SelectableTagHelperBase
         where TCategory : ComplexCategoryBase<TCategory>, new()
     {
         /// <summary>

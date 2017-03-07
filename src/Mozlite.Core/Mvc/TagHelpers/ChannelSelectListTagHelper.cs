@@ -10,7 +10,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 频道下拉列表框。
     /// </summary>
     [HtmlTargetElement("x:channelselect")]
-    public class ChannelSelectListTagHelper : SelectableTagHelper
+    public class ChannelSelectListTagHelper : SelectableTagHelperBase
     {
         private readonly IChannelManager _channelManager;
         /// <summary>

@@ -11,7 +11,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 枚举下拉列表标签。
     /// </summary>
     [HtmlTargetElement("x:enumselect")]
-    public class EnumSelectTagHelper : SelectableTagHelper
+    public class EnumSelectTagHelper : SelectableTagHelperBase
     {
         private readonly IEnumLocalizer _localizer;
 

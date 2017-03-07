@@ -9,7 +9,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 下拉列表框基类。
     /// </summary>
-    public abstract class SelectableTagHelper : ViewContextableTagHelperBase
+    public abstract class SelectableTagHelperBase : ViewContextableTagHelperBase
     {
         private const string AttributeName = "x-first-text";
         private const string ValueAttributeName = "x-first-value";
@@ -34,10 +34,10 @@ namespace Mozlite.Mvc.TagHelpers
         
         private readonly SelectTagHelper _selectTagHelper;
         /// <summary>
-        /// 初始化类<see cref="SelectableTagHelper"/>。
+        /// 初始化类<see cref="SelectableTagHelperBase"/>。
         /// </summary>
         /// <param name="generator">Html辅助接口。</param>
-        protected SelectableTagHelper(IHtmlGenerator generator)
+        protected SelectableTagHelperBase(IHtmlGenerator generator)
         {
             _selectTagHelper = new SelectTagHelper(generator);
         }

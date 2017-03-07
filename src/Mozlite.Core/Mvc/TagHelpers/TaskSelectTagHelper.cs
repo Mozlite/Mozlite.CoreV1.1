@@ -10,12 +10,12 @@ namespace Mozlite.Mvc.TagHelpers
     /// 后台服务下拉列表标签。
     /// </summary>
     [HtmlTargetElement("x:taskselect")]
-    public class TaskSelectTagHelper : SelectableTagHelper
+    public class TaskSelectTagHelper : SelectableTagHelperBase
     {
         private readonly ITaskManager _taskManager;
 
         /// <summary>
-        /// 初始化类<see cref="SelectableTagHelper"/>。
+        /// 初始化类<see cref="SelectableTagHelperBase"/>。
         /// </summary>
         /// <param name="generator">Html辅助接口。</param>
         /// <param name="taskManager">服务管理接口。</param>

@@ -11,7 +11,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// <summary>
     /// 多级分类下拉列表。
     /// </summary>
-    public abstract class ComplexCategoryListTemplateTagHelper<TCategory> : ViewContextableTagHelperBase
+    public abstract class ComplexCategoryListTemplateTagHelperBase<TCategory> : ViewContextableTagHelperBase
         where TCategory : ComplexCategoryBase<TCategory>, new()
     {
         private class Alt

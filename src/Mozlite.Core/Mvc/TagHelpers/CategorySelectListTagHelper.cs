@@ -10,7 +10,7 @@ namespace Mozlite.Mvc.TagHelpers
     /// 分类下拉列表框。
     /// </summary>
     [HtmlTargetElement("x:categoryselect")]
-    public class CategorySelectListTagHelper : SelectableTagHelper
+    public class CategorySelectListTagHelper : SelectableTagHelperBase
     {
         private const string AttributeName = "x-items";
 
@@ -27,7 +27,7 @@ namespace Mozlite.Mvc.TagHelpers
         public IEnumerable<CategoryBase> Items { get; set; }
 
         /// <summary>
-        /// 初始化类<see cref="SelectableTagHelper"/>。
+        /// 初始化类<see cref="SelectableTagHelperBase"/>。
         /// </summary>
         /// <param name="generator">Html辅助接口。</param>
         public CategorySelectListTagHelper(IHtmlGenerator generator) : base(generator)

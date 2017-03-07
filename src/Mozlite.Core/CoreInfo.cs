@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.Versioning;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Mozlite
 {
@@ -11,6 +13,7 @@ namespace Mozlite
         private CoreInfo()
         {
             Version = Assembly.GetEntryAssembly().GetName().Version;
+            FrameworkName = PlatformServices.Default.Application.RuntimeFramework;
         }
 
         /// <summary>
@@ -22,5 +25,10 @@ namespace Mozlite
         /// 版本。
         /// </summary>
         public Version Version { get; }
+
+        /// <summary>
+        /// 框架版本。
+        /// </summary>
+        public FrameworkName FrameworkName { get; }
     }
 }

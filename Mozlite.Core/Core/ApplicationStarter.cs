@@ -39,19 +39,13 @@ namespace Mozlite.Core
 
         private IEnumerable<RuntimeLibrary> GetLibraries()
         {
-            var entry = Assembly.GetEntryAssembly().GetName().Name.Split('.')[0];
-            return DependencyContext.Default.RuntimeLibraries
-                 .Distinct(_libraryEqualityComparer)
-                 .Where(lib => IsProjectedLibrary(entry, lib.Name))
-                 .ToList();
-        }
-
-        //加载Mozlite核心框架，和以网站项目开头的程序集，其他命名的程序集不加载
-        private bool IsProjectedLibrary(string entry, string name)
-        {
-            if (name.StartsWith("Mozlite.") || name == "Mozlite")
-                return true;
-            return name.StartsWith(entry + ".") || name == entry;
+            //加载Mozlite核心框架，和以网站项目开头的程序集，其他命名的程序集不加载
+            var current = Assembly.GetEntryAssembly().GetName().Name.Split('.')[0];
+            var libraries = DependencyContext.Default.RuntimeLibraries
+                .Where(x => x.Name.StartsWith("mozlite", StringComparison.OrdinalIgnoreCase) ||
+                            x.Name.StartsWith(current, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            return libraries;
         }
 
         private class LibraryEqualityComparer : IEqualityComparer<RuntimeLibrary>

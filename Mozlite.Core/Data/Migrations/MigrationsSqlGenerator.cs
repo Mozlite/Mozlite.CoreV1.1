@@ -7,6 +7,7 @@ using Mozlite.Core;
 using Mozlite.Data.Metadata;
 using Mozlite.Data.Migrations.Operations;
 using System.Reflection;
+using Mozlite.Properties;
 
 namespace Mozlite.Data.Migrations
 {

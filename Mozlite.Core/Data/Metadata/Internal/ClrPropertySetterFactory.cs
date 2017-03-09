@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using Mozlite.Core;
+using Mozlite.Properties;
 
 namespace Mozlite.Data.Metadata.Internal
 {

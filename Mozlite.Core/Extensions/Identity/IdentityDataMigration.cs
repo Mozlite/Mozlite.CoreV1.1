@@ -1,5 +1,6 @@
 ﻿using Mozlite.Data.Migrations;
 using Mozlite.Data.Migrations.Builders;
+using Mozlite.Properties;
 
 namespace Mozlite.Extensions.Identity
 {

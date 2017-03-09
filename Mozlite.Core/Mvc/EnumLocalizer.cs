@@ -22,7 +22,7 @@ namespace Mozlite.Mvc
             return _localizers.GetOrAdd(name.GetType(), type =>
             {
                 var assembly = type.GetTypeInfo().Assembly;
-                return new ResourceManager(assembly.GetName().Name + ".Resources", assembly);
+                return new ResourceManager(assembly.GetName().Name + ".Properties.Resources", assembly);
             });
         }
 

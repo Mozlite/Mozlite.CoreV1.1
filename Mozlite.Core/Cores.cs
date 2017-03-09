@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using Mozlite.Properties;
 
 namespace Mozlite
 {

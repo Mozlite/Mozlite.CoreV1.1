@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Mozlite.Core.Tasks;
+using Mozlite.Properties;
 
 namespace Mozlite.Extensions.Searching
 {

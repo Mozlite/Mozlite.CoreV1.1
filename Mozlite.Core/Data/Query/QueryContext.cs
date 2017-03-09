@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Mozlite.Data.Internal;
 using Mozlite.Data.Metadata;
 using Mozlite.Extensions;
+using Mozlite.Properties;
 
 namespace Mozlite.Data.Query
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mozlite.Core;
 using Mozlite.Data.Migrations;
+using Mozlite.Properties;
 
 namespace Mozlite.Data.SqlServer.Migrations
 {

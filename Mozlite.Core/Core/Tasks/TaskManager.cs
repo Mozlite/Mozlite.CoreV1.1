@@ -6,6 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Mozlite.Data;
 using Mozlite.Extensions;
+using Mozlite.Properties;
 
 namespace Mozlite.Core.Tasks
 {

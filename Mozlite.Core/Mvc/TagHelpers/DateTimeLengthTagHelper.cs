@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Mozlite.Properties;
 
 namespace Mozlite.Mvc.TagHelpers
 {

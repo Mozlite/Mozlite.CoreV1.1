@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Mozlite.Data.Metadata;
 using Mozlite.Data.Migrations.Models;
 using Mozlite.Data.Migrations.Operations;
+using Mozlite.Properties;
 
 namespace Mozlite.Data.Migrations
 {

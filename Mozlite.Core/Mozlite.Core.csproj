@@ -10,7 +10,14 @@
     <Version>1.0.6</Version>
     <Authors>网魂小兵</Authors>
     <Company>mozlite.com</Company>
-    <Description>Mozlite.Core是为了能够快速进行ASP.NET Core开发的框架，主要保护以下几个功能模块：
+    <Description>Mozlite.Core是为了能够快速进行ASP.NET Core开发的框架。</Description>
+    <Copyright>mozlite.com</Copyright>
+    <PackageLicenseUrl>https://github.com/Mozlite/Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Mozlite/Core/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Mozlite/Core.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>aspnetcore</PackageTags>
+    <PackageReleaseNotes>Mozlite.Core主要保护以下几个功能模块：
 1.整个框架使用对象容器，能够自动的载入以Mozlite开头以及以网站程序集短名称开头的程序集的接口实现进行容器注册服务；
 2.包含了数据库CodeFirst格式的迁移框架，以及提供了类Linq的数据库查询语句；
 3.实现了Identity用户的数据库以及扩展类；
@@ -20,14 +27,7 @@
 7.文件存储接口，包含上传和下载存储方案；
 8.Bootstrap等一些通用TagHelper扩展；
 9.简单自定义收索索引实现方式；
-10.提供了HTML处理的辅助方法，以及拼音的相关实现；</Description>
-    <Copyright>mozlite.com</Copyright>
-    <PackageLicenseUrl>https://github.com/Mozlite/Core/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Mozlite/Core/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Mozlite/Core.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>aspnetcore</PackageTags>
-    <PackageReleaseNotes>www.mozlite.com</PackageReleaseNotes>
+10.提供了HTML处理的辅助方法，以及拼音的相关实现；</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 
 namespace Mozlite.Core.Tasks
@@ -144,6 +145,16 @@ namespace Mozlite.Core.Tasks
             {
                 return defaultValue;
             }
+        }
+
+        internal Func<Argument, Task> SetArgumentAsync;
+        /// <summary>
+        /// 保存当前参数实例。
+        /// </summary>
+        /// <returns>返回保存任务。</returns>
+        public Task SaveAsync()
+        {
+            return SetArgumentAsync?.Invoke(this);
         }
     }
 }

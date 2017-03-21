@@ -103,5 +103,13 @@ namespace Mozlite.Core.Tasks
         /// <param name="message">错误消息。</param>
         /// <returns>返回执行任务。</returns>
         Task SetArgumentAsync(long id, int times = 0, string message = null);
+
+        /// <summary>
+        /// 设置参数。
+        /// </summary>
+        /// <param name="id">参数ID。</param>
+        /// <param name="argument">参数实例对象。</param>
+        /// <returns>返回执行任务。</returns>
+        Task SetArgumentAsync(long id, Argument argument);
     }
 }

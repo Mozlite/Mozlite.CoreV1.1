@@ -98,13 +98,14 @@ namespace Mozlite.Core.Tasks
 
         private async Task ExecuteArgumentAsync(TaskDescriptor task)
         {
-            //for (int i = 0; i < (int)ArgumentStatus.Failured; i++)
-            //{
             var argument = await _taskManager.GetArgumentAsync(task.Id);
             if (argument != null)
             {
                 try
                 {
+                    //在服务运行后可以更改当前参数值
+                    if (argument.Args != null)
+                        argument.Args.SetArgumentAsync = args => _taskManager.SetArgumentAsync(argument.Id, args);
                     await task.Service(argument.Args);
                     await _taskManager.SetArgumentAsync(argument.Id);
                 }
@@ -117,7 +118,6 @@ namespace Mozlite.Core.Tasks
                 }
             }
             await Task.Delay(TimeSpan.FromSeconds(1));
-            //}
         }
     }
 }

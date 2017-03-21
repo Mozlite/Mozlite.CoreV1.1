@@ -191,5 +191,16 @@ namespace Mozlite.Core.Tasks
                 return _args.UpdateAsync(s => s.Id == id, new { TryTimes = times, Error = message });
             return _args.UpdateAsync(s => s.Id == id, new { TryTimes = times, Error = message, Status = ArgumentStatus.Failured });
         }
+
+        /// <summary>
+        /// 设置参数。
+        /// </summary>
+        /// <param name="id">参数ID。</param>
+        /// <param name="argument">参数实例对象。</param>
+        /// <returns>返回执行任务。</returns>
+        public Task SetArgumentAsync(long id, Argument argument)
+        {
+           return _args.UpdateAsync(x => x.Id == id, new {Argument = argument.ToString()});
+        }
     }
 }

@@ -8,6 +8,11 @@ namespace Mozlite.Core.Tasks
     public class ArgumentQuery : QueryBase<TaskArgument>
     {
         /// <summary>
+        /// 参数字符串。
+        /// </summary>
+        public string Args { get; set; }
+
+        /// <summary>
         /// 扩展名称。
         /// </summary>
         public string ExtensionName { get; set; }
@@ -33,6 +38,8 @@ namespace Mozlite.Core.Tasks
                 context.Where(x => x.Status == Status);
             if (TaskId > 0)
                 context.Where(x => x.TaskId == TaskId);
+            if (!string.IsNullOrWhiteSpace(Args))
+                context.Where(x => x.Argument.Contains(Args));
         }
     }
 }

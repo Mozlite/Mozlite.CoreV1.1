@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Reflection;
 using System.Resources;
+using System.Collections.Concurrent;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc.Localization;
 
 namespace Mozlite.Mvc
@@ -22,7 +23,10 @@ namespace Mozlite.Mvc
             return _localizers.GetOrAdd(name.GetType(), type =>
             {
                 var assembly = type.GetTypeInfo().Assembly;
-                return new ResourceManager(assembly.GetName().Name + ".Properties.Resources", assembly);
+                var baseName = assembly.GetManifestResourceNames()
+                    .SingleOrDefault();
+                baseName = baseName.Substring(0, baseName.Length - 10);
+                return new ResourceManager(baseName, assembly);
             });
         }
 
@@ -43,7 +47,7 @@ namespace Mozlite.Mvc
         /// <returns>返回本地化字符串。</returns>
         public string L(Enum name)
         {
-            return GetResourceManager(name).GetString(GetResouceName(name));
+            return GetResourceManager(name)?.GetString(GetResouceName(name)) ?? name.ToString();
         }
 
         /// <summary>

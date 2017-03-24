@@ -44,10 +44,21 @@ namespace Mozlite.Mvc.Controllers
         protected string ActionName => _actionName ?? (_actionName = ControllerContext.ActionDescriptor.ActionName);
 
         private string _areaName;
+
         /// <summary>
         /// 获取当前区域名称。
         /// </summary>
-        protected string AreaName => _areaName ?? (_areaName = ControllerContext.ActionDescriptor.RouteValues["area"]);
+        protected string AreaName
+        {
+            get
+            {
+                if (_actionName == null)
+                {
+                    ControllerContext.ActionDescriptor.RouteValues.TryGetValue("area", out _areaName);
+                }
+                return _areaName;
+            }
+        }
         #endregion
 
         #region views

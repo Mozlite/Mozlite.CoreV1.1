@@ -90,7 +90,8 @@ namespace Mozlite.Mvc
         /// <returns>返回当前视图名称。</returns>
         public static string GetActionName(this ViewContext viewContext)
         {
-            return viewContext.ActionDescriptor.RouteValues["action"];
+            viewContext.ActionDescriptor.RouteValues.TryGetValue("action", out var action);
+            return action;
         }
 
         /// <summary>
@@ -100,7 +101,8 @@ namespace Mozlite.Mvc
         /// <returns>返回当前视图区域名称。</returns>
         public static string GetAreaName(this ViewContext viewContext)
         {
-            return viewContext.ActionDescriptor.RouteValues["area"];
+            viewContext.ActionDescriptor.RouteValues.TryGetValue("area", out var area);
+            return area;
         }
 
         /// <summary>
@@ -110,7 +112,8 @@ namespace Mozlite.Mvc
         /// <returns>返回当前视图控制器名称。</returns>
         public static string GetControllerName(this ViewContext viewContext)
         {
-            return viewContext.ActionDescriptor.RouteValues["controller"];
+            viewContext.ActionDescriptor.RouteValues.TryGetValue("controller", out var controller);
+            return controller;
         }
 
         /// <summary>
@@ -251,8 +254,9 @@ namespace Mozlite.Mvc
         /// <returns>返回当前Url地址。</returns>
         public static string ActionUrl(this IUrlHelper urlHelper, string action, string controller = null, object values = null)
         {
-            var areaName = urlHelper.ActionContext.ActionDescriptor.RouteValues["area"];
-            controller = controller ?? urlHelper.ActionContext.ActionDescriptor.RouteValues["controller"];
+            urlHelper.ActionContext.ActionDescriptor.RouteValues.TryGetValue("area", out var areaName);
+            if (controller == null)
+                urlHelper.ActionContext.ActionDescriptor.RouteValues.TryGetValue("controller", out controller);
             if (values == null)
                 return urlHelper.Action(action, controller, areaName == null ? null : new { area = areaName });
             var routes = new RouteValueDictionary(values);

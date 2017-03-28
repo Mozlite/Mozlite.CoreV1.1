@@ -397,5 +397,27 @@ namespace Mozlite.Extensions.Identity
         {
             return _userManager.GetUsersInRoleAsync(roleName);
         }
+
+        /// <summary>
+        /// 判断名称是否已经存在。
+        /// </summary>
+        /// <param name="id">用户Id。</param>
+        /// <param name="name">用户名称。</param>
+        /// <returns>返回判断结果。</returns>
+        public Task<bool> IsDuplicatedNameAsync(int id, string name)
+        {
+            return Repository.AnyAsync(x => x.UserId != id && (x.NickName == name || x.UserName == name));
+        }
+
+        /// <summary>
+        /// 更新用户的相关列。
+        /// </summary>
+        /// <param name="id">用户Id。</param>
+        /// <param name="user">用户实例列。</param>
+        /// <returns>返回保存结果。</returns>
+        public async Task<DataResult> UpdateAsync(int id, object user)
+        {
+            return DataResult.FromResult(await Repository.UpdateAsync(x => x.UserId == id, user), DataAction.Updated);
+        }
     }
 }

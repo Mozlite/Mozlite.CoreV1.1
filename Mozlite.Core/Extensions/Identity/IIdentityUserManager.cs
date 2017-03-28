@@ -245,5 +245,21 @@ namespace Mozlite.Extensions.Identity
         /// <param name="nickName">昵称。</param>
         /// <returns>返回修改结果。</returns>
         Task<DataResult> ChangeNickNameAsync(int id, string nickName);
+
+        /// <summary>
+        /// 判断名称是否已经存在。
+        /// </summary>
+        /// <param name="id">用户Id。</param>
+        /// <param name="name">用户名称。</param>
+        /// <returns>返回判断结果。</returns>
+        Task<bool> IsDuplicatedNameAsync(int id, string name);
+
+        /// <summary>
+        /// 更新用户的相关列。
+        /// </summary>
+        /// <param name="id">用户Id。</param>
+        /// <param name="user">用户实例列。</param>
+        /// <returns>返回保存结果。</returns>
+        Task<DataResult> UpdateAsync(int id, object user);
     }
 }

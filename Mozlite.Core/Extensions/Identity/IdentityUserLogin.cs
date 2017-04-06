@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户登陆实例。
     /// </summary>
-    [Table("Users_Logins")]
+    [Table("core_Users_Logins")]
     public class IdentityUserLogin
     {
         /// <summary>

@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户登陆提供者的一些信息存储。
     /// </summary>
-    [Table("Users_Tokens")]
+    [Table("core_Users_Tokens")]
     public class IdentityUserToken
     {
         /// <summary>

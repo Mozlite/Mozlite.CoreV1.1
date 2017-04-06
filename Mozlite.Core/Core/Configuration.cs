@@ -27,7 +27,7 @@ namespace Mozlite.Core
             UserCenter = section["usercenter"] ?? DefaultUserCenterDir;
             section = configuration.GetSection("storages");
             TempPath = section["temp"] ?? "_temp";
-            TempPath = section["media"] ?? "_media";
+            MediaPath = section["media"] ?? "_media";
         }
 
         /// <summary>

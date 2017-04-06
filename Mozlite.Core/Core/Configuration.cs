@@ -25,6 +25,9 @@ namespace Mozlite.Core
             var section = configuration.GetSection("routes");
             Backend = section["backend"] ?? DefaultBackendDir;
             UserCenter = section["usercenter"] ?? DefaultUserCenterDir;
+            section = configuration.GetSection("storages");
+            TempPath = section["temp"] ?? "_temp";
+            TempPath = section["media"] ?? "_media";
         }
 
         /// <summary>
@@ -43,5 +46,15 @@ namespace Mozlite.Core
         /// 用户中心操作路径名称。
         /// </summary>
         public string UserCenter { get; }
+
+        /// <summary>
+        /// 媒体文件存储路径。
+        /// </summary>
+        public string MediaPath { get; set; }
+
+        /// <summary>
+        /// 临时文件夹路径。
+        /// </summary>
+        public string TempPath { get; set; }
     }
 }

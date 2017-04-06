@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Mozlite.Core;
 using Mozlite.Data;
 using Mozlite.Utils;
 
@@ -28,19 +29,19 @@ namespace Mozlite.FileProviders
         /// <param name="storages">文件存储数据库操作接口。</param>
         /// <param name="repository">数据库操作接口。</param>
         /// <param name="options">配置选项。</param>
-        public MediaFileProvider(IHostingEnvironment environment, IRepository<StorageFileInfo> storages, IRepository<MediaFileInfo> repository, IOptions<FileProviderOptions> options)
+        public MediaFileProvider(IHostingEnvironment environment, IRepository<StorageFileInfo> storages, IRepository<MediaFileInfo> repository, Configuration options)
         {
             _storages = storages;
             _repository = repository;
             //媒体文件存储的物理路径
-            var path = options.Value.MediaPath.Trim();
+            var path = options.MediaPath.Trim();
             if (path.StartsWith("~/"))
                 path = Path.Combine(environment.WebRootPath, path.Substring(2));
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             _mediaRootPath = path;
             //临时文件存储的物理路径
-            path = options.Value.TempPath.Trim();
+            path = options.TempPath.Trim();
             if (path.StartsWith("~/"))
                 path = Path.Combine(environment.WebRootPath, path.Substring(2));
             if (!Directory.Exists(path))

@@ -5,7 +5,7 @@ namespace Mozlite.Core.Tasks
     /// <summary>
     /// 后台服务数据迁移类型。
     /// </summary>
-    public class TaskMigration : DataMigration<TaskDescriptor>
+    public abstract class TaskMigration : DataMigration<TaskDescriptor>
     {
         /// <summary>
         /// 创建操作。

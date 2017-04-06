@@ -14,7 +14,7 @@ namespace Mozlite.Extensions
         /// </summary>
         protected readonly IRepository<TModel> Database;
         /// <summary>
-        /// 初始化类<see cref="ObjectManager{TModel}"/>。
+        /// 初始化类<see cref="ObjectBaseManager{TModel}"/>。
         /// </summary>
         /// <param name="repository">数据库操作接口。</param>
         protected ObjectBaseManager(IRepository<TModel> repository)
@@ -216,6 +216,28 @@ namespace Mozlite.Extensions
             if (await IsDulicateAsync(model))
                 return DataAction.Duplicate;
             return DataResult.FromResult(await Database.UpdateAsync(model), DataAction.Updated);
+        }
+
+        /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="id">当前唯一Id。</param>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual DataResult Update(int id, object model)
+        {
+            return DataResult.FromResult(Database.Update(x => x.Id == id, model), DataAction.Updated);
+        }
+
+        /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="id">当前唯一Id。</param>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        public virtual async Task<DataResult> UpdateAsync(int id, object model)
+        {
+            return DataResult.FromResult(await Database.UpdateAsync(x => x.Id == id, model), DataAction.Updated);
         }
     }
 }

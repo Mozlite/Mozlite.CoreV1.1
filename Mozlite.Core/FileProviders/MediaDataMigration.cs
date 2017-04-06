@@ -4,7 +4,7 @@ namespace Mozlite.FileProviders
     /// <summary>
     /// 媒体文件存储数据库迁移类。
     /// </summary>
-    public class MediaDataMigration : DataMigration
+    public abstract class MediaDataMigration : DataMigration
     {
         /// <inheritdoc />
         public override void Create(MigrationBuilder builder)

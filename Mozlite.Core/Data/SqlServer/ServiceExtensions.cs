@@ -56,7 +56,7 @@ namespace Mozlite.Data.SqlServer
                 .Configure<DatabaseOptions>(o =>
                 {
                     o.ConnectionString = source.ConnectionString;
-                    o.Prefix = source.Prefix.EscapePrefix()?.Trim();
+                    o.Prefix = source.Prefix?.Trim();
                     o.Schema = source.Schema;
                     o.Provider = "SqlServer";
                 })

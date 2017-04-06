@@ -7,7 +7,7 @@
     <Win32Resource />
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <Authors>网魂小兵</Authors>
     <Company>mozlite.com</Company>
     <Description>Mozlite.Core是为了能够快速进行ASP.NET Core开发的框架。</Description>

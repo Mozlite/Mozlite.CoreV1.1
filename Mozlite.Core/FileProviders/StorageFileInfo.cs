@@ -5,7 +5,7 @@ namespace Mozlite.FileProviders
     /// <summary>
     /// 存储文件。
     /// </summary>
-    [Table("Medias_Storages")]
+    [Table("core_Medias_Storages")]
     public class StorageFileInfo
     {
         /// <summary>

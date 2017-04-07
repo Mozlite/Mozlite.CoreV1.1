@@ -53,6 +53,22 @@ namespace Mozlite.Extensions
         Task<DataResult> UpdateAsync(TModel model);
 
         /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="id">当前唯一Id。</param>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        DataResult Update(int id, object model);
+
+        /// <summary>
+        /// 更新实例。
+        /// </summary>
+        /// <param name="id">当前唯一Id。</param>
+        /// <param name="model">模型实例对象。</param>
+        /// <returns>返回执行结果。</returns>
+        Task<DataResult> UpdateAsync(int id, object model);
+
+        /// <summary>
         /// 保存实例。
         /// </summary>
         /// <param name="model">模型实例对象。</param>

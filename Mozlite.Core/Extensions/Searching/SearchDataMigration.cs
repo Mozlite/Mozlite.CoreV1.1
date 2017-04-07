@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Searching
     /// <summary>
     /// 搜索索引数据迁移。
     /// </summary>
-    public class SearchDataMigration : DataMigration
+    public abstract class SearchDataMigration : DataMigration
     {
         /// <inheritdoc />
         public override void Create(MigrationBuilder builder)

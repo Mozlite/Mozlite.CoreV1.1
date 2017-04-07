@@ -6,7 +6,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户。
     /// </summary>
-    [Table("Users")]
+    [Table("core_Users")]
     public class IdentityUser
     {
         /// <summary>

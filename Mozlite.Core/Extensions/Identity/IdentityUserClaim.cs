@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户声明实例类。
     /// </summary>
-    [Table("Users_Claims")]
+    [Table("core_Users_Claims")]
     public class IdentityUserClaim
     {
         /// <summary>

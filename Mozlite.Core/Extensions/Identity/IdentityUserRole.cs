@@ -5,7 +5,7 @@ namespace Mozlite.Extensions.Identity
     /// <summary>
     /// 用户和用户组。
     /// </summary>
-    [Table("Users_Roles")]
+    [Table("core_Users_Roles")]
     public class IdentityUserRole
     {
         /// <summary>

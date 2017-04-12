@@ -427,6 +427,7 @@ namespace Mozlite.Data.Query
 
         #region orderbys
         private string _orderbySql;
+        private bool _requiredOrderby;
         /// <summary>
         /// ORDER BY语句。
         /// </summary>
@@ -434,13 +435,15 @@ namespace Mozlite.Data.Query
         {
             get
             {
-                if (_orderbySql == null && _orderbys.Count > 0)
+                if (_orderbySql == null)
                 {
-                    _orderbySql = "ORDER BY ";
-                    //if (_orderbys.Count > 0)
-                    _orderbySql += string.Join(", ", _orderbys);
-                    //else
-                    //_orderbySql += string.Join(",", Entity.PrimaryKey.Properties.Select(k => Delimit(k.Name)));
+                    if(_orderbys.Count>0)
+                    _orderbySql = $"ORDER BY {string.Join(", ", _orderbys)}";
+                    else if (_requiredOrderby)
+                    {
+                        _orderbySql = string.Join(",", Entity.PrimaryKey.Properties.Select(k => Delimit(k.Name)));
+                        _orderbySql = $"ORDER BY {_orderbySql}";
+                    }
                 }
                 return _orderbySql;
             }
@@ -612,6 +615,8 @@ namespace Mozlite.Data.Query
         /// <returns>返回数据列表。</returns>
         public IPageEnumerable<TModel> AsEnumerable(int pageIndex, int pageSize, Expression<Func<TModel, object>> count = null)
         {
+            //必须添加ORDER BY，如果没添加都自动附加主键排序
+            _requiredOrderby = true;
             Size = pageSize;
             PageIndex = pageIndex;
             if (count != null)
@@ -667,6 +672,8 @@ namespace Mozlite.Data.Query
         public Task<IPageEnumerable<TModel>> AsEnumerableAsync(int pageIndex, int pageSize, Expression<Func<TModel, object>> count = null,
             CancellationToken cancellationToken = new CancellationToken())
         {
+            //必须添加ORDER BY，如果没添加都自动附加主键排序
+            _requiredOrderby = true;
             Size = pageSize;
             PageIndex = pageIndex;
             if (count != null)

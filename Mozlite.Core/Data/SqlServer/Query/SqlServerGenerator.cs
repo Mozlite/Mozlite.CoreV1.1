@@ -74,10 +74,9 @@ namespace Mozlite.Data.SqlServer.Query
                 .AppendLine(" ROWS ONLY;");
 
             builder.Append("SELECT COUNT(");
-            if (sql.IsDistinct)
-                builder.Append("DISTINCT ").Append(sql.Aggregation);
-            else
-                builder.Append("1");
+            if (sql.IsDistinct && sql.Aggregation != "1")
+                builder.Append("DISTINCT ");
+            builder.Append(sql.Aggregation);
             builder.Append(")");
             builder.Append(sql.FromSql).Append(" ");
             builder.Append(sql.WhereSql).Append(";");

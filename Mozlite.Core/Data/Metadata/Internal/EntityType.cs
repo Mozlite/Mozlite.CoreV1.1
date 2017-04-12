@@ -72,8 +72,7 @@ namespace Mozlite.Data.Metadata.Internal
         /// <returns>返回属性实例对象。</returns>
         public IProperty FindProperty(string name)
         {
-            Property property;
-            _properties.TryGetValue(name, out property);
+            _properties.TryGetValue(name, out var property);
             return property;
         }
 
@@ -84,12 +83,11 @@ namespace Mozlite.Data.Metadata.Internal
         /// <returns>返回属性集合。</returns>
         public IEnumerable<IProperty> FindProperties(Ignore ignore)
         {
-            IEnumerable<IProperty> properties;
-            if (_ignores.TryGetValue(ignore, out properties))
+            if (_ignores.TryGetValue(ignore, out var properties))
                 return properties;
             properties = _properties.Values.Where(property =>
             {
-                Ignore? current = null;
+                Ignore? current;
                 if (property.IsIdentity)
                     current = Ignore.Upsert;
                 else

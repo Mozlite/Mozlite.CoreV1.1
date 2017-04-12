@@ -28,6 +28,40 @@ namespace Mozlite.Data
         IQueryContext<TModel> InnerJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression);
 
         /// <summary>
+        /// 设置表格左关联。
+        /// </summary>
+        /// <typeparam name="TForeign">拼接类型。</typeparam>
+        /// <param name="onExpression">关联条件表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> LeftJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression);
+
+        /// <summary>
+        /// 设置表格左关联。
+        /// </summary>
+        /// <typeparam name="TPrimary">主键所在的模型类型。</typeparam>
+        /// <typeparam name="TForeign">外键所在的模型类型。</typeparam>
+        /// <param name="onExpression">关联条件表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> LeftJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression);
+
+        /// <summary>
+        /// 设置表格右关联。
+        /// </summary>
+        /// <typeparam name="TForeign">拼接类型。</typeparam>
+        /// <param name="onExpression">关联条件表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> RightJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression);
+
+        /// <summary>
+        /// 设置表格右关联。
+        /// </summary>
+        /// <typeparam name="TPrimary">主键所在的模型类型。</typeparam>
+        /// <typeparam name="TForeign">外键所在的模型类型。</typeparam>
+        /// <param name="onExpression">关联条件表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> RightJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression);
+
+        /// <summary>
         /// 设置选择列。
         /// </summary>
         /// <typeparam name="TEntity">模型类型。</typeparam>
@@ -63,6 +97,21 @@ namespace Mozlite.Data
         /// <param name="ignore">忽略属性。</param>
         /// <returns>返回当前查询实例对象。</returns>
         IQueryContext<TModel> Select(Ignore ignore);
+
+        /// <summary>
+        /// 设置选择列(不重复)。
+        /// </summary>
+        /// <typeparam name="TEntity">模型类型。</typeparam>
+        /// <param name="fields">列表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> Distinct<TEntity>(Expression<Func<TEntity, object>> fields);
+
+        /// <summary>
+        /// 设置选择列(不重复)。
+        /// </summary>
+        /// <param name="fields">列表达式。</param>
+        /// <returns>返回当前查询实例对象。</returns>
+        IQueryContext<TModel> Distinct(Expression<Func<TModel, object>> fields);
 
         /// <summary>
         /// 添加条件表达式。

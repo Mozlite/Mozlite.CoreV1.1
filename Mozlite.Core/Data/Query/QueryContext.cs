@@ -177,9 +177,16 @@ namespace Mozlite.Data.Query
         /// <returns>返回当前查询实例对象。</returns>
         public IQueryable<TModel> InnerJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression)
         {
+            return Join("INNER", onExpression);
+        }
+
+        private IQueryable<TModel> Join<TPrimary, TForeign>(string key, Expression<Func<TPrimary, TForeign, bool>> onExpression)
+        {
             var type = typeof(TForeign);
             var builder = new StringBuilder();
-            builder.Append("INNER JOIN ")
+            builder
+                .Append(key)
+                .Append(" JOIN ")
                 .Append(Model.GetTable(type))
                 .Append(" AS ")
                 .Append(GetAlias(type))
@@ -196,6 +203,38 @@ namespace Mozlite.Data.Query
         IQueryContext<TModel> IQueryContext<TModel>.InnerJoin<TPrimary, TForeign>(
                 Expression<Func<TPrimary, TForeign, bool>> onExpression)
             => InnerJoin(onExpression);
+
+        public IQueryable<TModel> LeftJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression)
+        {
+            return LeftJoin<TModel, TForeign>(onExpression);
+        }
+
+        public IQueryable<TModel> LeftJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression)
+        {
+            return Join("LEFT", onExpression);
+        }
+
+        public IQueryable<TModel> RightJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression)
+        {
+            return RightJoin<TModel, TForeign>(onExpression);
+        }
+
+        public IQueryable<TModel> RightJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression)
+        {
+            return Join("RIGHT", onExpression);
+        }
+
+        IQueryContext<TModel> IQueryContext<TModel>.LeftJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression)
+            => LeftJoin<TForeign>(onExpression);
+
+        IQueryContext<TModel> IQueryContext<TModel>.LeftJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression)
+            => LeftJoin<TPrimary, TForeign>(onExpression);
+
+        IQueryContext<TModel> IQueryContext<TModel>.RightJoin<TForeign>(Expression<Func<TModel, TForeign, bool>> onExpression)
+            => RightJoin<TForeign>(onExpression);
+
+        IQueryContext<TModel> IQueryContext<TModel>.RightJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression)
+            => RightJoin<TPrimary, TForeign>(onExpression);
         #endregion
 
         #region fields
@@ -297,6 +336,24 @@ namespace Mozlite.Data.Query
             return this;
         }
 
+
+        public IQueryable<TModel> Distinct<TEntity>(Expression<Func<TEntity, object>> fields)
+        {
+            IsDistinct = true;
+            return Select(fields);
+        }
+
+        public IQueryable<TModel> Distinct(Expression<Func<TModel, object>> fields)
+        {
+            return Distinct<TModel>(fields);
+        }
+
+        IQueryContext<TModel> IQueryContext<TModel>.Distinct<TEntity>(Expression<Func<TEntity, object>> fields)
+            => Distinct(fields);
+
+        IQueryContext<TModel> IQueryContext<TModel>.Distinct(Expression<Func<TModel, object>> fields)
+            => Distinct(fields);
+
         IQueryContext<TModel> IQueryContext<TModel>.Select<TEntity>(Expression<Func<TEntity, object>> fields, string alias)
             => Select(fields, alias);
 
@@ -377,13 +434,13 @@ namespace Mozlite.Data.Query
         {
             get
             {
-                if (_orderbySql == null)
+                if (_orderbySql == null && _orderbys.Count > 0)
                 {
                     _orderbySql = "ORDER BY ";
-                    if (_orderbys.Count > 0)
-                        _orderbySql += string.Join(", ", _orderbys);
-                    else
-                        _orderbySql += string.Join(",", Entity.PrimaryKey.Properties.Select(k => Delimit(k.Name)));
+                    //if (_orderbys.Count > 0)
+                    _orderbySql += string.Join(", ", _orderbys);
+                    //else
+                    //_orderbySql += string.Join(",", Entity.PrimaryKey.Properties.Select(k => Delimit(k.Name)));
                 }
                 return _orderbySql;
             }
@@ -496,7 +553,7 @@ namespace Mozlite.Data.Query
         /// <summary>
         /// 是否多表
         /// </summary>
-        public bool IsDistinct => _joins.Count > 0;
+        public bool IsDistinct { get; private set; }
 
         /// <summary>
         /// 聚合列或表达式。

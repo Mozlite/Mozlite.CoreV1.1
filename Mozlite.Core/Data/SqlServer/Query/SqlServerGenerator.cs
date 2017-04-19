@@ -109,19 +109,23 @@ namespace Mozlite.Data.SqlServer.Query
         public override SqlScript Recurse(IEntityType entityType, Expression expression, bool isParent = false)
         {
             var table = Model.GetTable(entityType.ClrType);
-            var fields = string.Join(",",
-                entityType.FindProperties(Ignore.List).Select(p => SqlHelper.DelimitIdentifier(p.Name)));
+            var columns = entityType.FindProperties(Ignore.List).Select(p => SqlHelper.DelimitIdentifier(p.Name));
+            var fields = string.Join(",", columns);
             var builder = new IndentedStringBuilder();
             builder.Append("WITH _recursive(").Append(fields).Append(")as(");
             builder.Append("SELECT ").Append(fields)
                 .Append(" FROM ").Append(table).AppendEx(Visit(expression), "WHERE {0}");
             builder.Append(" UNION ALL (");
-            builder.Append("SELECT ").Append(fields).Append(" FROM ");
-            builder.Append(table).Append(" a INNER JOIN _recursive b ON ");
+            fields = string.Join(",", columns.Select(x => $"a.{x}"));
+            builder.Append("SELECT ")
+                .Append(fields)
+                .Append(" FROM ");
+            builder.Append(table)
+                .Append(" a INNER JOIN _recursive b ON ");
             if (isParent)
-                builder.Append("a.Id == b.ParentId)");
+                builder.Append("a.Id = b.ParentId)");
             else
-                builder.Append("a.ParentId == b.Id)");
+                builder.Append("a.ParentId = b.Id)");
             builder.Append(") SELECT * FROM _recursive;");
             return new SqlScript(builder);
         }

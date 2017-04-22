@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Caching.Memory;
+﻿using System.Linq;
 using Mozlite.Data;
+using System.Collections.Generic;
 using Mozlite.Extensions.Categories;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Mozlite.Extensions.Channels
 {

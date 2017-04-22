@@ -40,6 +40,7 @@ namespace Mozlite.Core.Tasks
                 context.Where(x => x.TaskId == TaskId);
             if (!string.IsNullOrWhiteSpace(Args))
                 context.Where(x => x.Argument.Contains(Args));
+            context.OrderByDescending(x => x.Id);
         }
     }
 }

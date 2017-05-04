@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <RootNamespace>Mozlite</RootNamespace>
-    <ApplicationIcon />
-    <Win32Resource />
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Version>1.0.8</Version>
@@ -13,27 +11,28 @@
     <Description>Mozlite.Core是为了能够快速进行ASP.NET Core开发的框架。</Description>
     <Copyright>mozlite.com</Copyright>
     <PackageLicenseUrl>https://github.com/Mozlite/Core/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Mozlite/Core/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Mozlite/Core.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Mozlite/Mozlite.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Mozlite/Mozlite.Core.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>aspnetcore</PackageTags>
-    <PackageReleaseNotes>Mozlite.Core主要保护以下几个功能模块：
-1.整个框架使用对象容器，能够自动的载入以Mozlite开头以及以网站程序集短名称开头的程序集的接口实现进行容器注册服务；
-2.包含了数据库CodeFirst格式的迁移框架，以及提供了类Linq的数据库查询语句；
-3.实现了Identity用户的数据库以及扩展类；
-4.包含了后台线程运行服务；
-5.网站相关配置的数据库存储方案；
-6.提供了对象以及分类的数据库存储基础操作接口和实现方法；
-7.文件存储接口，包含上传和下载存储方案；
-8.Bootstrap等一些通用TagHelper扩展；
-9.简单自定义收索索引实现方式；
-10.提供了HTML处理的辅助方法，以及拼音的相关实现；</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Mozlite.Core主要保护以下几个功能模块：
+      1.整个框架使用对象容器，能够自动的载入以Mozlite开头以及以网站程序集短名称开头的程序集的接口实现进行容器注册服务；
+      2.包含了数据库CodeFirst格式的迁移框架，以及提供了类Linq的数据库查询语句；
+      3.实现了Identity用户的数据库以及扩展类；
+      4.包含了后台线程运行服务；
+      5.网站相关配置的数据库存储方案；
+      6.提供了对象以及分类的数据库存储基础操作接口和实现方法；
+      7.文件存储接口，包含上传和下载存储方案；
+      8.Bootstrap等一些通用TagHelper扩展；
+      9.简单自定义收索索引实现方式；
+      10.提供了HTML处理的辅助方法，以及拼音的相关实现；
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.3.0" />
   </ItemGroup>
 
@@ -51,4 +50,5 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
 </Project>

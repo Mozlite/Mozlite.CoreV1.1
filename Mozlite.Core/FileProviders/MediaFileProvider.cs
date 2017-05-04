@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
 using Mozlite.Core;
 using Mozlite.Data;
 using Mozlite.Utils;
@@ -21,6 +22,7 @@ namespace Mozlite.FileProviders
         private readonly IRepository<MediaFileInfo> _repository;
         private readonly string _mediaRootPath;
         private readonly string _tempRootPath;
+        private readonly string _cacheRootPath;
 
         /// <summary>
         /// 初始化类<see cref="MediaFileProvider"/>。
@@ -34,19 +36,20 @@ namespace Mozlite.FileProviders
             _storages = storages;
             _repository = repository;
             //媒体文件存储的物理路径
-            var path = options.MediaPath.Trim();
+            var path = options.StorageDir?.Trim() ?? "storages";
             if (path.StartsWith("~/"))
                 path = Path.Combine(environment.WebRootPath, path.Substring(2));
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            _mediaRootPath = path;
+            _mediaRootPath = Path.Combine(path, "media");
+            if (!Directory.Exists(_mediaRootPath))
+                Directory.CreateDirectory(_mediaRootPath);
             //临时文件存储的物理路径
-            path = options.TempPath.Trim();
-            if (path.StartsWith("~/"))
-                path = Path.Combine(environment.WebRootPath, path.Substring(2));
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            _tempRootPath = path;
+            _tempRootPath = Path.Combine(path, "temp");
+            if (!Directory.Exists(_tempRootPath))
+                Directory.CreateDirectory(_tempRootPath);
+            //缓存文件物理路径
+            _cacheRootPath = Path.Combine(path, "cache");
+            if (!Directory.Exists(_cacheRootPath))
+                Directory.CreateDirectory(_cacheRootPath);
         }
 
         private string GetMediaPath(StorageFileInfo storage)
@@ -57,6 +60,14 @@ namespace Mozlite.FileProviders
         private string GetTempFileName(string fileName)
         {
             return Path.Combine(_tempRootPath, Cores.Md5(fileName));
+        }
+
+        private string GetCacheFileName(object cacheKey, int minutes)
+        {
+            var name = Cores.Md5(cacheKey.ToString().Trim());
+            var path = $"{name[1]}\\{name[3]}\\{name[12]}\\{name[16]}\\{name[20]}\\{minutes}\\{name}.moz";
+            path = Path.Combine(_cacheRootPath, path);
+            return path;
         }
 
         private class InteralMediaFileInfo : IMediaFileInfo
@@ -183,6 +194,62 @@ namespace Mozlite.FileProviders
                     return await CreateAsync(media, path, file);
             }
             return await CreateAsync(path, Md5(path), Path.GetExtension(file.FileName), file.FileName, file.ContentType, file.Length, mediaType, targetId, directoryId);
+        }
+
+        /// <summary>
+        /// 获取或创建文件缓存。
+        /// </summary>
+        /// <param name="key">缓存键。</param>
+        /// <param name="minutes">缓存时间，如果最后访问时间和现在时间差距超过<paramref name="minutes"/>则删除缓存文件。</param>
+        /// <param name="func">缓存实例。</param>
+        /// <returns>返回当前缓存的内容。</returns>
+        public string GetOrCreateFileCache(object key, int minutes, Func<object, string> func)
+        {
+            var info = new FileInfo(GetCacheFileName(key, minutes));
+            if (!info.Exists || (DateTime.UtcNow - info.LastAccessTimeUtc).TotalMinutes > info.Directory.Name.AsInt32())
+            {
+                if (!info.Directory.Exists)
+                    info.Directory.Create();
+                var content = func(key);
+                File.WriteAllText(info.FullName, content, Encoding.UTF8);
+                return content;
+            }
+            return File.ReadAllText(info.FullName, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取或创建文件缓存。
+        /// </summary>
+        /// <param name="key">缓存键。</param>
+        /// <param name="minutes">缓存时间，如果最后访问时间和现在时间差距超过<paramref name="minutes"/>则删除缓存文件。</param>
+        /// <param name="func">缓存实例。</param>
+        /// <returns>返回当前缓存的内容。</returns>
+        public async Task<string> GetOrCreateFileCacheAsync(object key, int minutes, Func<object, Task<string>> func)
+        {
+            var info = new FileInfo(GetCacheFileName(key, minutes));
+            if (!info.Exists || (DateTime.UtcNow - info.LastAccessTimeUtc).TotalMinutes > info.Directory.Name.AsInt32())
+            {
+                if (!info.Directory.Exists)
+                    info.Directory.Create();
+                var content = await func(key);
+                File.WriteAllText(info.FullName, content, Encoding.UTF8);
+                return content;
+            }
+            return File.ReadAllText(info.FullName, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 清理缓存文件。
+        /// </summary>
+        public void ClearFileCache()
+        {
+            var dir = new DirectoryInfo(_cacheRootPath);
+            var files = dir.GetFiles("*.moz", SearchOption.AllDirectories);
+            foreach (var info in files)
+            {
+                if ((DateTime.UtcNow - info.LastAccessTimeUtc).TotalMinutes > info.Directory.Name.AsInt32())
+                    info.Delete();
+            }
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -211,10 +210,10 @@ namespace Mozlite.FileProviders
                 if (!info.Directory.Exists)
                     info.Directory.Create();
                 var content = func(key);
-                File.WriteAllText(info.FullName, content, Encoding.UTF8);
+                IOHelper.SaveText(info.FullName, content, FileShare.ReadWrite);
                 return content;
             }
-            return File.ReadAllText(info.FullName, Encoding.UTF8);
+            return IOHelper.ReadText(info.FullName, FileShare.ReadWrite);
         }
 
         /// <summary>
@@ -232,10 +231,10 @@ namespace Mozlite.FileProviders
                 if (!info.Directory.Exists)
                     info.Directory.Create();
                 var content = await func(key);
-                File.WriteAllText(info.FullName, content, Encoding.UTF8);
+                await IOHelper.SaveTextAsync(info.FullName, content, FileShare.ReadWrite);
                 return content;
             }
-            return File.ReadAllText(info.FullName, Encoding.UTF8);
+            return await IOHelper.ReadTextAsync(info.FullName, FileShare.ReadWrite);
         }
 
         /// <summary>

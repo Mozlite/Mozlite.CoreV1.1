@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -103,7 +103,11 @@ namespace Mozlite.FileProviders
             public string Url => _media.Url;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 获取子路径下的文件信息。
+        /// </summary>
+        /// <param name="mediaId">文件ID。</param>
+        /// <returns>返回媒体文件信息。</returns>
         public IMediaFileInfo GetFileInfo(Guid mediaId)
         {
             var file = _repository.Find(x => x.Id == mediaId);
@@ -115,7 +119,11 @@ namespace Mozlite.FileProviders
             return null;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 获取实体媒体文件实例。
+        /// </summary>
+        /// <param name="mediaId">媒体文件ID。</param>
+        /// <returns>返回实体媒体文件实例。</returns>
         public StorageFile GetStorageFile(Guid mediaId)
         {
             var storage =
@@ -130,19 +138,35 @@ namespace Mozlite.FileProviders
             return new StorageFile(path, storage.ContentType);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 设置标题。
+        /// </summary>
+        /// <param name="id">媒体文件Id。</param>
+        /// <param name="title">标题。</param>
+        /// <returns>返回设置结果。</returns>
         public bool SetTitle(Guid id, string title)
         {
             return _repository.Update(mf => mf.Id == id, new { title });
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 将文件移动到相应的目录中。
+        /// </summary>
+        /// <param name="id">媒体文件Id。</param>
+        /// <param name="directoryId">目录Id。</param>
+        /// <returns>返回执行结果。</returns>
         public bool MoveTo(Guid id, int directoryId)
         {
             return _repository.Update(mf => mf.Id == id, new { directoryId });
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 加载当前目录下的文件。
+        /// </summary>
+        /// <param name="mediaType">媒体类型。</param>
+        /// <param name="directoryId">目录Id。</param>
+        /// <param name="targetId">所属实例Id。</param>
+        /// <returns>返回媒体文件列表。</returns>
         public IEnumerable<MediaFileInfo> LoadByDirectoryId(string mediaType, int directoryId, int targetId = 0)
         {
             if (targetId == 0)
@@ -150,7 +174,13 @@ namespace Mozlite.FileProviders
             return _repository.Load(mf => mf.Type == mediaType && mf.DirectoryId == directoryId && mf.TargetId == targetId);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 加载当前实例下的文件。
+        /// </summary>
+        /// <param name="mediaType">媒体类型。</param>
+        /// <param name="targetId">所属实例Id。</param>
+        /// <param name="directoryId">目录Id。</param>
+        /// <returns>返回媒体文件列表。</returns>
         public IEnumerable<MediaFileInfo> LoadByTargetId(string mediaType, int targetId, int? directoryId = null)
         {
             if (directoryId == null)
@@ -158,7 +188,16 @@ namespace Mozlite.FileProviders
             return _repository.Load(mf => mf.Type == mediaType && mf.TargetId == targetId && mf.DirectoryId == directoryId.Value);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 下载文件。
+        /// </summary>
+        /// <param name="url">URL地址。</param>
+        /// <param name="mediaType">媒体类型。</param>
+        /// <param name="isUnique">文件名称和实体文件名称是否一一对应。</param>
+        /// <param name="targetId">所属实例的Id。</param>
+        /// <param name="directoryId">所属目录的Id。</param>
+        /// <param name="extension">扩展名称，主要为了有些图片地址无扩展名而使用。</param>
+        /// <returns>返回文件访问的URL地址。</returns>
         public async Task<string> DownloadAsync(string url, bool isUnique, string mediaType, int targetId = 0, int directoryId = 0, string extension = null)
         {
             var path = GetTempFileName(url);
@@ -169,7 +208,15 @@ namespace Mozlite.FileProviders
             return await CreateAsync(path, extension, null, isUnique, null, info.Length, mediaType, targetId, directoryId);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 上传文件。
+        /// </summary>
+        /// <param name="file">上传的文件实例。</param>
+        /// <param name="isUnique">文件名称和实体文件名称是否一一对应。</param>
+        /// <param name="mediaType">媒体类型。</param>
+        /// <param name="targetId">所属实例的Id。</param>
+        /// <param name="directoryId">所属目录的Id。</param>
+        /// <returns>返回文件访问的URL地址。</returns>
         public async Task<string> UploadAsync(IFormFile file, bool isUnique, string mediaType, int targetId = 0, int directoryId = 0)
         {
             var path = GetTempFileName(Guid.NewGuid().ToString());
@@ -178,7 +225,15 @@ namespace Mozlite.FileProviders
             return await CreateAsync(path, Path.GetExtension(file.FileName), file.FileName, isUnique, file.ContentType, file.Length, mediaType, targetId, directoryId);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 上传文件替换掉原有的媒体文件的实体文件，如果文件名不是GUID将生成新的文件名。
+        /// </summary>
+        /// <param name="file">上传的文件实例。</param>
+        /// <param name="mediaFileName">媒体文件名称。</param>
+        /// <param name="mediaType">媒体类型。</param>
+        /// <param name="targetId">所属实例的Id。</param>
+        /// <param name="directoryId">所属目录的Id。</param>
+        /// <returns>返回文件访问的URL地址。</returns>
         public async Task<string> UploadAsync(IFormFile file, string mediaFileName, string mediaType = null, int targetId = 0, int directoryId = 0)
         {
             var path = GetTempFileName(Guid.NewGuid().ToString());
@@ -248,6 +303,13 @@ namespace Mozlite.FileProviders
             {
                 if ((DateTime.UtcNow - info.LastAccessTimeUtc).TotalMinutes > info.Directory.Name.AsInt32())
                     info.Delete();
+                //删除空目录。
+                var edir = info.Directory;
+                while (!edir.GetFiles().Any())
+                {
+                    edir.Delete(true);
+                    edir = edir.Parent;
+                }
             }
         }
 

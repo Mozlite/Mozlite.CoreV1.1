@@ -5,6 +5,31 @@
     /// </summary>
     public abstract class ElementBase
     {
+        private DocumentElement _doc;
+        /// <summary>
+        /// 获取当前元素的根结点。
+        /// </summary>
+        public DocumentElement Doc
+        {
+            get
+            {
+                if (_doc == null)
+                {
+                    var current = Parent;
+                    while (true)
+                    {
+                        if (current is DocumentElement)
+                        {
+                            _doc = current as DocumentElement;
+                            break;
+                        }
+                        current = current.Parent;
+                    }
+                }
+                return _doc;
+            }
+        }
+
         /// <summary>
         /// 父级节点。
         /// </summary>

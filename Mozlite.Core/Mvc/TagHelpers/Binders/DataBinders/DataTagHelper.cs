@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -75,15 +76,15 @@ namespace Mozlite.Mvc.TagHelpers.Binders.DataBinders
             }
         }
 
-        private void Render(TagHelperOutput output, object model, DocumentElement document)
+        private void Render(TagHelperOutput output, object model, Element elements)
         {
-            foreach (var element in document)
+            foreach (var element in elements)
             {
-                SyntaxRender(output, model, element, document);
+                SyntaxRender(output, model, element);
             }
         }
 
-        private void SyntaxRender(TagHelperOutput output, object instance, ElementBase element, DocumentElement document)
+        private void SyntaxRender(TagHelperOutput output, object instance, ElementBase element)
         {
             switch (element.Type)
             {
@@ -91,39 +92,34 @@ namespace Mozlite.Mvc.TagHelpers.Binders.DataBinders
                     output.Content.AppendHtml(element.Source);
                     return;
                 case ElementType.Block:
-                    if (element is CodeBlockElement block && block.Key == "children" && instance is IEnumerable items)
+                    if (element is CodeBlockElement block && _factory.TryGetSyntax(block.Key, out var syntax))
                     {
-                        foreach (var item in items)
+                        var syntaxBase = syntax as Syntax;
+                        if (syntaxBase != null && syntaxBase.Render == null)
                         {
-                            Render(output, item, document);
+                            syntaxBase.Render = Render;
+                            syntaxBase.GetValue = GetValue;
                         }
+                        syntax.Parse(output, block.Condition, instance, block);
                         return;
                     }
                     break;
             }
-            output.Content.AppendHtml(GetValue(instance, element.Source));
+            string source = null;
+            if (element.Source.StartsWith("$") && instance is IEnumerable children)
+            {
+                switch (element.Source)
+                {
+                    case "$size":
+                        source = children.OfType<object>().Count().ToString();
+                        break;
+                }
+            }
+            else
+            {
+                source = GetValue(instance, element.Source);
+            }
+            output.Content.AppendHtml(source);
         }
-
-        //private readonly Regex _regex = new Regex("{{\\s*([a-z_0-9]+)?(\\s*:\\s*'(.*)')?\\s*}}", RegexOptions.IgnoreCase);
-
-        ///// <summary>
-        ///// 尝试匹配。
-        ///// </summary>
-        ///// <param name="template">模板。</param>
-        ///// <param name="model">模型实例。</param>
-        ///// <param name="html">替换出来的HTML代码。</param>
-        ///// <returns>返回匹配结果。</returns>
-        //protected virtual bool TryParse(string template, object model, out string html)
-        //{
-        //    html = _regex.Replace(template, match =>
-        //    {
-        //        var key = match.Groups[1].Value.Trim();
-        //        var value = GetValue(model, key);
-        //        if (string.IsNullOrWhiteSpace(value))
-        //            value = match.Groups[3].Value.Trim();
-        //        return value;
-        //    });
-        //    return true;
-        //}
     }
 }

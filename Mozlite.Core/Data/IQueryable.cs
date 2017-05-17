@@ -64,7 +64,7 @@ namespace Mozlite.Data
         /// <param name="onExpression">关联条件表达式。</param>
         /// <returns>返回当前查询实例对象。</returns>
         new IQueryable<TModel> RightJoin<TPrimary, TForeign>(Expression<Func<TPrimary, TForeign, bool>> onExpression);
-        
+
         /// <summary>
         /// 设置选择列。
         /// </summary>
@@ -205,6 +205,22 @@ namespace Mozlite.Data
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据列表。</returns>
         Task<TModel> SingleOrDefaultAsync(CancellationToken cancellationToken = new CancellationToken());
+
+        /// <summary>
+        /// 查询数据库返回结果。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <returns>返回数据列表。</returns>
+        TValue SingleOrDefault<TValue>(Func<DbDataReader, TValue> converter);
+
+        /// <summary>
+        /// 查询数据库返回结果。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <param name="cancellationToken">取消标识。</param>
+        /// <returns>返回数据列表。</returns>
+        Task<TValue> SingleOrDefaultAsync<TValue>(Func<DbDataReader, TValue> converter, CancellationToken cancellationToken = new CancellationToken());
+
 
         /// <summary>
         /// 查询数据库返回结果。

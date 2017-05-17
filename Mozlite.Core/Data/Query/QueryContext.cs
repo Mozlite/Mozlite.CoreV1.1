@@ -437,8 +437,8 @@ namespace Mozlite.Data.Query
             {
                 if (_orderbySql == null)
                 {
-                    if(_orderbys.Count>0)
-                    _orderbySql = $"ORDER BY {string.Join(", ", _orderbys)}";
+                    if (_orderbys.Count > 0)
+                        _orderbySql = $"ORDER BY {string.Join(", ", _orderbys)}";
                     else if (_requiredOrderby)
                     {
                         _orderbySql = string.Join(",", Entity.PrimaryKey.Properties.Select(k => Delimit(k.Name)));
@@ -604,6 +604,43 @@ namespace Mozlite.Data.Query
             if (_fields.Count == 0)
                 _fields.Add($"{GetAlias(typeof(TModel))}.*");
             return GetAsync(_sqlGenerator.Query(this), cancellationToken);
+        }
+
+        /// <summary>
+        /// 查询数据库返回结果。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <returns>返回数据列表。</returns>
+        public TValue SingleOrDefault<TValue>(Func<DbDataReader, TValue> converter)
+        {
+            Size = 1;
+            if (_fields.Count == 0)
+                _fields.Add($"{GetAlias(typeof(TModel))}.*");
+            using (var reader = _db.ExecuteReader(_sqlGenerator.Query(this).ToString()))
+            {
+                if (reader.Read())
+                    return converter(reader);
+            }
+            return default(TValue);
+        }
+
+        /// <summary>
+        /// 查询数据库返回结果。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <param name="cancellationToken">取消标识。</param>
+        /// <returns>返回数据列表。</returns>
+        public async Task<TValue> SingleOrDefaultAsync<TValue>(Func<DbDataReader, TValue> converter, CancellationToken cancellationToken = new CancellationToken())
+        {
+            Size = 1;
+            if (_fields.Count == 0)
+                _fields.Add($"{GetAlias(typeof(TModel))}.*");
+            using (var reader = await _db.ExecuteReaderAsync(_sqlGenerator.Query(this).ToString(), cancellationToken: cancellationToken))
+            {
+                if (reader.Read())
+                    return converter(reader);
+            }
+            return default(TValue);
         }
 
         /// <summary>

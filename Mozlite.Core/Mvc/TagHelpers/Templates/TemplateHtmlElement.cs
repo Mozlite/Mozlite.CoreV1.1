@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
@@ -109,7 +110,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
             sb.Append("<").Append(TagName);
             if (_basics.Count > 0 || _attributes.Count > 0)
             {
-                var result = _basics.ToDictionary(x => x.Key, x => x.Value.Value);
+                var result = _basics.ToDictionary(x => x.Key, x => _regex.Replace(x.Value.Value, match => func(instance, match.Groups[1].Value.Trim())?.ToString()));
                 executor.Execute(_attributes.Values, result, instance, func);
                 foreach (var basic in result)
                 {
@@ -134,12 +135,14 @@ namespace Mozlite.Mvc.TagHelpers.Templates
             return sb.ToString();
         }
 
+
+        private static readonly Regex _regex = new Regex("{{(.*?)}}", RegexOptions.Singleline);
         private void AppendStartJsString(StringBuilder sb, ITemplateExecutor executor)
         {
             sb.Append("html+='<").Append(TagName);
             if (_basics.Count > 0 || _attributes.Count > 0)
             {
-                var basics = _basics.ToDictionary(x => x.Key, x => x.Value.Value);
+                var basics = _basics.ToDictionary(x => x.Key, x => _regex.Replace(x.Value.Value, "'+$1+'"));
                 var js = executor.Execute(_attributes.Values, basics);
                 foreach (var basic in basics)
                 {

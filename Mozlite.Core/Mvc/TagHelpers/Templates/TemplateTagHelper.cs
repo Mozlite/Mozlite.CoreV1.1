@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Mozlite.Data.Metadata;
-using Mozlite.Mvc.TagHelpers.Binders.JsonBinders;
 using Newtonsoft.Json;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
@@ -71,13 +70,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         /// </summary>
         [HtmlAttributeName("jmoz-data", DictionaryAttributePrefix = "jmoz-data-")]
         public IDictionary<string, string> Data { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-
-        /// <summary>
-        /// 缓存。
-        /// </summary>
-        [HtmlAttributeName("jmoz-cache")]
-        public CacheType Cache { get; set; }
-
+        
         /// <summary>
         /// 下一次获取数据的时间间隔（秒）。
         /// </summary>
@@ -102,8 +95,6 @@ namespace Mozlite.Mvc.TagHelpers.Templates
                 var id = context.AllAttributes["id"]?.Value;
                 if (id == null)
                 {
-                    if (Cache != CacheType.None)
-                        throw new Exception("缓存Id不能为空，必须设置Id属性！");
                     id = "jmoz_" + context.UniqueId;
                     output.Attributes.SetAttribute("id", id);
                 }

@@ -1,52 +1,52 @@
-using System.Threading.Tasks;
+ï»¿using System.Threading.Tasks;
 using Mozlite.Data;
 
 namespace Mozlite.Extensions
 {
     /// <summary>
-    /// ¶ÔÏó¹ÜÀíÊµÏÖ»ùÀà¡£
+    /// å¯¹è±¡ç®¡ç†å®ç°åŸºç±»ã€‚
     /// </summary>
-    /// <typeparam name="TModel">ÊµÌåÀàĞÍ¡£</typeparam>
+    /// <typeparam name="TModel">å®ä½“ç±»å‹ã€‚</typeparam>
     public abstract class ObjectBaseManager<TModel> : IObjectBaseManager<TModel> where TModel : IObjectBase
     {
         /// <summary>
-        /// Êı¾İ¿â²Ù×÷½Ó¿Ú¡£
+        /// æ•°æ®åº“æ“ä½œæ¥å£ã€‚
         /// </summary>
         protected readonly IRepository<TModel> Database;
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="ObjectBaseManager{TModel}"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="ObjectBaseManager{TModel}"/>ã€‚
         /// </summary>
-        /// <param name="repository">Êı¾İ¿â²Ù×÷½Ó¿Ú¡£</param>
+        /// <param name="repository">æ•°æ®åº“æ“ä½œæ¥å£ã€‚</param>
         protected ObjectBaseManager(IRepository<TModel> repository)
         {
             Database = repository;
         }
 
         /// <summary>
-        /// ÅĞ¶ÏÊµÀıÊÇ·ñÖØ¸´¡£
+        /// åˆ¤æ–­å®ä¾‹æ˜¯å¦é‡å¤ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¡£</param>
-        /// <returns>·µ»ØÅĞ¶Ï½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹ã€‚</param>
+        /// <returns>è¿”å›åˆ¤æ–­ç»“æœã€‚</returns>
         public virtual bool IsDulicate(TModel model)
         {
             return false;
         }
 
         /// <summary>
-        /// ÅĞ¶ÏÊµÀıÊÇ·ñÖØ¸´¡£
+        /// åˆ¤æ–­å®ä¾‹æ˜¯å¦é‡å¤ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¡£</param>
-        /// <returns>·µ»ØÅĞ¶Ï½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹ã€‚</param>
+        /// <returns>è¿”å›åˆ¤æ–­ç»“æœã€‚</returns>
         public virtual Task<bool> IsDulicateAsync(TModel model)
         {
             return Task.FromResult(false);
         }
 
         /// <summary>
-        /// ±£´æÊµÀı¡£
+        /// ä¿å­˜å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual DataResult Save(TModel model)
         {
             if (IsDulicate(model))
@@ -57,10 +57,10 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// ±£´æÊµÀı¡£
+        /// ä¿å­˜å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual async Task<DataResult> SaveAsync(TModel model)
         {
             if (await IsDulicateAsync(model))
@@ -71,110 +71,110 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// ·ÖÒ³¼ÓÔØÎÄµµÁĞ±í¡£
+        /// åˆ†é¡µåŠ è½½æ–‡æ¡£åˆ—è¡¨ã€‚
         /// </summary>
-        /// <param name="query">ÎÄµµÁĞ±í²éÑ¯ÊµÀı¡£</param>
-        /// <returns>·µ»ØÎÄµµÁĞ±í¡£</returns>
+        /// <param name="query">æ–‡æ¡£åˆ—è¡¨æŸ¥è¯¢å®ä¾‹ã€‚</param>
+        /// <returns>è¿”å›æ–‡æ¡£åˆ—è¡¨ã€‚</returns>
         public virtual TQuery Load<TQuery>(TQuery query) where TQuery : QueryBase<TModel>
         {
             return Database.Load(query);
         }
 
         /// <summary>
-        /// ·ÖÒ³¼ÓÔØÎÄµµÁĞ±í¡£
+        /// åˆ†é¡µåŠ è½½æ–‡æ¡£åˆ—è¡¨ã€‚
         /// </summary>
-        /// <param name="query">ÎÄµµÁĞ±í²éÑ¯ÊµÀı¡£</param>
-        /// <returns>·µ»ØÎÄµµÁĞ±í¡£</returns>
+        /// <param name="query">æ–‡æ¡£åˆ—è¡¨æŸ¥è¯¢å®ä¾‹ã€‚</param>
+        /// <returns>è¿”å›æ–‡æ¡£åˆ—è¡¨ã€‚</returns>
         public virtual Task<TQuery> LoadAsync<TQuery>(TQuery query) where TQuery : QueryBase<TModel>
         {
             return Database.LoadAsync(query);
         }
 
         /// <summary>
-        /// »ñÈ¡Ä£ĞÍÊµÀı¡£
+        /// è·å–æ¨¡å‹å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="id">ÊµÌåId¡£</param>
-        /// <returns>·µ»ØÄ£ĞÍÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="id">å®ä½“Idã€‚</param>
+        /// <returns>è¿”å›æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</returns>
         public virtual TModel Find(int id)
         {
             return Database.Find(x => x.Id == id);
         }
 
         /// <summary>
-        /// »ñÈ¡Ä£ĞÍÊµÀı¡£
+        /// è·å–æ¨¡å‹å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="id">ÊµÌåId¡£</param>
-        /// <returns>·µ»ØÄ£ĞÍÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="id">å®ä½“Idã€‚</param>
+        /// <returns>è¿”å›æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</returns>
         public virtual async Task<TModel> FindAsync(int id)
         {
             return await Database.FindAsync(x => x.Id == id);
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="id">Id¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="id">Idã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual DataResult Delete(int id)
         {
             return DataResult.FromResult(Database.Delete(x => x.Id == id), DataAction.Deleted);
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="ids">Id¼¯ºÏ¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="ids">Idé›†åˆã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual DataResult Delete(int[] ids)
         {
             return DataResult.FromResult(Database.Delete(x => x.Id.Included(ids)), DataAction.Deleted);
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="ids">Id¼¯ºÏ£¬ÒÔ¡°,¡±·Ö¸î¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="ids">Idé›†åˆï¼Œä»¥â€œ,â€åˆ†å‰²ã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual DataResult Delete(string ids)
         {
             return Delete(ids.SplitToInt32());
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="id">Id¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="id">Idã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual async Task<DataResult> DeleteAsync(int id)
         {
             return DataResult.FromResult(await Database.DeleteAsync(x => x.Id == id), DataAction.Deleted);
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="ids">Id¼¯ºÏ¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="ids">Idé›†åˆã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual async Task<DataResult> DeleteAsync(int[] ids)
         {
             return DataResult.FromResult(await Database.DeleteAsync(x => x.Id.Included(ids)), DataAction.Deleted);
         }
 
         /// <summary>
-        /// É¾³ıÊµÀı¶ÔÏó¡£
+        /// åˆ é™¤å®ä¾‹å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="ids">Id¼¯ºÏ£¬ÒÔ¡°,¡±·Ö¸î¡£</param>
-        /// <returns>·µ»ØÉ¾³ı½á¹û¡£</returns>
+        /// <param name="ids">Idé›†åˆï¼Œä»¥â€œ,â€åˆ†å‰²ã€‚</param>
+        /// <returns>è¿”å›åˆ é™¤ç»“æœã€‚</returns>
         public virtual Task<DataResult> DeleteAsync(string ids)
         {
             return DeleteAsync(ids.SplitToInt32());
         }
 
         /// <summary>
-        /// Ìí¼ÓÊµÀı¡£
+        /// æ·»åŠ å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual DataResult Create(TModel model)
         {
             if (IsDulicate(model))
@@ -183,10 +183,10 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// Ìí¼ÓÊµÀı¡£
+        /// æ·»åŠ å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual async Task<DataResult> CreateAsync(TModel model)
         {
             if (await IsDulicateAsync(model))
@@ -195,10 +195,10 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// ¸üĞÂÊµÀı¡£
+        /// æ›´æ–°å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual DataResult Update(TModel model)
         {
             if (IsDulicate(model))
@@ -207,10 +207,10 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// ¸üĞÂÊµÀı¡£
+        /// æ›´æ–°å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual async Task<DataResult> UpdateAsync(TModel model)
         {
             if (await IsDulicateAsync(model))
@@ -219,22 +219,22 @@ namespace Mozlite.Extensions
         }
 
         /// <summary>
-        /// ¸üĞÂÊµÀı¡£
+        /// æ›´æ–°å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="id">µ±Ç°Î¨Ò»Id¡£</param>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="id">å½“å‰å”¯ä¸€Idã€‚</param>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual DataResult Update(int id, object model)
         {
             return DataResult.FromResult(Database.Update(x => x.Id == id, model), DataAction.Updated);
         }
 
         /// <summary>
-        /// ¸üĞÂÊµÀı¡£
+        /// æ›´æ–°å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="id">µ±Ç°Î¨Ò»Id¡£</param>
-        /// <param name="model">Ä£ĞÍÊµÀı¶ÔÏó¡£</param>
-        /// <returns>·µ»ØÖ´ĞĞ½á¹û¡£</returns>
+        /// <param name="id">å½“å‰å”¯ä¸€Idã€‚</param>
+        /// <param name="model">æ¨¡å‹å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <returns>è¿”å›æ‰§è¡Œç»“æœã€‚</returns>
         public virtual async Task<DataResult> UpdateAsync(int id, object model)
         {
             return DataResult.FromResult(await Database.UpdateAsync(x => x.Id == id, model), DataAction.Updated);

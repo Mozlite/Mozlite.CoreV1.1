@@ -1,27 +1,27 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// °üº¬×Ó½ÚµãµÄ½Úµã»ùÀà¡£
+    /// åŒ…å«å­èŠ‚ç‚¹çš„èŠ‚ç‚¹åŸºç±»ã€‚
     /// </summary>
     public abstract class TemplateElement : TemplateElementBase, IEnumerable<TemplateElementBase>
     {
         private readonly List<TemplateElementBase> _elements = new List<TemplateElementBase>();
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateElement"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateElement"/>ã€‚
         /// </summary>
-        /// <param name="position">Î»ÖÃ¡£</param>
-        /// <param name="type">ÀàĞÍ¡£</param>
+        /// <param name="position">ä½ç½®ã€‚</param>
+        /// <param name="type">ç±»å‹ã€‚</param>
         protected TemplateElement(int position, TemplateElementType type) : base(position, type)
         {
         }
 
         /// <summary>
-        /// Ìí¼Ó×Ó½Úµã¡£
+        /// æ·»åŠ å­èŠ‚ç‚¹ã€‚
         /// </summary>
-        /// <param name="element">½ÚµãÊµÀı¡£</param>
+        /// <param name="element">èŠ‚ç‚¹å®ä¾‹ã€‚</param>
         public void Add(TemplateElementBase element)
         {
             element.Parent = this;
@@ -29,9 +29,9 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Ìí¼Ó×Ó½Úµã¡£
+        /// æ·»åŠ å­èŠ‚ç‚¹ã€‚
         /// </summary>
-        /// <param name="elements">½ÚµãÊµÀıÁĞ±í¡£</param>
+        /// <param name="elements">èŠ‚ç‚¹å®ä¾‹åˆ—è¡¨ã€‚</param>
         public void AddRange(IEnumerable<TemplateElementBase> elements)
         {
             foreach (var element in elements)
@@ -40,22 +40,22 @@ namespace Mozlite.Mvc.TagHelpers.Templates
             }
         }
 
-        /// <summary>·µ»ØÒ»¸öÑ­»··ÃÎÊ¼¯ºÏµÄÃ¶¾ÙÆ÷¡£</summary>
-        /// <returns>ÓÃÓÚÑ­»··ÃÎÊ¼¯ºÏµÄÃ¶¾ÙÊı¡£</returns>
+        /// <summary>è¿”å›ä¸€ä¸ªå¾ªç¯è®¿é—®é›†åˆçš„æšä¸¾å™¨ã€‚</summary>
+        /// <returns>ç”¨äºå¾ªç¯è®¿é—®é›†åˆçš„æšä¸¾æ•°ã€‚</returns>
         public IEnumerator<TemplateElementBase> GetEnumerator()
         {
             return _elements.GetEnumerator();
         }
 
-        /// <summary>·µ»ØÑ­»··ÃÎÊ¼¯ºÏµÄÃ¶¾ÙÊı¡£</summary>
-        /// <returns>¿ÉÓÃÓÚÑ­»··ÃÎÊ¼¯ºÏµÄ <see cref="T:System.Collections.IEnumerator" /> ¶ÔÏó¡£</returns>
+        /// <summary>è¿”å›å¾ªç¯è®¿é—®é›†åˆçš„æšä¸¾æ•°ã€‚</summary>
+        /// <returns>å¯ç”¨äºå¾ªç¯è®¿é—®é›†åˆçš„ <see cref="T:System.Collections.IEnumerator" /> å¯¹è±¡ã€‚</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString()
         {
             return string.Join("\r\n", this);

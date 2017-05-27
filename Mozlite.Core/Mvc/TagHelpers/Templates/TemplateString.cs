@@ -1,30 +1,30 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Text;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ×Ö·û´®¡£
+    /// å­—ç¬¦ä¸²ã€‚
     /// </summary>
     public class TemplateString
     {
         private readonly string _source;
         private int _index;
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateString"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateString"/>ã€‚
         /// </summary>
-        /// <param name="source">µ±Ç°×Ö·û´®¡£</param>
+        /// <param name="source">å½“å‰å­—ç¬¦ä¸²ã€‚</param>
         public TemplateString(string source)
         {
             _source = source;
         }
 
         /// <summary>
-        /// ¶ÁÈ¡Ö±µ½Åöµ½<paramref name="curs"/>×Ö·ûÖ®Ò»£¬¡°()¡±ºÍ×Ö·û´®ÓÅÏÈ¶ÁÈ¡¡£
+        /// è¯»å–ç›´åˆ°ç¢°åˆ°<paramref name="curs"/>å­—ç¬¦ä¹‹ä¸€ï¼Œâ€œ()â€å’Œå­—ç¬¦ä¸²ä¼˜å…ˆè¯»å–ã€‚
         /// </summary>
-        /// <param name="curs">µ±Ç°×Ö·û¡£</param>
-        /// <returns>·µ»Ø¶ÁÈ¡µÄ×Ö·û´®¡£</returns>
+        /// <param name="curs">å½“å‰å­—ç¬¦ã€‚</param>
+        /// <returns>è¿”å›è¯»å–çš„å­—ç¬¦ä¸²ã€‚</returns>
         public string ReadUntil(params char[] curs)
         {
             var sb = new StringBuilder();
@@ -53,11 +53,11 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ¶ÁÈ¡Ö±µ½Åöµ½Á½¸öÁ´½Ó×Ö·û¡£
+        /// è¯»å–ç›´åˆ°ç¢°åˆ°ä¸¤ä¸ªé“¾æ¥å­—ç¬¦ã€‚
         /// </summary>
-        /// <param name="cur">µ±Ç°×Ö·û¡£</param>
-        /// <param name="next">ÏÂÒ»¸ö×Ö·û¡£</param>
-        /// <returns>·µ»Ø¶ÁÈ¡µÄ×Ö·û´®¡£</returns>
+        /// <param name="cur">å½“å‰å­—ç¬¦ã€‚</param>
+        /// <param name="next">ä¸‹ä¸€ä¸ªå­—ç¬¦ã€‚</param>
+        /// <returns>è¿”å›è¯»å–çš„å­—ç¬¦ä¸²ã€‚</returns>
         public string ReadNext(char cur, char next)
         {
             var sb = new StringBuilder();
@@ -86,7 +86,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ¿ªÊ¼¶ÁÈ¡£¬½«Î»ÖÃÉèÎª0¡£
+        /// å¼€å§‹è¯»å–ï¼Œå°†ä½ç½®è®¾ä¸º0ã€‚
         /// </summary>
         public void Begin()
         {
@@ -94,10 +94,10 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ¶ÁÈ¡Ö±µ½Åöµ½<paramref name="cur"/>×Ö·û£¬¡°()¡±ºÍ×Ö·û´®ÓÅÏÈ¶ÁÈ¡¡£
+        /// è¯»å–ç›´åˆ°ç¢°åˆ°<paramref name="cur"/>å­—ç¬¦ï¼Œâ€œ()â€å’Œå­—ç¬¦ä¸²ä¼˜å…ˆè¯»å–ã€‚
         /// </summary>
-        /// <param name="cur">µ±Ç°×Ö·û¡£</param>
-        /// <returns>·µ»Ø¶ÁÈ¡µÄ×Ö·û´®¡£</returns>
+        /// <param name="cur">å½“å‰å­—ç¬¦ã€‚</param>
+        /// <returns>è¿”å›è¯»å–çš„å­—ç¬¦ä¸²ã€‚</returns>
         public string ReadUntil(char cur)
         {
             var sb = new StringBuilder();
@@ -126,10 +126,10 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ¶ÁÈ¡°üº¬ÔÚ<paramref name="text"/>ÖĞµÄ×Ö·û¡£
+        /// è¯»å–åŒ…å«åœ¨<paramref name="text"/>ä¸­çš„å­—ç¬¦ã€‚
         /// </summary>
-        /// <param name="text">ºÏ·¨×Ö·û¼¯ºÏ¡£</param>
-        /// <returns>·µ»Ø¶ÁÈ¡µÄ×Ö·û´®¡£</returns>
+        /// <param name="text">åˆæ³•å­—ç¬¦é›†åˆã€‚</param>
+        /// <returns>è¿”å›è¯»å–çš„å­—ç¬¦ä¸²ã€‚</returns>
         public string Read(string text)
         {
             var sb = new StringBuilder();
@@ -144,13 +144,13 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ÅĞ¶Ïµ±Ç°Î»ÖÃÊÇ·ñºÏ·¨¡£
+        /// åˆ¤æ–­å½“å‰ä½ç½®æ˜¯å¦åˆæ³•ã€‚
         /// </summary>
-        /// <returns>·µ»ØÅĞ¶Ï½á¹û£¬Èç¹û·µ»Ø<c>false</c>£¬Ôò±íÊ¾µ½´ïÄ©Î²£¡</returns>
+        /// <returns>è¿”å›åˆ¤æ–­ç»“æœï¼Œå¦‚æœè¿”å›<c>false</c>ï¼Œåˆ™è¡¨ç¤ºåˆ°è¾¾æœ«å°¾ï¼</returns>
         public bool CanRead => _index < _source.Length;
 
         /// <summary>
-        /// ¹ıÂË¿Õ¸ñ¡£
+        /// è¿‡æ»¤ç©ºæ ¼ã€‚
         /// </summary>
         public void PassOptionalWhitespace()
         {
@@ -161,7 +161,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ¶ÁÈ¡À¨ºÅ¡£
+        /// è¯»å–æ‹¬å·ã€‚
         /// </summary>
         public string ReadBlock()
         {
@@ -190,11 +190,11 @@ namespace Mozlite.Mvc.TagHelpers.Templates
                 sb.Append(Current);
                 _index++;
             }
-            throw new Exception("Óï·¨´íÎó£¬Ã»ÓĞÓöµ½¡°)¡±¿é½áÊø·û£¡");
+            throw new Exception("è¯­æ³•é”™è¯¯ï¼Œæ²¡æœ‰é‡åˆ°â€œ)â€å—ç»“æŸç¬¦ï¼");
         }
 
         /// <summary>
-        /// ¶ÁÈ¡ÒıÓÃ×Ö·û´®¡£
+        /// è¯»å–å¼•ç”¨å­—ç¬¦ä¸²ã€‚
         /// </summary>
         public StringBuilder ReadQuote(char quote)
         {
@@ -210,7 +210,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
             {
                 if (quote == Current)
                     break;
-                if (Current == '\\')//×ªÒå·ûºÅ
+                if (Current == '\\')//è½¬ä¹‰ç¬¦å·
                 {
                     sb.Append(Current);
                     _index++;
@@ -225,31 +225,31 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Ìø¹ı¶àÉÙÎ»¡£
+        /// è·³è¿‡å¤šå°‘ä½ã€‚
         /// </summary>
-        /// <param name="length">³¤¶È¡£</param>
+        /// <param name="length">é•¿åº¦ã€‚</param>
         public void Skip(int length = 1)
         {
             _index += length;
         }
 
         /// <summary>
-        /// ¶¨Òå¿Õ×Ö·û¡£
+        /// å®šä¹‰ç©ºå­—ç¬¦ã€‚
         /// </summary>
         public const char None = '\0';
 
         /// <summary>
-        /// µ±Ç°×Ö·û¡£
+        /// å½“å‰å­—ç¬¦ã€‚
         /// </summary>
         public char Current => _source[_index];
 
         /// <summary>
-        /// ÏÂÒ»¸ö×Ö·û¡£
+        /// ä¸‹ä¸€ä¸ªå­—ç¬¦ã€‚
         /// </summary>
         public char Next => _index + 1 < _source.Length ? _source[_index + 1] : None;
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString() => _source.Substring(_index);
     }
 }

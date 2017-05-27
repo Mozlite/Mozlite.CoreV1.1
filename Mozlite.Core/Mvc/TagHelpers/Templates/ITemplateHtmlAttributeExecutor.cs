@@ -1,32 +1,32 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using Mozlite.Core;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ÊôĞÔÖ´ĞĞ½Ó¿Ú£¬Ò»°ã°üº¬"jmoz:"¿ªÍ·µÄÊôĞÔ¡£
+    /// å±æ€§æ‰§è¡Œæ¥å£ï¼Œä¸€èˆ¬åŒ…å«"jmoz:"å¼€å¤´çš„å±æ€§ã€‚
     /// </summary>
     public interface ITemplateHtmlAttributeExecutor : IServices
     {
         /// <summary>
-        /// ¹Ø¼ü´Ê¡£
+        /// å…³é”®è¯ã€‚
         /// </summary>
         string Keyword { get; }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attribute">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="attribute">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         string Execute(TemplateHtmlCodeAttribute attribute, Dictionary<string, string> result);
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attribute">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¶ÔÏó¡£</param>
+        /// <param name="attribute">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹å¯¹è±¡ã€‚</param>
         void Execute(TemplateHtmlCodeAttribute attribute, Dictionary<string, string> result, object instance);
     }
 }

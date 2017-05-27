@@ -1,44 +1,44 @@
-using System;
+ï»¿using System;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ÎÄ±¾½Úµã¡£
+    /// æ–‡æœ¬èŠ‚ç‚¹ã€‚
     /// </summary>
     public class TemplateTextElement : TemplateElementBase
     {
         private readonly string _source;
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateTextElement"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateTextElement"/>ã€‚
         /// </summary>
-        /// <param name="source">Ô´´úÂë¡£</param>
-        /// <param name="position">Î»ÖÃ¡£</param>
+        /// <param name="source">æºä»£ç ã€‚</param>
+        /// <param name="position">ä½ç½®ã€‚</param>
         internal TemplateTextElement(string source, int position) : base(position, TemplateElementType.Text)
         {
             _source = source;
         }
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString() => _source;
 
         /// <summary>
-        /// Éú³É½Å±¾¡£
+        /// ç”Ÿæˆè„šæœ¬ã€‚
         /// </summary>
-        /// <param name="executor">½Å±¾Óï·¨½âÎöÆ÷¡£</param>
-        /// <returns>·µ»ØÉú³ÉºóµÄ½Å±¾¡£</returns>
+        /// <param name="executor">è„šæœ¬è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <returns>è¿”å›ç”Ÿæˆåçš„è„šæœ¬ã€‚</returns>
         public override string ToJsString(ITemplateExecutor executor)
         {
             return $"html+='{_source?.Replace("'", "\'")}';";
         }
 
         /// <summary>
-        /// Éú³ÉHTML´úÂë¡£
+        /// ç”ŸæˆHTMLä»£ç ã€‚
         /// </summary>
-        /// <param name="executor">Óï·¨½âÎöÆ÷¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¡£</param>
-        /// <param name="func">»ñÈ¡ÊµÀıÊôĞÔÖµ¡£</param>
-        /// <returns>·µ»ØHTML´úÂë¡£</returns>
+        /// <param name="executor">è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹ã€‚</param>
+        /// <param name="func">è·å–å®ä¾‹å±æ€§å€¼ã€‚</param>
+        /// <returns>è¿”å›HTMLä»£ç ã€‚</returns>
         public override string ToHtmlString(ITemplateExecutor executor, object instance, Func<object, string, object> func)
         {
             return _source;

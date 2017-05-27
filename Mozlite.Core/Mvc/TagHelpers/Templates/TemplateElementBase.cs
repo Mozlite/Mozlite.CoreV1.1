@@ -1,17 +1,17 @@
-using System;
+ï»¿using System;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Ä£°åÔªËØ»ùÀà¡£
+    /// æ¨¡æ¿å…ƒç´ åŸºç±»ã€‚
     /// </summary>
     public abstract class TemplateElementBase
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateElementBase"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateElementBase"/>ã€‚
         /// </summary>
-        /// <param name="position">Î»ÖÃ¡£</param>
-        /// <param name="type">ÀàĞÍ¡£</param>
+        /// <param name="position">ä½ç½®ã€‚</param>
+        /// <param name="type">ç±»å‹ã€‚</param>
         protected TemplateElementBase(int position, TemplateElementType type)
         {
             Position = position;
@@ -19,23 +19,23 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ÔÚÎÄµµÖĞµÄÎ»ÖÃ¡£
+        /// åœ¨æ–‡æ¡£ä¸­çš„ä½ç½®ã€‚
         /// </summary>
         public int Position { get; }
 
         /// <summary>
-        /// ÀàĞÍ¡£
+        /// ç±»å‹ã€‚
         /// </summary>
         public TemplateElementType Type { get; }
 
         /// <summary>
-        /// ¸¸¼¶½Úµã¡£
+        /// çˆ¶çº§èŠ‚ç‚¹ã€‚
         /// </summary>
         public TemplateElement Parent { get; internal set; }
 
         private TemplateDocument _document;
         /// <summary>
-        /// ÎÄµµ½Úµã¡£
+        /// æ–‡æ¡£èŠ‚ç‚¹ã€‚
         /// </summary>
         public TemplateDocument Document
         {
@@ -55,19 +55,19 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Éú³É½Å±¾¡£
+        /// ç”Ÿæˆè„šæœ¬ã€‚
         /// </summary>
-        /// <param name="executor">½Å±¾Óï·¨½âÎöÆ÷¡£</param>
-        /// <returns>·µ»ØÉú³ÉºóµÄ½Å±¾¡£</returns>
+        /// <param name="executor">è„šæœ¬è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <returns>è¿”å›ç”Ÿæˆåçš„è„šæœ¬ã€‚</returns>
         public abstract string ToJsString(ITemplateExecutor executor);
 
         /// <summary>
-        /// Éú³ÉHTML´úÂë¡£
+        /// ç”ŸæˆHTMLä»£ç ã€‚
         /// </summary>
-        /// <param name="executor">Óï·¨½âÎöÆ÷¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¡£</param>
-        /// <param name="func">»ñÈ¡ÊµÀıÊôĞÔÖµ¡£</param>
-        /// <returns>·µ»ØHTML´úÂë¡£</returns>
+        /// <param name="executor">è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹ã€‚</param>
+        /// <param name="func">è·å–å®ä¾‹å±æ€§å€¼ã€‚</param>
+        /// <returns>è¿”å›HTMLä»£ç ã€‚</returns>
         public abstract string ToHtmlString(ITemplateExecutor executor, object instance, Func<object, string, object> func);
     }
 }

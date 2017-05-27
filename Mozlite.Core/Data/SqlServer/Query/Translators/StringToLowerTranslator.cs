@@ -1,14 +1,14 @@
-using Mozlite.Data.Query.Translators;
+ï»¿using Mozlite.Data.Query.Translators;
 
 namespace Mozlite.Data.SqlServer.Query.Translators
 {
     /// <summary>
-    /// Ğ¡Ğ´×ª»»¡£
+    /// å°å†™è½¬æ¢ã€‚
     /// </summary>
     public class StringToLowerTranslator : ParameterlessInstanceMethodCallTranslator
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="StringToLowerTranslator"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="StringToLowerTranslator"/>ã€‚
         /// </summary>
         public StringToLowerTranslator()
             : base(typeof(string), nameof(string.ToLower), "LOWER")

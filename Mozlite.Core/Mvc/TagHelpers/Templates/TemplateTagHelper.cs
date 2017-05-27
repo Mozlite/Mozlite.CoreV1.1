@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Ä£°å±êÇ©¡£
+    /// æ¨¡æ¿æ ‡ç­¾ã€‚
     /// </summary>
     [HtmlTargetElement("*", Attributes = "[jmoz-template=json]")]
     [HtmlTargetElement("*", Attributes = "[jmoz-template=data]")]
@@ -28,11 +28,11 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         private IEntityType _entityType;
 
         /// <summary>
-        /// »ñÈ¡µ±Ç°¶ÔÏóÖĞ<paramref name="propertyName"/>µÄÖµ¡£
+        /// è·å–å½“å‰å¯¹è±¡ä¸­<paramref name="propertyName"/>çš„å€¼ã€‚
         /// </summary>
-        /// <param name="model">Ä£ĞÍÊµÀı¡£</param>
-        /// <param name="propertyName">ÊôĞÔÃû³Æ¡£</param>
-        /// <returns>·µ»Øµ±Ç°ÊôĞÔµÄÖµ¡£</returns>
+        /// <param name="model">æ¨¡å‹å®ä¾‹ã€‚</param>
+        /// <param name="propertyName">å±æ€§åç§°ã€‚</param>
+        /// <returns>è¿”å›å½“å‰å±æ€§çš„å€¼ã€‚</returns>
         protected object GetValue(object model, string propertyName)
         {
             if (propertyName == "$site")
@@ -42,43 +42,43 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// °ó¶¨ÀàĞÍ¡£
+        /// ç»‘å®šç±»å‹ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-template")]
         public string Binder { get; set; }
 
         /// <summary>
-        /// Êı¾İ¡£
+        /// æ•°æ®ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-models")]
         public object Models { get; set; }
 
         /// <summary>
-        /// Ô¶¶ËÊı¾İ¡£
+        /// è¿œç«¯æ•°æ®ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-remote")]
         public string RemoteUrl { get; set; }
 
         /// <summary>
-        /// »Øµô·½·¨¡£
+        /// å›æ‰æ–¹æ³•ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-callback")]
         public string Callback { get; set; }
 
         /// <summary>
-        /// ·¢ËÍµÄÊı¾İ¡£
+        /// å‘é€çš„æ•°æ®ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-data", DictionaryAttributePrefix = "jmoz-data-")]
         public IDictionary<string, string> Data { get; set; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         
         /// <summary>
-        /// ÏÂÒ»´Î»ñÈ¡Êı¾İµÄÊ±¼ä¼ä¸ô£¨Ãë£©¡£
+        /// ä¸‹ä¸€æ¬¡è·å–æ•°æ®çš„æ—¶é—´é—´éš”ï¼ˆç§’ï¼‰ã€‚
         /// </summary>
         [HtmlAttributeName("jmoz-interval")]
         public int Interval { get; set; }
 
         /// <summary>
-        /// ³ÊÏÖ½Å±¾¡£
+        /// å‘ˆç°è„šæœ¬ã€‚
         /// </summary>
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -146,7 +146,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
                         c.AppendHtml(Callback).AppendHtml("(data);");
 
                     if (Interval > 0)
-                    {//¶¨Ê±Æ÷
+                    {//å®šæ—¶å™¨
                         c.AppendHtml("setTimeout(function(){ajax(url);}")
                             .AppendHtml(",")
                             .AppendHtml((Interval * 1000).ToString())
@@ -154,7 +154,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
                     }
                     c.AppendHtml("}, error:function(r){$this.html(r.responseText);");
                     if (Interval > 0)
-                    {//¶¨Ê±Æ÷
+                    {//å®šæ—¶å™¨
                         c.AppendHtml("setTimeout(function(){ajax(url);}")
                             .AppendHtml(",")
                             .AppendHtml((Interval * 1000).ToString())

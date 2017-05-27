@@ -1,28 +1,28 @@
-
+ï»¿
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ÅÅĞò²Ù×÷¡£
+    /// æ’åºæ“ä½œã€‚
     /// </summary>
     public class SequenceOperation : MigrationOperation
     {
         /// <summary>
-        /// ÔöÁ¿¡£
+        /// å¢é‡ã€‚
         /// </summary>
         public virtual int IncrementBy { get; set; } = 1;
 
         /// <summary>
-        /// ×î´óÖµ¡£
+        /// æœ€å¤§å€¼ã€‚
         /// </summary>
         public virtual long? MaxValue { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ×îĞ¡Öµ¡£
+        /// æœ€å°å€¼ã€‚
         /// </summary>
         public virtual long? MinValue { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ÊÇ·ñÑ­»·¡£
+        /// æ˜¯å¦å¾ªç¯ã€‚
         /// </summary>
         public virtual bool IsCyclic { get; set; }
     }

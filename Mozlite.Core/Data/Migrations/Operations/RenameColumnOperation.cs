@@ -1,23 +1,23 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÁĞÃû³Æ¡£
+    /// ä¿®æ”¹åˆ—åç§°ã€‚
     /// </summary>
     public class RenameColumnOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: CanBeNull] set; }
         /// <summary>
-        /// ĞÂÃû³Æ¡£
+        /// æ–°åç§°ã€‚
         /// </summary>
         public virtual string NewName { get; [param: NotNull] set; }
     }

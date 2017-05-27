@@ -1,40 +1,40 @@
-using Mozlite.Data.Migrations.Operations;
+ï»¿using Mozlite.Data.Migrations.Operations;
 
 namespace Mozlite.Data.Migrations.Builders
 {
     /// <summary>
-    /// ĞŞ¸Ä²Ù×÷¹¹½¨ÊµÀı¡£
+    /// ä¿®æ”¹æ“ä½œæ„å»ºå®ä¾‹ã€‚
     /// </summary>
-    /// <typeparam name="TOperation">²Ù×÷ÀàĞÍ¡£</typeparam>
+    /// <typeparam name="TOperation">æ“ä½œç±»å‹ã€‚</typeparam>
     public class AlterOperationBuilder<TOperation> : OperationBuilder<TOperation>
         where TOperation : MigrationOperation, IAlterMigrationOperation
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="AlterOperationBuilder{TOperation}"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="AlterOperationBuilder{TOperation}"/>ã€‚
         /// </summary>
-        /// <param name="operation">²Ù×÷ÊµÀı¶ÔÏó¡£</param>
+        /// <param name="operation">æ“ä½œå®ä¾‹å¯¹è±¡ã€‚</param>
         public AlterOperationBuilder([NotNull] TOperation operation)
             : base(operation)
         {
         }
 
         /// <summary>
-        /// Ìí¼ÓÀ©Õ¹ÊµÀı¡£
+        /// æ·»åŠ æ‰©å±•å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="name">Ãû³Æ¡£</param>
-        /// <param name="value">Öµ¡£</param>
-        /// <returns>·µ»Øµ±Ç°²Ù×÷¹¹½¨ÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="name">åç§°ã€‚</param>
+        /// <param name="value">å€¼ã€‚</param>
+        /// <returns>è¿”å›å½“å‰æ“ä½œæ„å»ºå®ä¾‹å¯¹è±¡ã€‚</returns>
         public new virtual AlterOperationBuilder<TOperation> Annotation(
                 [NotNull] string name,
                 [NotNull] object value)
             => (AlterOperationBuilder<TOperation>)base.Annotation(name, value);
         
         /// <summary>
-        /// Ìí¼ÓÔ­ÓĞÀ©Õ¹ÊµÀı¡£
+        /// æ·»åŠ åŸæœ‰æ‰©å±•å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="name">Ãû³Æ¡£</param>
-        /// <param name="value">Öµ¡£</param>
-        /// <returns>·µ»Øµ±Ç°²Ù×÷¹¹½¨ÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="name">åç§°ã€‚</param>
+        /// <param name="value">å€¼ã€‚</param>
+        /// <returns>è¿”å›å½“å‰æ“ä½œæ„å»ºå®ä¾‹å¯¹è±¡ã€‚</returns>
         public virtual AlterOperationBuilder<TOperation> OldAnnotation(
             [NotNull] string name,
             [NotNull] object value)

@@ -1,19 +1,19 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// É¾³ıÎ¨Ò»Ô¼Êø¡£
+    /// åˆ é™¤å”¯ä¸€çº¦æŸã€‚
     /// </summary>
     public class DropUniqueConstraintOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
         
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
     }

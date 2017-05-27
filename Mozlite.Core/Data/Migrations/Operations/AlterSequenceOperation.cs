@@ -1,24 +1,24 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÅÅĞò²Ù×÷¡£
+    /// ä¿®æ”¹æ’åºæ“ä½œã€‚
     /// </summary>
     public class AlterSequenceOperation : SequenceOperation, IAlterMigrationOperation
     {
         /// <summary>
-        /// ¼Ü¹¹¡£
+        /// æ¶æ„ã€‚
         /// </summary>
         public virtual string Schema { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ô­À´µÄÏà¹ØÊôĞÔ¡£
+        /// åŸæ¥çš„ç›¸å…³å±æ€§ã€‚
         /// </summary>
         public virtual SequenceOperation OldSequence { get; [param: NotNull] set; } = new SequenceOperation();
 

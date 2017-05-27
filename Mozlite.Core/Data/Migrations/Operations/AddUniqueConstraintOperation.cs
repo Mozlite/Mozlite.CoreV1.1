@@ -1,24 +1,24 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// Ìí¼ÓÎ¨Ò»¼ü²Ù×÷¡£
+    /// æ·»åŠ å”¯ä¸€é”®æ“ä½œã€‚
     /// </summary>
     public class AddUniqueConstraintOperation : MigrationOperation
     {
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ïà¹ØÁĞ¡£
+        /// ç›¸å…³åˆ—ã€‚
         /// </summary>
         public virtual string[] Columns { get; [param: NotNull] set; }
     }

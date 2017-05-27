@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -7,30 +7,30 @@ using Mozlite.Data.Internal;
 namespace Mozlite.Data
 {
     /// <summary>
-    /// Êı¾İ¿â½Ó¿Ú¡£
+    /// æ•°æ®åº“æ¥å£ã€‚
     /// </summary>
     public interface IDatabase : IExecutor
     {
         /// <summary>
-        /// ÈÕÖ¾½Ó¿Ú¡£
+        /// æ—¥å¿—æ¥å£ã€‚
         /// </summary>
         ILogger Logger { get; set; }
 
         /// <summary>
-        /// ¿ªÆôÒ»¸öÊÂÎñ²¢Ö´ĞĞ¡£
+        /// å¼€å¯ä¸€ä¸ªäº‹åŠ¡å¹¶æ‰§è¡Œã€‚
         /// </summary>
-        /// <param name="executor">ÊÂÎñÖ´ĞĞµÄ·½·¨¡£</param>
-        /// <param name="timeout">µÈ´ıÃüÁîÖ´ĞĞËùĞèµÄÊ±¼ä£¨ÒÔÃëÎªµ¥Î»£©¡£Ä¬ÈÏÖµÎª 30 Ãë¡£</param>
-        /// <param name="cancellationToken">È¡Ïû±êÊ¶¡£</param>
-        /// <returns>·µ»ØÊÂÎñÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="executor">äº‹åŠ¡æ‰§è¡Œçš„æ–¹æ³•ã€‚</param>
+        /// <param name="timeout">ç­‰å¾…å‘½ä»¤æ‰§è¡Œæ‰€éœ€çš„æ—¶é—´ï¼ˆä»¥ç§’ä¸ºå•ä½ï¼‰ã€‚é»˜è®¤å€¼ä¸º 30 ç§’ã€‚</param>
+        /// <param name="cancellationToken">å–æ¶ˆæ ‡è¯†ã€‚</param>
+        /// <returns>è¿”å›äº‹åŠ¡å®ä¾‹å¯¹è±¡ã€‚</returns>
         Task<bool> BeginTransactionAsync(Func<ITransaction, Task<bool>> executor, int timeout = 30, CancellationToken cancellationToken = new CancellationToken());
 
         /// <summary>
-        /// ¿ªÆôÒ»¸öÊÂÎñ²¢Ö´ĞĞ¡£
+        /// å¼€å¯ä¸€ä¸ªäº‹åŠ¡å¹¶æ‰§è¡Œã€‚
         /// </summary>
-        /// <param name="executor">ÊÂÎñÖ´ĞĞµÄ·½·¨¡£</param>
-        /// <param name="timeout">µÈ´ıÃüÁîÖ´ĞĞËùĞèµÄÊ±¼ä£¨ÒÔÃëÎªµ¥Î»£©¡£Ä¬ÈÏÖµÎª 30 Ãë¡£</param>
-        /// <returns>·µ»ØÊÂÎñÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="executor">äº‹åŠ¡æ‰§è¡Œçš„æ–¹æ³•ã€‚</param>
+        /// <param name="timeout">ç­‰å¾…å‘½ä»¤æ‰§è¡Œæ‰€éœ€çš„æ—¶é—´ï¼ˆä»¥ç§’ä¸ºå•ä½ï¼‰ã€‚é»˜è®¤å€¼ä¸º 30 ç§’ã€‚</param>
+        /// <returns>è¿”å›äº‹åŠ¡å®ä¾‹å¯¹è±¡ã€‚</returns>
         bool BeginTransaction(Func<ITransaction, bool> executor, int timeout = 30);
     }
 }

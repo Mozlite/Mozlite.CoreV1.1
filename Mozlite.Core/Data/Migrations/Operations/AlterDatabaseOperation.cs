@@ -1,14 +1,14 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÊı¾İ¿â²Ù×÷¡£
+    /// ä¿®æ”¹æ•°æ®åº“æ“ä½œã€‚
     /// </summary>
     public class AlterDatabaseOperation : MigrationOperation, IAlterMigrationOperation
     {
         /// <summary>
-        /// Ô­Êı¾İ¿âµÄÒ»Ğ©ÅäÖÃÊôĞÔ¡£
+        /// åŸæ•°æ®åº“çš„ä¸€äº›é…ç½®å±æ€§ã€‚
         /// </summary>
         public virtual Annotatable OldDatabase { get; } = new Annotatable();
 

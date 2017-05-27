@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 
 namespace Mozlite.Mvc.Routing
 {
     /// <summary>
-    /// ¿ØÖÆÆ÷Â·ÓÉ¼¯ºÏ¡£
+    /// æ§åˆ¶å™¨è·¯ç”±é›†åˆã€‚
     /// </summary>
     public class ControllerRouteCollection : IEnumerable<ControllerRoute>
     {
@@ -23,11 +23,11 @@ namespace Mozlite.Mvc.Routing
         }
 
         /// <summary>
-        /// Ìí¼ÓÂ·ÓÉ¡£
+        /// æ·»åŠ è·¯ç”±ã€‚
         /// </summary>
-        /// <param name="type">Â·ÓÉÀàĞÍ¡£</param>
-        /// <param name="controllerName">¿ØÖÆÆ÷Ãû³Æ¡£</param>
-        /// <param name="area">ÇøÓòÃû³Æ¡£</param>
+        /// <param name="type">è·¯ç”±ç±»å‹ã€‚</param>
+        /// <param name="controllerName">æ§åˆ¶å™¨åç§°ã€‚</param>
+        /// <param name="area">åŒºåŸŸåç§°ã€‚</param>
         public void AddRoute(RouteType type, string controllerName, string area)
         {
             var route = new ControllerRoute();

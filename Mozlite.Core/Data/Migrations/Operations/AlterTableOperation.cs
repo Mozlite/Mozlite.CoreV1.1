@@ -1,20 +1,20 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸Ä±í¸ñ¡£
+    /// ä¿®æ”¹è¡¨æ ¼ã€‚
     /// </summary>
     public class AlterTableOperation : MigrationOperation, IAlterMigrationOperation
     {
         /// <summary>
-        /// ±í¸ñÃû³Æ¡£
+        /// è¡¨æ ¼åç§°ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ô­±í¸ñµÄÏà¹ØÊôĞÔ¡£
+        /// åŸè¡¨æ ¼çš„ç›¸å…³å±æ€§ã€‚
         /// </summary>
         public virtual Annotatable OldTable { get; [param: NotNull] set; } = new Annotatable();
 

@@ -1,63 +1,63 @@
-using System;
+ï»¿using System;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ForeachÓï¾ä¡£
+    /// Foreachè¯­å¥ã€‚
     /// </summary>
     public class ForeachTemplateSyntaxExecutor : ITemplateSyntaxExecutor
     {
         /// <summary>
-        /// ¹Ø¼ü´Ê¡£
+        /// å…³é”®è¯ã€‚
         /// </summary>
         public string Keyword => "foreach";
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÓï·¨ËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œè¯­æ³•æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="element">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="executor">½âÎöÆ÷½Ó¿Ú¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¶ÔÏó¡£</param>
-        /// <param name="func">»ñÈ¡µ±Ç°¶ÔÏóÊôĞÔÖµµÄ·½·¨¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="element">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="executor">è§£æå™¨æ¥å£ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="func">è·å–å½“å‰å¯¹è±¡å±æ€§å€¼çš„æ–¹æ³•ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string End(TemplateSyntaxElement element, ITemplateExecutor executor, object instance, Func<object, string, object> func)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÓï·¨ËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œè¯­æ³•æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="element">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="executor">½âÎöÆ÷½Ó¿Ú¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="element">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="executor">è§£æå™¨æ¥å£ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string Begin(TemplateSyntaxElement element, ITemplateExecutor executor)
         {
             var items = element.Args.Trim().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (items.Length == 3 && items[1] == "in")
                 return $"{items[2]}.forEach(function({items[0]},index){{";
-            throw new Exception("Óï·¨´íÎó£¬±ØĞëÎª{{foreach xx in xxs}}!");
+            throw new Exception("è¯­æ³•é”™è¯¯ï¼Œå¿…é¡»ä¸º{{foreach xx in xxs}}!");
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÓï·¨ËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œè¯­æ³•æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="element">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="executor">½âÎöÆ÷½Ó¿Ú¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¶ÔÏó¡£</param>
-        /// <param name="func">»ñÈ¡µ±Ç°¶ÔÏóÊôĞÔÖµµÄ·½·¨¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="element">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="executor">è§£æå™¨æ¥å£ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="func">è·å–å½“å‰å¯¹è±¡å±æ€§å€¼çš„æ–¹æ³•ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string Begin(TemplateSyntaxElement element, ITemplateExecutor executor, object instance, Func<object, string, object> func)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÓï·¨ËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œè¯­æ³•æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="element">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="executor">½âÎöÆ÷½Ó¿Ú¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="element">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="executor">è§£æå™¨æ¥å£ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string End(TemplateSyntaxElement element, ITemplateExecutor executor)
         {
             return "});";

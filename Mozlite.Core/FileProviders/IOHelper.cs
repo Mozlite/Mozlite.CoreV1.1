@@ -1,4 +1,4 @@
-using System.IO;
+ï»¿using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Hosting;
 namespace Mozlite.FileProviders
 {
     /// <summary>
-    /// ÎÄ¼ş²Ù×÷¸¨ÖúÀà¡£
+    /// æ–‡ä»¶æ“ä½œè¾…åŠ©ç±»ã€‚
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public static class IOHelper
     {
         /// <summary>
-        /// ¶ÁÈ¡ËùÓĞÎÄ¼şÄÚÈİ¡£
+        /// è¯»å–æ‰€æœ‰æ–‡ä»¶å†…å®¹ã€‚
         /// </summary>
-        /// <param name="path">ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</param>
-        /// <param name="share">ÎÄ¼ş¹²ÏíÑ¡Ïî¡£</param>
-        /// <returns>·µ»ØÎÄ¼şÄÚÈİ×Ö·û´®¡£</returns>
+        /// <param name="path">æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</param>
+        /// <param name="share">æ–‡ä»¶å…±äº«é€‰é¡¹ã€‚</param>
+        /// <returns>è¿”å›æ–‡ä»¶å†…å®¹å­—ç¬¦ä¸²ã€‚</returns>
         public static string ReadText(string path, FileShare share = FileShare.None)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, share))
@@ -29,11 +29,11 @@ namespace Mozlite.FileProviders
         }
 
         /// <summary>
-        /// ¶ÁÈ¡ËùÓĞÎÄ¼şÄÚÈİ¡£
+        /// è¯»å–æ‰€æœ‰æ–‡ä»¶å†…å®¹ã€‚
         /// </summary>
-        /// <param name="path">ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</param>
-        /// <param name="share">ÎÄ¼ş¹²ÏíÑ¡Ïî¡£</param>
-        /// <returns>·µ»ØÎÄ¼şÄÚÈİ×Ö·û´®¡£</returns>
+        /// <param name="path">æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</param>
+        /// <param name="share">æ–‡ä»¶å…±äº«é€‰é¡¹ã€‚</param>
+        /// <returns>è¿”å›æ–‡ä»¶å†…å®¹å­—ç¬¦ä¸²ã€‚</returns>
         public static async Task<string> ReadTextAsync(string path, FileShare share = FileShare.None)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, share))
@@ -46,12 +46,12 @@ namespace Mozlite.FileProviders
         }
 
         /// <summary>
-        /// ±£´æÎÄ¼şÄÚÈİ¡£
+        /// ä¿å­˜æ–‡ä»¶å†…å®¹ã€‚
         /// </summary>
-        /// <param name="path">ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</param>
+        /// <param name="path">æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</param>
         /// <param name="text"></param>
-        /// <param name="share">ÎÄ¼ş¹²ÏíÑ¡Ïî¡£</param>
-        /// <returns>·µ»ØĞ´ÈëÈÎÎñÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="share">æ–‡ä»¶å…±äº«é€‰é¡¹ã€‚</param>
+        /// <returns>è¿”å›å†™å…¥ä»»åŠ¡å®ä¾‹å¯¹è±¡ã€‚</returns>
         public static void SaveText(string path, string text, FileShare share = FileShare.None)
         {
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, share))
@@ -64,12 +64,12 @@ namespace Mozlite.FileProviders
         }
 
         /// <summary>
-        /// ±£´æÎÄ¼şÄÚÈİ¡£
+        /// ä¿å­˜æ–‡ä»¶å†…å®¹ã€‚
         /// </summary>
-        /// <param name="path">ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</param>
+        /// <param name="path">æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</param>
         /// <param name="text"></param>
-        /// <param name="share">ÎÄ¼ş¹²ÏíÑ¡Ïî¡£</param>
-        /// <returns>·µ»ØĞ´ÈëÈÎÎñÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="share">æ–‡ä»¶å…±äº«é€‰é¡¹ã€‚</param>
+        /// <returns>è¿”å›å†™å…¥ä»»åŠ¡å®ä¾‹å¯¹è±¡ã€‚</returns>
         public static async Task SaveTextAsync(string path, string text, FileShare share = FileShare.None)
         {
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, share))
@@ -82,12 +82,12 @@ namespace Mozlite.FileProviders
         }
 
         /// <summary>
-        /// ½«ÎÄ¼şÁ÷±£´æµ½ÎÄ¼şÖĞ¡£
+        /// å°†æ–‡ä»¶æµä¿å­˜åˆ°æ–‡ä»¶ä¸­ã€‚
         /// </summary>
-        /// <param name="stream">µ±Ç°ÎÄ¼şÁ÷¡£</param>
-        /// <param name="path">ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</param>
-        /// <param name="share">ÎÄ¼ş¹²ÏíÑ¡Ïî¡£</param>
-        /// <returns>·µ»Ø±£´æÈÎÎñ¡£</returns>
+        /// <param name="stream">å½“å‰æ–‡ä»¶æµã€‚</param>
+        /// <param name="path">æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</param>
+        /// <param name="share">æ–‡ä»¶å…±äº«é€‰é¡¹ã€‚</param>
+        /// <returns>è¿”å›ä¿å­˜ä»»åŠ¡ã€‚</returns>
         public static async Task SaveToAsync(this Stream stream, string path, FileShare share = FileShare.None)
         {
             using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, share))
@@ -104,11 +104,11 @@ namespace Mozlite.FileProviders
         }
 
         /// <summary>
-        /// »ñÈ¡ÎÄ¼şµÄÎïÀíÂ·¾¶¡£
+        /// è·å–æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚
         /// </summary>
-        /// <param name="env">»·¾³ÊµÀı¶ÔÏó¡£</param>
-        /// <param name="baseWebRootPath">»ùÓÚWebRootÎÄ¼ş¼ĞµÄÎÄ¼şÏà¶ÔÂ·¾¶¡£</param>
-        /// <returns>·µ»Øµ±Ç°ÎÄ¼şµÄÎïÀíÂ·¾¶¡£</returns>
+        /// <param name="env">ç¯å¢ƒå®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="baseWebRootPath">åŸºäºWebRootæ–‡ä»¶å¤¹çš„æ–‡ä»¶ç›¸å¯¹è·¯å¾„ã€‚</param>
+        /// <returns>è¿”å›å½“å‰æ–‡ä»¶çš„ç‰©ç†è·¯å¾„ã€‚</returns>
         public static string MapPath(this IHostingEnvironment env, string baseWebRootPath)
         {
             return Path.Combine(env.WebRootPath, baseWebRootPath);

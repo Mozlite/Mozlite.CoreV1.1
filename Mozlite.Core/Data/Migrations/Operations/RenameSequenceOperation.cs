@@ -1,28 +1,28 @@
-
+ï»¿
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÅÅĞòÃû³Æ¡£
+    /// ä¿®æ”¹æ’åºåç§°ã€‚
     /// </summary>
     public class RenameSequenceOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ¼Ü¹¹¡£
+        /// æ¶æ„ã€‚
         /// </summary>
         public virtual string Schema { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ĞÂÃû³Æ¡£
+        /// æ–°åç§°ã€‚
         /// </summary>
         public virtual string NewName { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ĞÂ¼Ü¹¹¡£
+        /// æ–°æ¶æ„ã€‚
         /// </summary>
         public virtual string NewSchema { get; [param: CanBeNull] set; }
     }

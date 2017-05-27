@@ -1,25 +1,25 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÁĞ¡£
+    /// ä¿®æ”¹åˆ—ã€‚
     /// </summary>
     public class AlterColumnOperation : ColumnOperation, IAlterMigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
         
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ô­À´ÁĞµÄÅäÖÃÊôĞÔ¡£
+        /// åŸæ¥åˆ—çš„é…ç½®å±æ€§ã€‚
         /// </summary>
         public virtual ColumnOperation OldColumn { get; [param: NotNull] set; } = new ColumnOperation();
 

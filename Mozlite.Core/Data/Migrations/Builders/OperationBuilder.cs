@@ -1,18 +1,18 @@
-using Mozlite.Data.Migrations.Operations;
+ï»¿using Mozlite.Data.Migrations.Operations;
 
 namespace Mozlite.Data.Migrations.Builders
 {
     /// <summary>
-    /// ²Ù×÷¹¹½¨ÊµÀı¶ÔÏó¡£
+    /// æ“ä½œæ„å»ºå®ä¾‹å¯¹è±¡ã€‚
     /// </summary>
-    /// <typeparam name="TOperation">²Ù×÷ÀàĞÍ¡£</typeparam>
+    /// <typeparam name="TOperation">æ“ä½œç±»å‹ã€‚</typeparam>
     public class OperationBuilder<TOperation>
         where TOperation : MigrationOperation
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="OperationBuilder{TOperation}"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="OperationBuilder{TOperation}"/>ã€‚
         /// </summary>
-        /// <param name="operation">²Ù×÷ÊµÀı¡£</param>
+        /// <param name="operation">æ“ä½œå®ä¾‹ã€‚</param>
         public OperationBuilder([NotNull] TOperation operation)
         {
             Check.NotNull(operation, nameof(operation));
@@ -21,16 +21,16 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// µ±Ç°²Ù×÷ÊµÀı¡£
+        /// å½“å‰æ“ä½œå®ä¾‹ã€‚
         /// </summary>
         protected virtual TOperation Operation { get; }
 
         /// <summary>
-        /// Ìí¼ÓÀ©Õ¹ÊµÀı¡£
+        /// æ·»åŠ æ‰©å±•å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="name">Ãû³Æ¡£</param>
-        /// <param name="value">Öµ¡£</param>
-        /// <returns>·µ»Øµ±Ç°²Ù×÷¹¹½¨ÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="name">åç§°ã€‚</param>
+        /// <param name="value">å€¼ã€‚</param>
+        /// <returns>è¿”å›å½“å‰æ“ä½œæ„å»ºå®ä¾‹å¯¹è±¡ã€‚</returns>
         public virtual OperationBuilder<TOperation> Annotation(
             [NotNull] string name,
             [NotNull] object value)

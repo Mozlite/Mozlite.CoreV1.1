@@ -1,44 +1,44 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// Ìí¼ÓÍâ¼ü²Ù×÷¡£
+    /// æ·»åŠ å¤–é”®æ“ä½œã€‚
     /// </summary>
     public class AddForeignKeyOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
         
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ïà¹ØÁĞ¡£
+        /// ç›¸å…³åˆ—ã€‚
         /// </summary>
         public virtual string[] Columns { get; [param: NotNull] set; }
         
         /// <summary>
-        /// Ö÷¼ü±í¡£
+        /// ä¸»é”®è¡¨ã€‚
         /// </summary>
         public virtual ITable PrincipalTable { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ö÷¼üÁĞ¡£
+        /// ä¸»é”®åˆ—ã€‚
         /// </summary>
         public virtual string[] PrincipalColumns { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ö÷¼ü¸üĞÂÊ±ºòµÄ²Ù×÷¡£
+        /// ä¸»é”®æ›´æ–°æ—¶å€™çš„æ“ä½œã€‚
         /// </summary>
         public virtual ReferentialAction OnUpdate { get; set; }
 
         /// <summary>
-        /// Ö÷¼üÉ¾³ıÊ±ºòµÄ²Ù×÷¡£
+        /// ä¸»é”®åˆ é™¤æ—¶å€™çš„æ“ä½œã€‚
         /// </summary>
         public virtual ReferentialAction OnDelete { get; set; }
     }

@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using Mozlite.Data.Query.Translators;
 
 namespace Mozlite.Data.SqlServer.Query.Translators
 {
     /// <summary>
-    /// Math.Floor×ª»»Æ÷¡£
+    /// Math.Floorè½¬æ¢å™¨ã€‚
     /// </summary>
     public class MathFloorTranslator : MultipleOverloadStaticMethodCallTranslator
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="MathFloorTranslator"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="MathFloorTranslator"/>ã€‚
         /// </summary>
         public MathFloorTranslator()
             : base(typeof(Math), nameof(Math.Floor), "FLOOR")

@@ -1,16 +1,16 @@
-using Microsoft.Extensions.DependencyInjection;
+ï»¿using Microsoft.Extensions.DependencyInjection;
 
 namespace Mozlite.Core
 {
     /// <summary>
-    /// ·şÎñÅäÖÃ½Ó¿Ú¡£
+    /// æœåŠ¡é…ç½®æ¥å£ã€‚
     /// </summary>
     public interface IServiceConfigurer : IService
     {
         /// <summary>
-        /// ÅäÖÃ·şÎñ·½·¨¡£
+        /// é…ç½®æœåŠ¡æ–¹æ³•ã€‚
         /// </summary>
-        /// <param name="services">·şÎñ¼¯ºÏÊµÀı¡£</param>
+        /// <param name="services">æœåŠ¡é›†åˆå®ä¾‹ã€‚</param>
         void ConfigureServices(IServiceCollection services);
     }
 }

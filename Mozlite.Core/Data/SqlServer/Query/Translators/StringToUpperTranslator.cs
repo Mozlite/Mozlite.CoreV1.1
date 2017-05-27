@@ -1,14 +1,14 @@
-using Mozlite.Data.Query.Translators;
+ï»¿using Mozlite.Data.Query.Translators;
 
 namespace Mozlite.Data.SqlServer.Query.Translators
 {
     /// <summary>
-    /// ´óĞ´×ª»»¡£
+    /// å¤§å†™è½¬æ¢ã€‚
     /// </summary>
     public class StringToUpperTranslator : ParameterlessInstanceMethodCallTranslator
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="StringToUpperTranslator"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="StringToUpperTranslator"/>ã€‚
         /// </summary>
         public StringToUpperTranslator()
             : base(typeof(string), nameof(string.ToUpper), "UPPER")

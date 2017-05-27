@@ -1,29 +1,29 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Text;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Ifset¹Ø¼ü´Ê¡£
+    /// Ifsetå…³é”®è¯ã€‚
     /// </summary>
     /// <example>
-    /// ¸ñÊ½
+    /// æ ¼å¼
     ///     jmoz:ifset-class="{{(name=null):'true-class':'false-class'}}"
     ///     jmoz:ifset-class="{{(name=null):'true-class'}}"
     /// </example>
     public class IfsetTemplateHtmlAttributeExecutor : ITemplateHtmlAttributeExecutor
     {
         /// <summary>
-        /// ¹Ø¼ü´Ê¡£
+        /// å…³é”®è¯ã€‚
         /// </summary>
         public string Keyword => "ifset";
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attribute">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="attribute">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string Execute(TemplateHtmlCodeAttribute attribute, Dictionary<string, string> result)
         {
             var sb = new StringBuilder();
@@ -44,11 +44,11 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attribute">ÊôĞÔÊµÀı¶ÔÏó¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¶ÔÏó¡£</param>
+        /// <param name="attribute">å±æ€§å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹å¯¹è±¡ã€‚</param>
         public void Execute(TemplateHtmlCodeAttribute attribute, Dictionary<string, string> result, object instance)
         {
             var value = attribute.Value?.Trim();

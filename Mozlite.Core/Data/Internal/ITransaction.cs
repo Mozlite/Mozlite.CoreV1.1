@@ -1,7 +1,7 @@
-namespace Mozlite.Data.Internal
+ï»¿namespace Mozlite.Data.Internal
 {
     /// <summary>
-    /// ÊÂÎñ·½·¨Ö´ÐÐ¡£
+    /// äº‹åŠ¡æ–¹æ³•æ‰§è¡Œã€‚
     /// </summary>
     public interface ITransaction : IExecutor
     {

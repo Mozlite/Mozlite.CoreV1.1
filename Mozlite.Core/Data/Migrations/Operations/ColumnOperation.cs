@@ -1,59 +1,59 @@
-using System;
+ï»¿using System;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ÁĞ²Ù×÷Ïà¹ØÊµÀı¡£
+    /// åˆ—æ“ä½œç›¸å…³å®ä¾‹ã€‚
     /// </summary>
     public class ColumnOperation : MigrationOperation
     {
         /// <summary>
-        /// ÊÇ·ñÎªUnicode×Ö·û¼¯¡£
+        /// æ˜¯å¦ä¸ºUnicodeå­—ç¬¦é›†ã€‚
         /// </summary>
         public virtual bool? IsUnicode { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ÀàĞÍ¡£
+        /// ç±»å‹ã€‚
         /// </summary>
         public virtual Type ClrType { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ÁĞÀàĞÍ¡£
+        /// åˆ—ç±»å‹ã€‚
         /// </summary>
         public virtual string ColumnType { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ´óĞ¡¡£
+        /// å¤§å°ã€‚
         /// </summary>
         public virtual int? MaxLength { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ÊÇ·ñÎªĞĞ°æ±¾¡£
+        /// æ˜¯å¦ä¸ºè¡Œç‰ˆæœ¬ã€‚
         /// </summary>
         public virtual bool IsRowVersion { get; set; }
 
         /// <summary>
-        /// ÊÇ·ñ×ÔÔö³¤¡£
+        /// æ˜¯å¦è‡ªå¢é•¿ã€‚
         /// </summary>
         public virtual bool IsIdentity { get; set; }
 
         /// <summary>
-        /// ÊÇ·ñ¿É¿Õ¡£
+        /// æ˜¯å¦å¯ç©ºã€‚
         /// </summary>
         public virtual bool IsNullable { get; set; }
 
         /// <summary>
-        /// Ä¬ÈÏÖµ¡£
+        /// é»˜è®¤å€¼ã€‚
         /// </summary>
         public virtual object DefaultValue { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// Ä¬ÈÏSQL×Ö·û´®¡£
+        /// é»˜è®¤SQLå­—ç¬¦ä¸²ã€‚
         /// </summary>
         public virtual string DefaultValueSql { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ¼ÆËãÁĞµÄÖµ×Ö·û´®¡£
+        /// è®¡ç®—åˆ—çš„å€¼å­—ç¬¦ä¸²ã€‚
         /// </summary>
         public virtual string ComputedColumnSql { get; [param: CanBeNull] set; }
     }

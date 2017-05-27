@@ -1,12 +1,12 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 namespace Mozlite.Extensions.Searching
 {
     /// <summary>
-    /// Ë÷ÒıÊµÀıÌá¹©Õß»ùÀà¡£
+    /// ç´¢å¼•å®ä¾‹æä¾›è€…åŸºç±»ã€‚
     /// </summary>
-    /// <typeparam name="TModel">Ä£ĞÍÀàĞÍ¡£</typeparam>
+    /// <typeparam name="TModel">æ¨¡å‹ç±»å‹ã€‚</typeparam>
     public abstract class SearchIndexProvider<TModel> : ISearchIndexProvider
         where TModel : class, ISearchable, new()
     {

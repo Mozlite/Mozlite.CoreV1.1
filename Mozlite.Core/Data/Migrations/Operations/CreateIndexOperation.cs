@@ -1,29 +1,29 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞÂ½¨Ë÷Òı²Ù×÷¡£
+    /// æ–°å»ºç´¢å¼•æ“ä½œã€‚
     /// </summary>
     public class CreateIndexOperation : MigrationOperation
     {
         /// <summary>
-        /// ÊÇ·ñÎ¨Ò»¡£
+        /// æ˜¯å¦å”¯ä¸€ã€‚
         /// </summary>
         public virtual bool IsUnique { get; set; }
 
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
         
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ïà¹ØÁĞ¡£
+        /// ç›¸å…³åˆ—ã€‚
         /// </summary>
         public virtual string[] Columns { get; [param: NotNull] set; }
     }

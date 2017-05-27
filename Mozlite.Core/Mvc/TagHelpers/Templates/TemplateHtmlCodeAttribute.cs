@@ -1,24 +1,24 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ´úÂëÊôĞÔ£¬ÒÔjmoz:¿ªÍ·µÄÊôĞÔ¡£
+    /// ä»£ç å±æ€§ï¼Œä»¥jmoz:å¼€å¤´çš„å±æ€§ã€‚
     /// </summary>
     public class TemplateHtmlCodeAttribute : TemplateHtmlAttribute
     {
         /// <summary>
-        /// ±»Ó°ÏìµÄHTMLÊôĞÔÃû³Æ¡£
+        /// è¢«å½±å“çš„HTMLå±æ€§åç§°ã€‚
         /// </summary>
         public string AttributeName { get; }
 
         private readonly List<string> _args = new List<string>();
 
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateHtmlCodeAttribute"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateHtmlCodeAttribute"/>ã€‚
         /// </summary>
-        /// <param name="name">ÊôĞÔÃû³Æ¡£</param>
-        /// <param name="value">ÊôĞÔÖµ¡£</param>
+        /// <param name="name">å±æ€§åç§°ã€‚</param>
+        /// <param name="value">å±æ€§å€¼ã€‚</param>
         public TemplateHtmlCodeAttribute(string name, string value)
             : base(TemplateHtmlAttributeType.Code)
         {
@@ -39,8 +39,8 @@ namespace Mozlite.Mvc.TagHelpers.Templates
             }
         }
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString()
         {
             if (AttributeName == null)
@@ -49,15 +49,15 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
         
         /// <summary>
-        /// ²ÎÊı¸öÊı¡£
+        /// å‚æ•°ä¸ªæ•°ã€‚
         /// </summary>
         public int Count => _args.Count;
 
         /// <summary>
-        /// »ñÈ¡µ±Ç°Ë÷ÒıµÄ²ÎÊıÖµ¡£
+        /// è·å–å½“å‰ç´¢å¼•çš„å‚æ•°å€¼ã€‚
         /// </summary>
-        /// <param name="index">µ±Ç°Ë÷ÒıÖµ¡£</param>
-        /// <returns>·µ»Øµ±Ç°Ë÷ÒıµÄ²ÎÊıÖµ¡£</returns>
+        /// <param name="index">å½“å‰ç´¢å¼•å€¼ã€‚</param>
+        /// <returns>è¿”å›å½“å‰ç´¢å¼•çš„å‚æ•°å€¼ã€‚</returns>
         public string this[int index]
         {
             get

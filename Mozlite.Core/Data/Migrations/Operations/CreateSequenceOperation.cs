@@ -1,29 +1,29 @@
-using System;
+ï»¿using System;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// Ìí¼ÓÅÅĞò²Ù×÷¡£
+    /// æ·»åŠ æ’åºæ“ä½œã€‚
     /// </summary>
     public class CreateSequenceOperation : SequenceOperation
     {
         /// <summary>
-        /// ¼Ü¹¹¡£
+        /// æ¶æ„ã€‚
         /// </summary>
         public virtual string Schema { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// µ±Ç°ÀàĞÍ¡£
+        /// å½“å‰ç±»å‹ã€‚
         /// </summary>
         public virtual Type ClrType { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ¿ªÊ¼Öµ¡£
+        /// å¼€å§‹å€¼ã€‚
         /// </summary>
         public virtual long StartValue { get; set; } = 1L;
     }

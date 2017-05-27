@@ -1,14 +1,14 @@
-using Mozlite.Data.Metadata;
+ï»¿using Mozlite.Data.Metadata;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// É¾³ıÁĞ¡£
+    /// åˆ é™¤åˆ—ã€‚
     /// </summary>
     public class DropColumnOperation : MigrationOperation
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="DropColumnOperation"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="DropColumnOperation"/>ã€‚
         /// </summary>
         public DropColumnOperation()
         {
@@ -16,12 +16,12 @@ namespace Mozlite.Data.Migrations.Operations
         }
 
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
         
         /// <summary>
-        /// ±í¸ñ¡£
+        /// è¡¨æ ¼ã€‚
         /// </summary>
         public virtual ITable Table { get; [param: NotNull] set; }
     }

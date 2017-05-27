@@ -1,14 +1,14 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// Ç¨ÒÆÊı¾İ²Ù×÷»ùÀà¡£
+    /// è¿ç§»æ•°æ®æ“ä½œåŸºç±»ã€‚
     /// </summary>
     public abstract class MigrationOperation : Annotatable
     {
         /// <summary>
-        /// ¸ü¸ÄÊÇ·ñ»áÔì³É²»¿ÉÍì»ØµÄÆÆ»µ¡£
+        /// æ›´æ”¹æ˜¯å¦ä¼šé€ æˆä¸å¯æŒ½å›çš„ç ´åã€‚
         /// </summary>
         public virtual bool IsDestructiveChange { get; set; }
     }

@@ -1,18 +1,18 @@
-
+ï»¿
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// É¾³ıÅÅĞò²Ù×÷¡£
+    /// åˆ é™¤æ’åºæ“ä½œã€‚
     /// </summary>
     public class DropSequenceOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ¼Ü¹¹¡£
+        /// æ¶æ„ã€‚
         /// </summary>
         public virtual string Schema { get; [param: CanBeNull] set; }
     }

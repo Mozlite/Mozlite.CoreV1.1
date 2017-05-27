@@ -1,30 +1,30 @@
-using System;
+ï»¿using System;
 using System.Linq.Expressions;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// SQLÓï¾ä²Ù×÷¡£
+    /// SQLè¯­å¥æ“ä½œã€‚
     /// </summary>
     public class SqlOperation : MigrationOperation
     {
         /// <summary>
-        /// SQL×Ö·û´®¡£
+        /// SQLå­—ç¬¦ä¸²ã€‚
         /// </summary>
         public virtual string Sql { get; [param: NotNull] set; }
 
         /// <summary>
-        /// Ìí¼Ó»ò¸üĞÂµÄÊµÌå¡£
+        /// æ·»åŠ æˆ–æ›´æ–°çš„å®ä½“ã€‚
         /// </summary>
         public object Instance { get; set; }
 
         /// <summary>
-        /// Ä£ĞÍÀàĞÍ¡£
+        /// æ¨¡å‹ç±»å‹ã€‚
         /// </summary>
         public Type EntityType { get; set; }
 
         /// <summary>
-        /// Ìõ¼ş±í´ïÊ½¡£
+        /// æ¡ä»¶è¡¨è¾¾å¼ã€‚
         /// </summary>
         public Expression Expression { get; set; }
     }

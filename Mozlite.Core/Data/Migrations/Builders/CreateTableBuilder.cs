@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using Mozlite.Data.Metadata;
@@ -7,19 +7,19 @@ using Mozlite.Data.Migrations.Operations;
 namespace Mozlite.Data.Migrations.Builders
 {
     /// <summary>
-    /// Ìí¼Ó±í¸ñ¹¹½¨ÊµÀı¡£
+    /// æ·»åŠ è¡¨æ ¼æ„å»ºå®ä¾‹ã€‚
     /// </summary>
-    /// <typeparam name="TEntity">ÊµÌåÀàĞÍ¡£</typeparam>
+    /// <typeparam name="TEntity">å®ä½“ç±»å‹ã€‚</typeparam>
     public class CreateTableBuilder<TEntity> : OperationBuilder<CreateTableOperation>
     {
         private readonly IModel _model;
         private readonly IEntityType _entity;
 
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="CreateTableBuilder{TColumns}"/>
+        /// åˆå§‹åŒ–ç±»<see cref="CreateTableBuilder{TColumns}"/>
         /// </summary>
-        /// <param name="operation">ĞÂ½¨±í¸ñµÄ²Ù×÷ÊµÀı¡£</param>
-        /// <param name="model">Ä£ĞÍ½Ó¿Ú¡£</param>
+        /// <param name="operation">æ–°å»ºè¡¨æ ¼çš„æ“ä½œå®ä¾‹ã€‚</param>
+        /// <param name="model">æ¨¡å‹æ¥å£ã€‚</param>
         public CreateTableBuilder(
             [NotNull] CreateTableOperation operation,
             [NotNull] IModel model)
@@ -31,15 +31,15 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// Ìí¼ÓÍâ¼ü¡£
+        /// æ·»åŠ å¤–é”®ã€‚
         /// </summary>
-        /// <typeparam name="TPrincipal">Ö÷¼üÀà¡£</typeparam>
-        /// <param name="columns">×Ö¶Î¡£</param>
-        /// <param name="principalColumns">Ö÷¼üÁĞ¡£</param>
-        /// <param name="onUpdate">¸üĞÂÊ±ºò¶ÔÓ¦µÄ²Ù×÷¡£</param>
-        /// <param name="onDelete">É¾³ıÊ±ºò¶ÔÓ¦µÄ²Ù×÷¡£</param>
-        /// <param name="action">Ìí¼ÓÀ©Õ¹²Ù×÷¡£</param>
-        /// <returns>·µ»ØÇ¨ÒÆ¹¹½¨ÊµÀı¡£</returns>
+        /// <typeparam name="TPrincipal">ä¸»é”®ç±»ã€‚</typeparam>
+        /// <param name="columns">å­—æ®µã€‚</param>
+        /// <param name="principalColumns">ä¸»é”®åˆ—ã€‚</param>
+        /// <param name="onUpdate">æ›´æ–°æ—¶å€™å¯¹åº”çš„æ“ä½œã€‚</param>
+        /// <param name="onDelete">åˆ é™¤æ—¶å€™å¯¹åº”çš„æ“ä½œã€‚</param>
+        /// <param name="action">æ·»åŠ æ‰©å±•æ“ä½œã€‚</param>
+        /// <returns>è¿”å›è¿ç§»æ„å»ºå®ä¾‹ã€‚</returns>
         public virtual CreateTableBuilder<TEntity> ForeignKey<TPrincipal>(
             [NotNull] Expression<Func<TEntity, object>> columns,
             [NotNull] Expression<Func<TPrincipal, object>> principalColumns = null,
@@ -69,10 +69,10 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// Ìí¼ÓÖ÷¼ü¡£
+        /// æ·»åŠ ä¸»é”®ã€‚
         /// </summary>
-        /// <param name="action">Ìí¼ÓÀ©Õ¹ĞÅÏ¢¡£</param>
-        /// <returns>·µ»ØÇ¨ÒÆ¹¹½¨ÊµÀı¡£</returns>
+        /// <param name="action">æ·»åŠ æ‰©å±•ä¿¡æ¯ã€‚</param>
+        /// <returns>è¿”å›è¿ç§»æ„å»ºå®ä¾‹ã€‚</returns>
         public virtual CreateTableBuilder<TEntity> PrimaryKey(Action<OperationBuilder<AddPrimaryKeyOperation>> action = null)
         {
             var key = _model.GetEntity(typeof(TEntity)).PrimaryKey;
@@ -92,11 +92,11 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// Ìí¼ÓÎ¨Ò»¼ü¡£
+        /// æ·»åŠ å”¯ä¸€é”®ã€‚
         /// </summary>
-        /// <param name="columns">ÁĞ¡£</param>
-        /// <param name="action">Ìí¼ÓÀ©Õ¹ĞÅÏ¢¡£</param>
-        /// <returns>·µ»ØÇ¨ÒÆ¹¹½¨ÊµÀı¡£</returns>
+        /// <param name="columns">åˆ—ã€‚</param>
+        /// <param name="action">æ·»åŠ æ‰©å±•ä¿¡æ¯ã€‚</param>
+        /// <returns>è¿”å›è¿ç§»æ„å»ºå®ä¾‹ã€‚</returns>
         public virtual CreateTableBuilder<TEntity> UniqueConstraint(
             [NotNull] Expression<Func<TEntity, object>> columns,
             Action<OperationBuilder<AddUniqueConstraintOperation>> action = null)
@@ -116,18 +116,18 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// Ìí¼ÓÁĞ¡£
+        /// æ·»åŠ åˆ—ã€‚
         /// </summary>
-        /// <typeparam name="T">ÊôĞÔÀàĞÍ¡£</typeparam>
-        /// <param name="column">ÁĞ±í´ïÊ½¡£</param>
-        /// <param name="type">×Ö¶ÎÀàĞÍ¡£</param>
-        /// <param name="unicode">ÊÇ·ñÎªUnicode±àÂë¡£</param>
-        /// <param name="nullable">ÊÇ·ñÎª¿Õ¡£</param>
-        /// <param name="defaultValue">Ä¬ÈÏÖµ¡£</param>
-        /// <param name="defaultValueSql">Ä¬ÈÏÖµSQL×Ö·û´®¡£</param>
-        /// <param name="computedColumnSql">¼ÆËãÁĞµÄSQL×Ö·û´®¡£</param>
-        /// <param name="action">Ìí¼ÓÀ©Õ¹¡£</param>
-        /// <returns>·µ»Ø²Ù×÷ÊµÀı¡£</returns>
+        /// <typeparam name="T">å±æ€§ç±»å‹ã€‚</typeparam>
+        /// <param name="column">åˆ—è¡¨è¾¾å¼ã€‚</param>
+        /// <param name="type">å­—æ®µç±»å‹ã€‚</param>
+        /// <param name="unicode">æ˜¯å¦ä¸ºUnicodeç¼–ç ã€‚</param>
+        /// <param name="nullable">æ˜¯å¦ä¸ºç©ºã€‚</param>
+        /// <param name="defaultValue">é»˜è®¤å€¼ã€‚</param>
+        /// <param name="defaultValueSql">é»˜è®¤å€¼SQLå­—ç¬¦ä¸²ã€‚</param>
+        /// <param name="computedColumnSql">è®¡ç®—åˆ—çš„SQLå­—ç¬¦ä¸²ã€‚</param>
+        /// <param name="action">æ·»åŠ æ‰©å±•ã€‚</param>
+        /// <returns>è¿”å›æ“ä½œå®ä¾‹ã€‚</returns>
         public virtual CreateTableBuilder<TEntity> Column<T>(
             [NotNull] Expression<Func<TEntity, T>> column,
             [CanBeNull] string type = null,
@@ -163,11 +163,11 @@ namespace Mozlite.Data.Migrations.Builders
         }
 
         /// <summary>
-        /// Ìí¼ÓÀ©Õ¹ÊôĞÔ¡£
+        /// æ·»åŠ æ‰©å±•å±æ€§ã€‚
         /// </summary>
-        /// <param name="name">Ãû³Æ¡£</param>
-        /// <param name="value">Öµ¡£</param>
-        /// <returns>·µ»ØĞÂ½¨±í¸ñ¹¹½¨ÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="name">åç§°ã€‚</param>
+        /// <param name="value">å€¼ã€‚</param>
+        /// <returns>è¿”å›æ–°å»ºè¡¨æ ¼æ„å»ºå®ä¾‹å¯¹è±¡ã€‚</returns>
         public new virtual CreateTableBuilder<TEntity> Annotation([NotNull] string name, [NotNull] object value)
             => (CreateTableBuilder<TEntity>)base.Annotation(name, value);
     }

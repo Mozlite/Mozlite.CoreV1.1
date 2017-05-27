@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using Mozlite.Data.Query.Translators;
 
 namespace Mozlite.Data.SqlServer.Query.Translators
 {
     /// <summary>
-    /// Math.Ceiling×ª»»Æ÷¡£
+    /// Math.Ceilingè½¬æ¢å™¨ã€‚
     /// </summary>
     public class MathCeilingTranslator : MultipleOverloadStaticMethodCallTranslator
     {
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="MathCeilingTranslator"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="MathCeilingTranslator"/>ã€‚
         /// </summary>
         public MathCeilingTranslator()
             : base(typeof(Math), nameof(Math.Ceiling), "CEILING")

@@ -1,13 +1,13 @@
-
+ï»¿
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// É¾³ı¼Ü¹¹¡£
+    /// åˆ é™¤æ¶æ„ã€‚
     /// </summary>
     public class DropSchemaOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
     }

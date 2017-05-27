@@ -1,32 +1,32 @@
-namespace Mozlite.Mvc.TagHelpers.Templates
+ï»¿namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Ä£°å½ÚµãÀàĞÍ¡£
+    /// æ¨¡æ¿èŠ‚ç‚¹ç±»å‹ã€‚
     /// </summary>
     public enum TemplateElementType
     {
         /// <summary>
-        /// ÎÄµµ£¬×î¸ß½Úµã¡£
+        /// æ–‡æ¡£ï¼Œæœ€é«˜èŠ‚ç‚¹ã€‚
         /// </summary>
         Document,
 
         /// <summary>
-        /// ÎÄ±¾¡£
+        /// æ–‡æœ¬ã€‚
         /// </summary>
         Text,
 
         /// <summary>
-        /// HTML±êÇ©¡£
+        /// HTMLæ ‡ç­¾ã€‚
         /// </summary>
         Html,
 
         /// <summary>
-        /// ´úÂë¡°{{code}}¡±¡£
+        /// ä»£ç â€œ{{code}}â€ã€‚
         /// </summary>
         Code,
 
         /// <summary>
-        /// Óï¾ä£¨ÓĞ½áÊø·ûµÄ´úÂë¿é£©¡°{{code/}}¡±£¬"{{code}}text{{/code}}"¡£
+        /// è¯­å¥ï¼ˆæœ‰ç»“æŸç¬¦çš„ä»£ç å—ï¼‰â€œ{{code/}}â€ï¼Œ"{{code}}text{{/code}}"ã€‚
         /// </summary>
         Syntax,
     }

@@ -1,23 +1,23 @@
-
+ï»¿
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ÖØĞÂ¿ªÊ¼ÅÅĞò²Ù×÷¡£
+    /// é‡æ–°å¼€å§‹æ’åºæ“ä½œã€‚
     /// </summary>
     public class RestartSequenceOperation : MigrationOperation
     {
         /// <summary>
-        /// Ãû³Æ¡£
+        /// åç§°ã€‚
         /// </summary>
         public virtual string Name { get; [param: NotNull] set; }
 
         /// <summary>
-        /// ¼Ü¹¹¡£
+        /// æ¶æ„ã€‚
         /// </summary>
         public virtual string Schema { get; [param: CanBeNull] set; }
 
         /// <summary>
-        /// ¿ªÊ¼Öµ¡£
+        /// å¼€å§‹å€¼ã€‚
         /// </summary>
         public virtual long StartValue { get; set; } = 1L;
     }

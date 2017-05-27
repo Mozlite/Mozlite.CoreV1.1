@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,27 +7,27 @@ using System.Text.RegularExpressions;
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Html½Úµã¡£
+    /// HtmlèŠ‚ç‚¹ã€‚
     /// </summary>
     public class TemplateHtmlElement : TemplateElement
     {
         private readonly Dictionary<string, TemplateHtmlCodeAttribute> _attributes = new Dictionary<string, TemplateHtmlCodeAttribute>();
         private readonly Dictionary<string, TemplateHtmlAttribute> _basics = new Dictionary<string, TemplateHtmlAttribute>();
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateHtmlElement"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateHtmlElement"/>ã€‚
         /// </summary>
-        /// <param name="tagName">±êÇ©Ãû³Æ¡£</param>
-        /// <param name="position">Î»ÖÃ¡£</param>
+        /// <param name="tagName">æ ‡ç­¾åç§°ã€‚</param>
+        /// <param name="position">ä½ç½®ã€‚</param>
         protected internal TemplateHtmlElement(string tagName, int position) : base(position, TemplateElementType.Html)
         {
             TagName = tagName;
         }
 
         /// <summary>
-        /// »ñÈ¡µ±Ç°Ãû³ÆµÄÊôĞÔÊµÀı¡£
+        /// è·å–å½“å‰åç§°çš„å±æ€§å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="name">ÊôĞÔÃû³Æ¡£</param>
-        /// <returns>·µ»ØÊôĞÔÊµÀı¶ÔÏó¡£</returns>
+        /// <param name="name">å±æ€§åç§°ã€‚</param>
+        /// <returns>è¿”å›å±æ€§å®ä¾‹å¯¹è±¡ã€‚</returns>
         public TemplateHtmlAttribute this[string name]
         {
             get
@@ -51,17 +51,17 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ±ê¼ÇÃû³Æ¡£
+        /// æ ‡è®°åç§°ã€‚
         /// </summary>
         public string TagName { get; }
 
         /// <summary>
-        /// ÊÇ·ñÎª×Ô±ÕºÏ½Úµã¡£
+        /// æ˜¯å¦ä¸ºè‡ªé—­åˆèŠ‚ç‚¹ã€‚
         /// </summary>
         public bool IsSelfClosed { get; set; }
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -80,10 +80,10 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Éú³É½Å±¾¡£
+        /// ç”Ÿæˆè„šæœ¬ã€‚
         /// </summary>
-        /// <param name="executor">½Å±¾Óï·¨½âÎöÆ÷¡£</param>
-        /// <returns>·µ»ØÉú³ÉºóµÄ½Å±¾¡£</returns>
+        /// <param name="executor">è„šæœ¬è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <returns>è¿”å›ç”Ÿæˆåçš„è„šæœ¬ã€‚</returns>
         public override string ToJsString(ITemplateExecutor executor)
         {
             var sb = new StringBuilder();
@@ -98,12 +98,12 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Éú³ÉHTML´úÂë¡£
+        /// ç”ŸæˆHTMLä»£ç ã€‚
         /// </summary>
-        /// <param name="executor">Óï·¨½âÎöÆ÷¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¡£</param>
-        /// <param name="func">»ñÈ¡ÊµÀıÊôĞÔÖµ¡£</param>
-        /// <returns>·µ»ØHTML´úÂë¡£</returns>
+        /// <param name="executor">è¯­æ³•è§£æå™¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹ã€‚</param>
+        /// <param name="func">è·å–å®ä¾‹å±æ€§å€¼ã€‚</param>
+        /// <returns>è¿”å›HTMLä»£ç ã€‚</returns>
         public override string ToHtmlString(ITemplateExecutor executor, object instance, Func<object, string, object> func)
         {
             var sb = new StringBuilder();

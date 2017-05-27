@@ -1,16 +1,16 @@
-namespace Mozlite.Mvc.TagHelpers.Templates
+ï»¿namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// ÊôĞÔÖµÀàĞÍ¡£
+    /// å±æ€§å€¼ç±»å‹ã€‚
     /// </summary>
     public enum TemplateHtmlAttributeType
     {
         /// <summary>
-        /// ÎÄ±¾¡£
+        /// æ–‡æœ¬ã€‚
         /// </summary>
         Text,
         /// <summary>
-        /// ´úÂë¡£
+        /// ä»£ç ã€‚
         /// </summary>
         Code,
     }

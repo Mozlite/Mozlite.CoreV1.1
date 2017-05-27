@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// Óï·¨½âÎöÖ´ĞĞ¹¤³§ÊµÏÖÀà¡£
+    /// è¯­æ³•è§£ææ‰§è¡Œå·¥å‚å®ç°ç±»ã€‚
     /// </summary>
     public class TemplateExecutor : ITemplateExecutor
     {
@@ -21,22 +21,22 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ³¢ÊÔ»ñÈ¡Óï·¨½âÎöÆ÷¡£
+        /// å°è¯•è·å–è¯­æ³•è§£æå™¨ã€‚
         /// </summary>
-        /// <param name="element">ÔªËØÊµÀı¶ÔÏó¡£</param>
-        /// <param name="executor">·µ»ØµÄ½âÎöÆ÷¡£</param>
-        /// <returns>·µ»Ø»ñÈ¡½á¹û¡£</returns>
+        /// <param name="element">å…ƒç´ å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="executor">è¿”å›çš„è§£æå™¨ã€‚</param>
+        /// <returns>è¿”å›è·å–ç»“æœã€‚</returns>
         public bool TryGetExecutor(TemplateSyntaxElement element, out ITemplateSyntaxExecutor executor)
         {
             return _executors.TryGetValue(element.Keyword, out executor);
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attributes">ÊôĞÔÊµÀı¶ÔÏóÁĞ±í¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <returns>·µ»Ø½Å±¾´úÂë</returns>
+        /// <param name="attributes">å±æ€§å®ä¾‹å¯¹è±¡åˆ—è¡¨ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <returns>è¿”å›è„šæœ¬ä»£ç </returns>
         public string Execute(IEnumerable<TemplateHtmlCodeAttribute> attributes, Dictionary<string, string> result)
         {
             var sb = new StringBuilder();
@@ -59,12 +59,12 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// Í¨¹ıµ±Ç°¶ÔÏóÖ´ĞĞÊôĞÔËùµÃµ½µÄ×Ö·û´®¡£
+        /// é€šè¿‡å½“å‰å¯¹è±¡æ‰§è¡Œå±æ€§æ‰€å¾—åˆ°çš„å­—ç¬¦ä¸²ã€‚
         /// </summary>
-        /// <param name="attributes">ÊôĞÔÊµÀı¶ÔÏóÁĞ±í¡£</param>
-        /// <param name="result">µ±Ç°Ô­ÓĞµÄÊôĞÔÁĞ±í¡£</param>
-        /// <param name="instance">µ±Ç°ÊµÀı¶ÔÏó¡£</param>
-        /// <param name="func">»ñÈ¡µ±Ç°¶ÔÏóÊôĞÔÖµµÄ·½·¨¡£</param>
+        /// <param name="attributes">å±æ€§å®ä¾‹å¯¹è±¡åˆ—è¡¨ã€‚</param>
+        /// <param name="result">å½“å‰åŸæœ‰çš„å±æ€§åˆ—è¡¨ã€‚</param>
+        /// <param name="instance">å½“å‰å®ä¾‹å¯¹è±¡ã€‚</param>
+        /// <param name="func">è·å–å½“å‰å¯¹è±¡å±æ€§å€¼çš„æ–¹æ³•ã€‚</param>
         public void Execute(IEnumerable<TemplateHtmlCodeAttribute> attributes, Dictionary<string, string> result, object instance, Func<object, string, object> func)
         {
             foreach (var attribute in attributes)

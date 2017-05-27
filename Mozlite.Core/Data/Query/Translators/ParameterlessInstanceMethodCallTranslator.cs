@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -7,7 +7,7 @@ using Mozlite.Data.Query.Expressions;
 namespace Mozlite.Data.Query.Translators
 {
     /// <summary>
-    /// ÎŞ²ÎÊıµÄ·½·¨µ÷ÓÃ×ª»»Æ÷»ùÀà¡£
+    /// æ— å‚æ•°çš„æ–¹æ³•è°ƒç”¨è½¬æ¢å™¨åŸºç±»ã€‚
     /// </summary>
     public abstract class ParameterlessInstanceMethodCallTranslator : IMethodCallTranslator
     {
@@ -15,11 +15,11 @@ namespace Mozlite.Data.Query.Translators
         private readonly string _clrMethodName;
         private readonly string _sqlFunctionName;
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="ParameterlessInstanceMethodCallTranslator"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="ParameterlessInstanceMethodCallTranslator"/>ã€‚
         /// </summary>
-        /// <param name="declaringType">ÉùÃ÷ÀàĞÍ¡£</param>
-        /// <param name="clrMethodName">CLR·½·¨Ãû³Æ¡£</param>
-        /// <param name="sqlFunctionName">SQLº¯ÊıÃû³Æ¡£</param>
+        /// <param name="declaringType">å£°æ˜ç±»å‹ã€‚</param>
+        /// <param name="clrMethodName">CLRæ–¹æ³•åç§°ã€‚</param>
+        /// <param name="sqlFunctionName">SQLå‡½æ•°åç§°ã€‚</param>
         protected ParameterlessInstanceMethodCallTranslator([NotNull] Type declaringType, [NotNull] string clrMethodName, [NotNull] string sqlFunctionName)
         {
             _declaringType = declaringType;
@@ -28,10 +28,10 @@ namespace Mozlite.Data.Query.Translators
         }
 
         /// <summary>
-        /// ×ª»»±í´ïÊ½¡£
+        /// è½¬æ¢è¡¨è¾¾å¼ã€‚
         /// </summary>
-        /// <param name="methodCallExpression">·½·¨µ÷ÓÃ±í´ïÊ½¡£</param>
-        /// <returns>·µ»Ø×ª»»ºóµÄ±í´ïÊ½¡£</returns>
+        /// <param name="methodCallExpression">æ–¹æ³•è°ƒç”¨è¡¨è¾¾å¼ã€‚</param>
+        /// <returns>è¿”å›è½¬æ¢åçš„è¡¨è¾¾å¼ã€‚</returns>
         public virtual Expression Translate([NotNull] MethodCallExpression methodCallExpression)
         {
             var methodInfo = _declaringType.GetTypeInfo()

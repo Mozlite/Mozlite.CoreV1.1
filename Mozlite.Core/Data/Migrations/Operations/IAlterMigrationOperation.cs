@@ -1,14 +1,14 @@
-using Mozlite.Core;
+ï»¿using Mozlite.Core;
 
 namespace Mozlite.Data.Migrations.Operations
 {
     /// <summary>
-    /// ĞŞ¸ÄÇ¨ÒÆ²Ù×÷¡£
+    /// ä¿®æ”¹è¿ç§»æ“ä½œã€‚
     /// </summary>
     public interface IAlterMigrationOperation
     {
         /// <summary>
-        /// Ô­ÓĞÀ©Õ¹ÊµÀı¡£
+        /// åŸæœ‰æ‰©å±•å®ä¾‹ã€‚
         /// </summary>
         IMutableAnnotatable OldAnnotations { get; }
     }

@@ -1,36 +1,36 @@
-namespace Mozlite.Mvc.TagHelpers.Templates
+ï»¿namespace Mozlite.Mvc.TagHelpers.Templates
 {
     /// <summary>
-    /// HTMLÊôĞÔ¡£
+    /// HTMLå±æ€§ã€‚
     /// </summary>
     public class TemplateHtmlAttribute
     {
         /// <summary>
-        /// ÊôĞÔÃû³Æ¡£
+        /// å±æ€§åç§°ã€‚
         /// </summary>
         public string Name { get; protected set; }
 
         /// <summary>
-        /// ÊôĞÔÖµ¡£
+        /// å±æ€§å€¼ã€‚
         /// </summary>
         public string Value { get; protected set; }
 
         /// <summary>
-        /// ËùÊôÔªËØ¡£
+        /// æ‰€å±å…ƒç´ ã€‚
         /// </summary>
         public TemplateHtmlElement Element { get; set; }
 
         /// <summary>
-        /// ÀàĞÍ¡£
+        /// ç±»å‹ã€‚
         /// </summary>
         public TemplateHtmlAttributeType Type { get; }
 
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateHtmlAttribute"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateHtmlAttribute"/>ã€‚
         /// </summary>
-        /// <param name="name">ÊôĞÔÃû³Æ¡£</param>
-        /// <param name="value">ÊôĞÔÖµ¡£</param>
-        /// <param name="type">ÀàĞÍ¡£</param>
+        /// <param name="name">å±æ€§åç§°ã€‚</param>
+        /// <param name="value">å±æ€§å€¼ã€‚</param>
+        /// <param name="type">ç±»å‹ã€‚</param>
         public TemplateHtmlAttribute(string name, string value,
             TemplateHtmlAttributeType type = TemplateHtmlAttributeType.Text)
         {
@@ -40,16 +40,16 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         }
 
         /// <summary>
-        /// ³õÊ¼»¯Àà<see cref="TemplateHtmlAttribute"/>¡£
+        /// åˆå§‹åŒ–ç±»<see cref="TemplateHtmlAttribute"/>ã€‚
         /// </summary>
-        /// <param name="type">ÀàĞÍ¡£</param>
+        /// <param name="type">ç±»å‹ã€‚</param>
         internal TemplateHtmlAttribute(TemplateHtmlAttributeType type)
         {
             Type = type;
         }
 
-        /// <summary>·µ»Ø±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</summary>
-        /// <returns>±íÊ¾µ±Ç°¶ÔÏóµÄ×Ö·û´®¡£</returns>
+        /// <summary>è¿”å›è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</summary>
+        /// <returns>è¡¨ç¤ºå½“å‰å¯¹è±¡çš„å­—ç¬¦ä¸²ã€‚</returns>
         public override string ToString()
         {
             return $"{Name}=\"{Value}\"";

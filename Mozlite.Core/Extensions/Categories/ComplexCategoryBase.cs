@@ -14,12 +14,12 @@ namespace Mozlite.Extensions.Categories
         private readonly IList<TCategory> _children = new List<TCategory>();
 
         /// <summary>
-        /// 父类型ID。
+        /// 父级类型ID。
         /// </summary>
         public int ParentId { get; set; }
 
         /// <summary>
-        /// 父分类。
+        /// 父级分类。
         /// </summary>
         [Ignore(Ignore.All)]
         public TCategory Parent { get; private set; }
@@ -46,5 +46,10 @@ namespace Mozlite.Extensions.Categories
             category.Parent = (TCategory)this;
             _children.Add(category);
         }
+
+        /// <summary>
+        /// 子级数量。
+        /// </summary>
+        public int Count => _children.Count;
     }
 }

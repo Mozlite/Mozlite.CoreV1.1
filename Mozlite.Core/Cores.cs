@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Mozlite.Properties;
 
 namespace Mozlite
@@ -233,5 +234,28 @@ namespace Mozlite
         /// 获取当前时间对应的UNIX时间的毫秒数。
         /// </summary>
         public static long UnixNow => (long) (DateTime.Now - _unixDate).TotalMilliseconds;
+        
+        private const string HtmlCaseRegexReplacement = "-$1$2";
+        private static readonly Regex _htmlCaseRegex =
+            new Regex(
+                "(?<!^)((?<=[a-zA-Z0-9])[A-Z][a-z])|((?<=[a-z])[A-Z])",
+                RegexOptions.None,
+                TimeSpan.FromMilliseconds(500));
+        /// <summary>
+        /// 将pascal/camel格式的名称转换为小写并且以“-”分隔的字符串名称。
+        /// </summary>
+        /// <example>
+        /// SomeThing => some-thing
+        /// capsONInside => caps-on-inside
+        /// CAPSOnOUTSIDE => caps-on-outside
+        /// ALLCAPS => allcaps
+        /// One1Two2Three3 => one1-two2-three3
+        /// ONE1TWO2THREE3 => one1two2three3
+        /// First_Second_ThirdHi => first_second_third-hi
+        /// </example>
+        public static string ToHtmlCase(string name)
+        {
+            return _htmlCaseRegex.Replace(name, HtmlCaseRegexReplacement).ToLowerInvariant();
+        }
     }
 }

@@ -312,7 +312,7 @@ namespace Mozlite.Data.SqlServer.Migrations
                 .Append(".")
                 .Append(operation.Name);
 
-            Rename(qualifiedName.ToString(), operation.NewName, "COLUMN", builder);
+            Rename(SqlHelper.DelimitIdentifier(qualifiedName.ToString()), SqlHelper.DelimitIdentifier(operation.NewName), "COLUMN", builder);
             builder.EndCommand();
         }
 
@@ -407,7 +407,7 @@ namespace Mozlite.Data.SqlServer.Migrations
             {
                 builder
                     .Append(", ")
-                    .Append(SqlHelper.EscapeIdentifier(type));
+                    .Append(SqlHelper.EscapeLiteral(type));
             }
 
             builder.AppendLine(SqlHelper.StatementTerminator);

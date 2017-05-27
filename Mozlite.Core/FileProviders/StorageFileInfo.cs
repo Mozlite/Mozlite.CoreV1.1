@@ -23,7 +23,7 @@ namespace Mozlite.FileProviders
         /// <summary>
         /// 内容类型。
         /// </summary>
-        [Size(64)]
+        [Size(256)]
         public string ContentType { get; set; }
 
         /// <summary>

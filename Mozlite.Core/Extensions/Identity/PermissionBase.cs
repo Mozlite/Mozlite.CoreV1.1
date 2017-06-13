@@ -91,6 +91,18 @@ namespace Mozlite.Extensions.Identity
         bool IsValid(Func<TPermission, string> func, string permission);
     }
 
+    ///<summary>
+    /// 权限验证实现类。
+    ///</summary>
+    public abstract class Authorizer<TPermission>:IAuthorizer<TPermission>
+        where TPermission:PermissionBase,new()
+    {
+        private readonly IHttpContextAccess _contextAccess;
+        protected Authorizer(IHttpContextAccess contextAccess){
+            _contextAccess = contextAccess;
+        }
+    }
+
     /// <summary>
     /// 权限管理接口。
     /// </summary>

@@ -731,6 +731,23 @@ namespace Mozlite.Data.Query
         }
 
         /// <summary>
+        /// 查询数据库返回结果，主要配合查询特定列时候使用。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <param name="cancellationToken">取消标识。</param>
+        /// <returns>返回数据列表。</returns>
+        public async Task<IEnumerable<TValue>> AsEnumerableAsync<TValue>(Func<DbDataReader, TValue> converter, CancellationToken cancellationToken = new CancellationToken())
+        {
+            var models = new List<TValue>();
+            using (var reader = await _db.ExecuteReaderAsync(_sqlGenerator.Query(this).ToString(), cancellationToken: cancellationToken))
+            {
+                while (await reader.ReadAsync(cancellationToken))
+                    models.Add(converter(reader));
+            }
+            return models;
+        }
+
+        /// <summary>
         /// 递归查询子集数据。
         /// </summary>
         /// <param name="expression">条件表达式。</param>

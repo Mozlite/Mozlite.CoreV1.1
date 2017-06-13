@@ -220,8 +220,7 @@ namespace Mozlite.Data
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据列表。</returns>
         Task<TValue> SingleOrDefaultAsync<TValue>(Func<DbDataReader, TValue> converter, CancellationToken cancellationToken = new CancellationToken());
-
-
+        
         /// <summary>
         /// 查询数据库返回结果。
         /// </summary>
@@ -271,6 +270,14 @@ namespace Mozlite.Data
         /// <param name="cancellationToken">取消标识。</param>
         /// <returns>返回数据列表。</returns>
         Task<IEnumerable<TModel>> AsEnumerableAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// 查询数据库返回结果，主要配合查询特定列时候使用。
+        /// </summary>
+        /// <param name="converter">对象转换器。</param>
+        /// <param name="cancellationToken">取消标识。</param>
+        /// <returns>返回数据列表。</returns>
+        Task<IEnumerable<TValue>> AsEnumerableAsync<TValue>(Func<DbDataReader, TValue> converter, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 递归查询子集数据。

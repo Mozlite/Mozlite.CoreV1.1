@@ -6,8 +6,7 @@ namespace Mozlite.Extensions
     /// <summary>
     /// 递归接口。
     /// </summary>
-    public interface IParentable<TModel> : IEnumerable<TModel>
-        where TModel : IParentable<TModel>
+    public interface IParentable
     {
         /// <summary>
         /// 唯一Id。
@@ -22,13 +21,54 @@ namespace Mozlite.Extensions
         /// <summary>
         /// 父级实例。
         /// </summary>
-        TModel Parent { get; }
+        object Parent { get; }
+
+        /// <summary>
+        /// 获取子项。
+        /// </summary>
+        IEnumerable<object> Children { get; }
+        
+        /// <summary>
+        /// 包含子项数量。
+        /// </summary>
+        int Count { get; }
+
+        /// <summary>
+        /// 索引获取当前模型实例对象。
+        /// </summary>
+        /// <param name="index">索引值。</param>
+        /// <returns>返回当前模型实例。</returns>
+        object this[int index] { get; }
+    }
+
+    /// <summary>
+    /// 递归接口。
+    /// </summary>
+    public interface IParentable<TModel> : IParentable
+        where TModel : IParentable<TModel>
+    {
+        /// <summary>
+        /// 父级实例。
+        /// </summary>
+        new TModel Parent { get; }
+
+        /// <summary>
+        /// 获取子项。
+        /// </summary>
+        new IEnumerable<TModel> Children { get; }
 
         /// <summary>
         /// 添加子集实例。
         /// </summary>
         /// <param name="model">子集实例。</param>
         void Add(TModel model);
+
+        /// <summary>
+        /// 索引获取当前模型实例对象。
+        /// </summary>
+        /// <param name="index">索引值。</param>
+        /// <returns>返回当前模型实例。</returns>
+        new TModel this[int index] { get; }
     }
 
     /// <summary>

@@ -50,7 +50,7 @@ namespace Mozlite.Extensions.Categories
         public override DataResult Delete(int id)
         {
             var current = GetCache(id);
-            if (current.Any())
+            if (current.Count > 0)
                 return DataAction.DeletedFailuredItemsNotEmpty;
             return base.Delete(id);
         }
@@ -65,7 +65,7 @@ namespace Mozlite.Extensions.Categories
             foreach (var id in ids)
             {
                 var current = GetCache(id);
-                if (current.Any())
+                if (current.Count > 0)
                     return DataAction.DeletedFailuredItemsNotEmpty;
             }
             return base.Delete(ids);

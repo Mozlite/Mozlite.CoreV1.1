@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Mozlite.Data.Metadata;
+using Newtonsoft.Json;
 
 namespace Mozlite.Extensions.Categories
 {
@@ -18,23 +18,20 @@ namespace Mozlite.Extensions.Categories
         /// </summary>
         public int ParentId { get; set; }
 
+        object IParentable.Parent => Parent;
+        IEnumerable<object> IParentable.Children => Children;
+
         /// <summary>
         /// 父级分类。
         /// </summary>
         [Ignore(Ignore.All)]
+        [JsonIgnore]
         public TCategory Parent { get; private set; }
 
-        /// <summary>返回一个循环访问集合的枚举器。</summary>
-        /// <returns>用于循环访问集合的枚举数。</returns>
-        public IEnumerator<TCategory> GetEnumerator()
-        {
-            return _children.GetEnumerator();
-        }
-        
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        /// <summary>
+        /// 获取子项。
+        /// </summary>
+        public IEnumerable<TCategory> Children => _children;
 
         /// <summary>
         /// 添加分类。
@@ -51,5 +48,15 @@ namespace Mozlite.Extensions.Categories
         /// 子级数量。
         /// </summary>
         public int Count => _children.Count;
+
+        object IParentable.this[int index] => this[index];
+
+        /// <summary>
+        /// 索引获取当前模型实例对象。
+        /// </summary>
+        /// <param name="index">索引值。</param>
+        /// <returns>返回当前模型实例。</returns>
+        [JsonIgnore]
+        public TCategory this[int index] => _children[index];
     }
 }

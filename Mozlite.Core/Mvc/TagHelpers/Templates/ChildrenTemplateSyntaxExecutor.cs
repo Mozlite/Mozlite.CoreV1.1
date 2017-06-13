@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Text;
+using Mozlite.Extensions;
 
 namespace Mozlite.Mvc.TagHelpers.Templates
 {
@@ -37,7 +38,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         public string Begin(TemplateSyntaxElement element, ITemplateExecutor executor)
         {
             if (element.IsSelfClosed || !element.Any())
-                return "if(Array.isArray($model)){$model.forEach(function(item){appender(item);});}";
+                return "if($model.count>0){$model.children.forEach(function(item){appender(item);});}";
             var sb = new StringBuilder();
             sb.Append("function children($model){");
             foreach (var node in element)
@@ -45,7 +46,7 @@ namespace Mozlite.Mvc.TagHelpers.Templates
                 sb.Append(node.ToJsString(executor));
             }
             sb.Append("};");
-            sb.Append("if(Array.isArray($model)){$model.forEach(function(item){children(item);});}");
+            sb.Append("if($model.count>0){$model.children.forEach(function(item){children(item);});}");
             return sb.ToString();
         }
 
@@ -60,18 +61,18 @@ namespace Mozlite.Mvc.TagHelpers.Templates
         public string Begin(TemplateSyntaxElement element, ITemplateExecutor executor, object instance, Func<object, string, object> func)
         {
             var sb = new StringBuilder();
-            if (instance is IEnumerable models)
+            if (instance is IParentable models)
             {
                 if (element.IsSelfClosed || !element.Any())
                 {
-                    foreach (var model in models)
+                    foreach (var model in models.Children)
                     {
                         sb.Append(element.Document.ToHtmlString(executor, model, func));
                     }
                 }
                 else
                 {
-                    foreach (var model in models)
+                    foreach (var model in models.Children)
                     {
                         sb.Append(element.ToHtmlString(executor, model, func));
                     }

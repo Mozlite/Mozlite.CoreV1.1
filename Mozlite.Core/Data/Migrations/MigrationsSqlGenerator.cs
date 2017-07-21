@@ -718,12 +718,21 @@ namespace Mozlite.Data.Migrations
         /// </summary>
         /// <param name="statement">匿名对象。</param>
         /// <param name="action">执行每一项。</param>
-        protected virtual void ForEachProperty(object statement, Action<string, object> action)
+        /// <param name="ignore">忽略项。</param>
+        protected virtual void ForEachProperty(object statement, Action<string, object> action, Ignore ignore)
         {
             foreach (var property in statement.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 if (property.CanRead && property.CanWrite && !property.IsDefined(typeof(IdentityAttribute)))
                 {
+                    var ignoreAttribute = property.GetCustomAttribute<IgnoreAttribute>();
+                    if (ignoreAttribute != null)
+                    {
+                        if (ignoreAttribute.Ignore == Ignore.All)
+                            continue;
+                        if (ignore != Ignore.None && (ignoreAttribute.Ignore & ignore) == ignore)
+                            continue;
+                    }
                     var value = property.GetValue(statement);
                     action(property.Name, value);
                 }

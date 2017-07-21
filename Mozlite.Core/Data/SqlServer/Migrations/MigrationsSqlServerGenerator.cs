@@ -332,7 +332,7 @@ namespace Mozlite.Data.SqlServer.Migrations
             {
                 items.Add(SqlHelper.DelimitIdentifier(k));
                 values.Add(SqlHelper.EscapeLiteral(v));
-            });
+            }, Ignore.Insert);
             builder.Append("INSERT INTO ").Append(table).Append("(");
             builder.JoinAppend(items);
             builder.Append(")VALUES(");
@@ -356,7 +356,7 @@ namespace Mozlite.Data.SqlServer.Migrations
             ForEachProperty(instance, (k, v) =>
             {
                 items.Add($"{SqlHelper.DelimitIdentifier(k)}={SqlHelper.EscapeLiteral(v)}");
-            });
+            }, Ignore.Update);
             builder.JoinAppend(items);
             var visitor = _visitorFactory.Create();
             visitor.Visit(where);

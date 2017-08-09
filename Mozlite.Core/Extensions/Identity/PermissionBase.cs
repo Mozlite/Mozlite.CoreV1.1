@@ -1,94 +1,120 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Mozlite.Core;
 using Mozlite.Data;
 using Mozlite.Data.Metadata;
-using Mozlite.Properties;
-using Newtonsoft.Json;
+using Mozlite.Mvc;
 
 namespace Mozlite.Extensions.Identity
 {
     /// <summary>
-    /// 权限基类。
+    /// 权限验证特性。
     /// </summary>
-    public abstract class PermissionBase
+    public class PermissionAuthorizeAttribute : TypeFilterAttribute
     {
         /// <summary>
-        /// 用户组Id。
+        /// 初始化类<see cref="PermissionAuthorizeAttribute"/>。
         /// </summary>
-        [JsonIgnore]
-        public int RoleId { get; set; }
-
-        /// <summary>
-        /// 扩展名称。
-        /// </summary>
-        [JsonIgnore]
-        public string ExtensionName { get; set; }
-    }
-
-    /// <summary>
-    /// 权限表格。
-    /// </summary>
-    [Table("core_Permissions")]
-    public class PermissionAdapter
-    {
-        /// <summary>
-        /// 用户组Id。
-        /// </summary>
-        [Key]
-        public int RoleId { get; set; }
-
-        /// <summary>
-        /// 扩展名称。
-        /// </summary>
-        [Key]
-        [Size(32)]
-        public string ExtensionName { get; set; }
-
-        /// <summary>
-        /// 权限JSON。
-        /// </summary>
-        public string Permissions { get; set; }
-
-        internal PermissionAdapter(PermissionBase permission)
+        /// <param name="permission">当前权限名称。</param>
+        public PermissionAuthorizeAttribute(string permission) : base(typeof(PermissionAuthorizeAttributeImpl))
         {
-            RoleId = permission.RoleId;
-            ExtensionName = permission.ExtensionName;
-            Permissions = JsonConvert.SerializeObject(permission);
+            Arguments = new object[] { new OperationAuthorizationRequirement { Name = permission } };
         }
 
-        internal TPermission ToPermission<TPermission>() where TPermission : PermissionBase, new()
+        /// <summary>
+        /// 初始化类<see cref="PermissionAuthorizeAttribute"/>。
+        /// </summary>
+        public PermissionAuthorizeAttribute() : base(typeof(PermissionAuthorizeAttributeImpl))
         {
-            var permission = JsonConvert.DeserializeObject<TPermission>(Permissions);
-            permission.ExtensionName = ExtensionName;
-            permission.RoleId = RoleId;
-            return permission;
+        }
+
+        private class PermissionAuthorizeAttributeImpl : Attribute, IAsyncAuthorizationFilter
+        {
+            private readonly ILogger _logger;
+            private readonly IAuthorizationService _authorizationService;
+            private readonly OperationAuthorizationRequirement _requirement;
+
+            public PermissionAuthorizeAttributeImpl(ILogger<PermissionAuthorizeAttribute> logger, IAuthorizationService authorizationService, OperationAuthorizationRequirement requirement)
+            {
+                _logger = logger;
+                _authorizationService = authorizationService;
+                _requirement = requirement;
+            }
+
+            public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
+            {
+                if (!await _authorizationService.AuthorizeAsync(context.HttpContext.User, context.ActionDescriptor, _requirement))
+                    context.Result = new ChallengeResult();
+            }
         }
     }
 
     /// <summary>
-    /// 验证接口。
+    /// 注册验证处理类。
     /// </summary>
-    /// <typeparam name="TPermission">权限类型。</typeparam>
-    public interface IAuthorizer<out TPermission>
-        where TPermission : PermissionBase, new()
+    public class PermissionAuthorizationConfigurer : IServiceConfigurer
     {
         /// <summary>
-        /// 验证当前权限是否合法。
+        /// 配置服务方法。
         /// </summary>
-        /// <param name="func">验证方法。</param>
-        /// <returns>返回验证结果。</returns>
-        bool IsValid(Func<TPermission, bool> func);
+        /// <param name="services">服务集合实例。</param>
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        }
+    }
+
+    /// <summary>
+    /// 权限验证处理方法类。
+    /// </summary>
+    public class PermissionAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement>
+    {
+        private readonly IPermissionManager _permissionManager;
+        /// <summary>
+        /// 初始化类<see cref="PermissionAuthorizationHandler"/>。
+        /// </summary>
+        /// <param name="permissionManager">权限管理接口实例对象。</param>
+        public PermissionAuthorizationHandler(IPermissionManager permissionManager)
+        {
+            _permissionManager = permissionManager;
+        }
 
         /// <summary>
-        /// 验证当前权限是否合法。
+        /// 验证当前权限的合法性。
         /// </summary>
-        /// <param name="func">获取当前字符串属性值。</param>
-        /// <param name="permission">包含的字符。</param>
-        /// <returns>返回验证结果。</returns>
-        bool IsValid(Func<TPermission, string> func, string permission);
+        /// <param name="context">验证上下文。</param>
+        /// <param name="requirement">权限实例。</param>
+        protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, OperationAuthorizationRequirement requirement)
+        {
+            var permissioName = requirement?.Name;
+            if (permissioName == null && context.Resource is ControllerActionDescriptor resource)
+            {
+                if (resource.RouteValues.TryGetValue("area", out string area))
+                    permissioName = area + ".";
+                permissioName += $"{resource.ControllerName}.{resource.ActionName}";
+            }
+            if (permissioName == null)
+            {
+                context.Fail();
+                return;
+            }
+            var id = context.User.GetUserId();
+            if (id > 0)
+            {
+                var permission = await _permissionManager.GetPermissionAsync(id, permissioName);
+                if (permission == PermissionValue.Allow)
+                    context.Succeed(requirement);
+            }
+            context.Fail();
+        }
     }
 
     /// <summary>
@@ -97,142 +123,136 @@ namespace Mozlite.Extensions.Identity
     public interface IPermissionManager : ISingletonService
     {
         /// <summary>
-        /// 保存权限。
+        /// 获取当前用户的权限。
         /// </summary>
-        /// <param name="permission">权限实例对象。</param>
-        /// <returns>返回保存结果。</returns>
-        DataResult Save(PermissionBase permission);
-
-        /// <summary>
-        /// 保存权限。
-        /// </summary>
-        /// <param name="permission">权限实例对象。</param>
-        /// <returns>返回保存结果。</returns>
-        Task<DataResult> SaveAsync(PermissionBase permission);
-
-        /// <summary>
-        /// 拼接权限。
-        /// </summary>
-        /// <typeparam name="TPermission">权限类型。</typeparam>
-        /// <param name="permission">当前权限。</param>
-        /// <param name="permissions">权限列表。</param>
-        /// <returns>返回权限实例对象。</returns>
-        TPermission MergePermission<TPermission>(TPermission permission, params TPermission[] permissions)
-            where TPermission : PermissionBase, new();
-
-        /// <summary>
-        /// 加载当前扩展模块的权限列表。
-        /// </summary>
-        /// <typeparam name="TPermission">权限类型。</typeparam>
-        /// <param name="extensionName">扩展模块名称。</param>
-        /// <returns>返回权限列表。</returns>
-        IEnumerable<TPermission> LoadPermissions<TPermission>(string extensionName)
-            where TPermission : PermissionBase, new();
+        /// <param name="userId">用户Id。</param>
+        /// <param name="permissioName">权限名称。</param>
+        /// <returns>返回权限结果。</returns>
+        Task<PermissionValue> GetPermissionAsync(int userId, string permissioName);
     }
 
     /// <summary>
     /// 权限管理实现类。
     /// </summary>
-    public class PermissionManager : IPermissionManager
+    public abstract class PermissionManager<TUserRole> : IPermissionManager
+        where TUserRole : IdentityUserRole
     {
-        private readonly IRepository<PermissionAdapter> _repository;
+        private readonly IRepository<Permission> _repository;
+        private readonly IRepository<PermissionInRole> _pirs;
         private readonly IModel _model;
 
         /// <summary>
         /// 初始化类<see cref="PermissionManager"/>。
         /// </summary>
         /// <param name="repository">数据库操作接口实例。</param>
+        /// <param name="pirs">数据库操作接口。</param>
         /// <param name="model">模型接口。</param>
-        public PermissionManager(IRepository<PermissionAdapter> repository, IModel model)
+        protected PermissionManager(IRepository<Permission> repository, IRepository<PermissionInRole> pirs, IModel model)
         {
             _repository = repository;
+            _pirs = pirs;
             _model = model;
         }
 
         /// <summary>
-        /// 保存权限。
+        /// 获取当前用户的权限。
         /// </summary>
-        /// <param name="permission">权限实例对象。</param>
-        /// <returns>返回保存结果。</returns>
-        public DataResult Save(PermissionBase permission)
+        /// <param name="userId">用户Id。</param>
+        /// <param name="permissioName">权限名称。</param>
+        /// <returns>返回权限结果。</returns>
+        public async Task<PermissionValue> GetPermissionAsync(int userId, string permissioName)
         {
-            var adapter = new PermissionAdapter(permission);
-            if (_repository.Any(x => x.RoleId == permission.RoleId && x.ExtensionName == permission.ExtensionName))
-                return DataResult.FromResult(_repository.Update(x => x.RoleId == permission.RoleId && x.ExtensionName == permission.ExtensionName, new { adapter.Permissions }), DataAction.Updated);
-            return DataResult.FromResult(_repository.Create(adapter), DataAction.Created);
+            var values = await _pirs.AsQueryable()
+                .InnerJoin<TUserRole>((p, r) => p.RoleId == r.RoleId)
+                .InnerJoin<Permission>((pi, p) => pi.PermissionId == p.Id)
+                .Where<TUserRole>(ur => ur.UserId == userId)
+                .Where<Permission>(p => p.Name == permissioName)
+                .Select(x => x.Value)
+                .AsEnumerableAsync(r => (PermissionValue)r.GetInt32(0));
+            if (values.Any(x => x == PermissionValue.Deny))
+                return PermissionValue.Deny;
+            if (values.Any(x => x == PermissionValue.Allow))
+                return PermissionValue.Allow;
+            return PermissionValue.NotSet;
         }
+    }
+
+    public class PermissionManagerImpl : PermissionManager<IdentityUserRole> 
+    {
+        /// <summary>
+        /// 初始化类<see cref="PermissionManager{TUserRole}"/>。
+        /// </summary>
+        /// <param name="repository">数据库操作接口实例。</param>
+        /// <param name="pirs">数据库操作接口。</param>
+        /// <param name="model">模型接口。</param>
+        public PermissionManagerImpl(IRepository<Permission> repository, IRepository<PermissionInRole> pirs, IModel model) : base(repository, pirs, model)
+        {
+        }
+    }
+
+    /// <summary>
+    /// 权限实体。
+    /// </summary>
+    [Table("core_Permissions")]
+    public class Permission
+    {
+        /// <summary>
+        /// 唯一Id。
+        /// </summary>
+        [Identity]
+        public int Id { get; set; }
 
         /// <summary>
-        /// 保存权限。
+        /// 名称。
         /// </summary>
-        /// <param name="permission">权限实例对象。</param>
-        /// <returns>返回保存结果。</returns>
-        public async Task<DataResult> SaveAsync(PermissionBase permission)
-        {
-            var adapter = new PermissionAdapter(permission);
-            if (await _repository.AnyAsync(x => x.RoleId == permission.RoleId && x.ExtensionName == permission.ExtensionName))
-                return DataResult.FromResult(await _repository.UpdateAsync(x => x.RoleId == permission.RoleId && x.ExtensionName == permission.ExtensionName, new { adapter.Permissions }), DataAction.Updated);
-            return DataResult.FromResult(await _repository.CreateAsync(adapter), DataAction.Created);
-        }
+        [Size(64)]
+        public string Name { get; set; }
 
         /// <summary>
-        /// 拼接权限。
+        /// 描述。
         /// </summary>
-        /// <typeparam name="TPermission">权限类型。</typeparam>
-        /// <param name="permission">当前权限。</param>
-        /// <param name="permissions">权限列表。</param>
-        /// <returns>返回权限实例对象。</returns>
-        public TPermission MergePermission<TPermission>(TPermission permission, params TPermission[] permissions) where TPermission : PermissionBase, new()
-        {
-            var properties = _model.GetEntity(typeof(TPermission)).GetProperties().ToList();
-            foreach (var current in permissions)
-            {
-                foreach (var property in properties)
-                {
-                    var merger = property.Get(current);
-                    if (merger == null)
-                        continue;
-                    var basic = property.Get(permission);
-                    switch (basic)
-                    {
-                        case Boolean bPermission when bPermission:
-                            property.Set(permission, merger);
-                            break;
-                        case int iPermission:
-                            property.Set(permission, Math.Max(iPermission, (int)merger));
-                            break;
-                        case long lPermission:
-                            property.Set(permission, Math.Max(lPermission, (long)merger));
-                            break;
-                        case string sBasic:
-                            var sBasics = sBasic.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                .Concat(merger.ToString().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                                .Select(x => x.Trim())
-                                .Distinct(StringComparer.OrdinalIgnoreCase);
-                            property.Set(permission, string.Join(",", sBasics));
-                            break;
-                        case null:
-                            property.Set(permission, merger);
-                            break;
-                        default:
-                            throw new Exception(string.Format(Resources.NotSupportedPropertyType, property.ClrType));
-                    }
-                }
-            }
-            return permission;
-        }
+        [Size(256)]
+        public string Description { get; set; }
+    }
+
+    /// <summary>
+    /// 角色权限。
+    /// </summary>
+    [Table("core_Permissions_In_Roles")]
+    public class PermissionInRole
+    {
+        /// <summary>
+        /// 角色Id。
+        /// </summary>
+        public int RoleId { get; set; }
 
         /// <summary>
-        /// 加载当前扩展模块的权限列表。
+        /// 权限Id。
         /// </summary>
-        /// <typeparam name="TPermission">权限类型。</typeparam>
-        /// <param name="extensionName">扩展模块名称。</param>
-        /// <returns>返回权限列表。</returns>
-        public IEnumerable<TPermission> LoadPermissions<TPermission>(string extensionName)
-            where TPermission : PermissionBase, new()
-        {
-            return _repository.Load(x => x.ExtensionName == extensionName)
-                .Select(x => x.ToPermission<TPermission>());
-        }
+        public int PermissionId { get; set; }
+
+        /// <summary>
+        /// 当前权限设定。
+        /// </summary>
+        public PermissionValue Value { get; set; }
+    }
+
+    /// <summary>
+    /// 权限的值。
+    /// </summary>
+    public enum PermissionValue
+    {
+        /// <summary>
+        /// 禁止。
+        /// </summary>
+        Deny,
+        /// <summary>
+        /// 未设置。
+        /// </summary>
+        NotSet,
+        /// <summary>
+        /// 允许。
+        /// </summary>
+        Allow,
     }
 }

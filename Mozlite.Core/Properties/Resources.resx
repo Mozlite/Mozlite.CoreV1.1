@@ -219,6 +219,9 @@
   <data name="NoSetter" xml:space="preserve">
     <value>类型“{1}”的属性“{0}”必须包含set访问器。</value>
   </data>
+  <data name="NotSupportedPropertyType" xml:space="preserve">
+    <value>不支持当前属性类型：{0}。</value>
+  </data>
   <data name="NumberPage" xml:space="preserve">
     <value>第{0}页</value>
   </data>

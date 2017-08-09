@@ -10,7 +10,7 @@ namespace Mozlite.Extensions.Searching
     /// <summary>
     /// 搜索实体生成服务。
     /// </summary>
-    public class SearchTaskService : TaskService
+    public abstract class SearchTaskService : TaskService
     {
         private readonly IEnumerable<ISearchIndexProvider> _providers;
         private readonly ILogger _logger;
@@ -22,7 +22,7 @@ namespace Mozlite.Extensions.Searching
         /// <param name="providers">服务提供值接口列表。</param>
         /// <param name="logger">日志接口。</param>
         /// <param name="searchManager">搜索管理接口。</param>
-        public SearchTaskService(IEnumerable<ISearchIndexProvider> providers, ILogger<SearchTaskService> logger, ISearchManager searchManager)
+        protected SearchTaskService(IEnumerable<ISearchIndexProvider> providers, ILogger<SearchTaskService> logger, ISearchManager searchManager)
         {
             _providers = providers;
             _logger = logger;

@@ -61,26 +61,35 @@ namespace Mozlite.Mvc
             }
             return null;
         }
-
-        private const string UserIdClaimDefine = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+        
         /// <summary>
-        /// 获取当前登陆用户的Id。
+        /// 获取当前登入用户的Id。
         /// </summary>
         /// <param name="claims">当前用户接口实例。</param>
-        /// <returns>返回用户Id，如果未登录则返回0。</returns>
+        /// <returns>返回用户Id，如果未登入则返回0。</returns>
         public static int GetUserId(this ClaimsPrincipal claims)
         {
-            return claims.FindFirstValue(UserIdClaimDefine).AsInt32() ?? 0;
+            return claims.FindFirstValue(ClaimTypes.NameIdentifier).AsInt32() ?? 0;
         }
 
         /// <summary>
         /// 获取当前用户的用户名称。
         /// </summary>
         /// <param name="claims">当前用户接口实例。</param>
-        /// <returns>返回用户名称，如果未登录则返回“Anonymous”。</returns>
+        /// <returns>返回用户名称，如果未登入则返回“Anonymous”。</returns>
         public static string GetUserName(this ClaimsPrincipal claims)
         {
-            return claims.FindFirstValue(ClaimsIdentity.DefaultNameClaimType) ?? IdentitySettings.Anonymous;
+            return claims.FindFirstValue(ClaimTypes.Name) ?? IdentitySettings.Anonymous;
+        }
+
+        /// <summary>
+        /// 获取当前用户的用户名称。
+        /// </summary>
+        /// <param name="claims">当前用户接口实例。</param>
+        /// <returns>返回用户名称，如果未登入则返回“Anonymous”。</returns>
+        public static string GetRoleName(this ClaimsPrincipal claims)
+        {
+            return claims.FindFirstValue(ClaimTypes.Role);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Mozlite.Data.Metadata;
 using Mozlite.Utils;
 

@@ -103,10 +103,10 @@ namespace Mozlite.Extensions.Identity
         }
 
         /// <summary>
-        /// 通过登陆类型查找用户。
+        /// 通过登入类型查找用户。
         /// </summary>
-        /// <param name="loginProvider">登陆类型。</param>
-        /// <param name="providerKey">登陆唯一键。</param>
+        /// <param name="loginProvider">登入类型。</param>
+        /// <param name="providerKey">登入唯一键。</param>
         /// <returns>返回当前用户实例。</returns>
         public Task<TUser> FindByLoginAsync(string loginProvider, string providerKey)
         {
@@ -114,9 +114,9 @@ namespace Mozlite.Extensions.Identity
         }
 
         /// <summary>
-        /// 登陆成功后写入登陆IP和登陆时间。
+        /// 登入成功后写入登入IP和登入时间。
         /// </summary>
-        /// <param name="userName">登陆用户名称。</param>
+        /// <param name="userName">登入用户名称。</param>
         /// <returns>返回设置是否成功。</returns>
         public bool SignInSuccess(string userName)
         {
@@ -127,9 +127,9 @@ namespace Mozlite.Extensions.Identity
         }
 
         /// <summary>
-        /// 登陆成功后写入登陆IP和登陆时间。
+        /// 登入成功后写入登入IP和登入时间。
         /// </summary>
-        /// <param name="userName">登陆用户名称。</param>
+        /// <param name="userName">登入用户名称。</param>
         /// <returns>返回设置是否成功。</returns>
         public Task<bool> SignInSuccessAsync(string userName)
         {
@@ -182,10 +182,10 @@ namespace Mozlite.Extensions.Identity
         }
 
         /// <summary>
-        /// 添加用户登录实例。
+        /// 添加用户登入实例。
         /// </summary>
         /// <param name="user">当前用户。</param>
-        /// <param name="login">登陆信息。</param>
+        /// <param name="login">登入信息。</param>
         /// <returns>返回操作结果。</returns>
         public Task<IdentityResult> AddLoginAsync(TUser user, UserLoginInfo login)
         {
@@ -257,9 +257,9 @@ namespace Mozlite.Extensions.Identity
         private static readonly TUser _anonymous = new TUser { UserName = IdentitySettings.Anonymous };
 
         /// <summary>
-        /// 获取当前登录用户。
+        /// 获取当前登入用户。
         /// </summary>
-        /// <returns>返回当前登录用户实例。</returns>
+        /// <returns>返回当前登入用户实例。</returns>
         public async Task<TUser> GetUserAsync()
         {
             return (await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User)) ?? _anonymous;

@@ -16,7 +16,7 @@ namespace Mozlite.Extensions.Identity
     /// <typeparam name="TRole">用户组类型。</typeparam>
     /// <typeparam name="TUserClaim">用户声明。</typeparam>
     /// <typeparam name="TUserRole">用户和用户组类型。</typeparam>
-    /// <typeparam name="TUserLogin">用户登录类型。</typeparam>
+    /// <typeparam name="TUserLogin">用户登入类型。</typeparam>
     /// <typeparam name="TUserToken">用户标识存储类型。</typeparam>
     public class IdentityUserStore<TUser, TRole, TUserClaim, TUserRole, TUserLogin, TUserToken> :
         IUserLoginStore<TUser>,
@@ -51,7 +51,7 @@ namespace Mozlite.Extensions.Identity
         /// <param name="userRoles">用户组数据操作接口实例。</param>
         /// <param name="userTokens">用户标识数据操作接口实例。</param>
         /// <param name="roles">用户组数据操作接口实例。</param>
-        /// <param name="userLogins">用户登陆数据操作接口实例。</param>
+        /// <param name="userLogins">用户登入数据操作接口实例。</param>
         /// <param name="describer">错误描述实例。</param>
         public IdentityUserStore(IRepository<TUser> users, IRepository<TUserClaim> userClaims, IRepository<TUserRole> userRoles, IRepository<TUserToken> userTokens, IRepository<TRole> roles, IRepository<TUserLogin> userLogins, IdentityErrorDescriber describer = null)
         {

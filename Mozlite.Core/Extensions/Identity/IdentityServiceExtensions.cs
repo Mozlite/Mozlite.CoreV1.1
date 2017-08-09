@@ -14,7 +14,7 @@ namespace Mozlite.Extensions.Identity
         /// 添加Mozlite框架存储服务。
         /// </summary>
         /// <typeparam name="TUserClaim">用户声明类型。</typeparam>
-        /// <typeparam name="TUserLogin">用户登陆声明类型。</typeparam>
+        /// <typeparam name="TUserLogin">用户登入声明类型。</typeparam>
         /// <typeparam name="TUserRole">用户所在组声明类型。</typeparam>
         /// <typeparam name="TRoleClaim">用户组声明类型。</typeparam>
         /// <typeparam name="TUserToken">用户标识。</typeparam>

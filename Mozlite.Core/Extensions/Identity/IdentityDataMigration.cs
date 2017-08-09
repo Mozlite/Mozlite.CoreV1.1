@@ -10,7 +10,7 @@ namespace Mozlite.Extensions.Identity
     /// <typeparam name="TUser">用户类型。</typeparam>
     /// <typeparam name="TRole">用户组类型。</typeparam>
     /// <typeparam name="TUserClaim">用户声明类型。</typeparam>
-    /// <typeparam name="TUserLogin">用户登陆类型。</typeparam>
+    /// <typeparam name="TUserLogin">用户登入类型。</typeparam>
     /// <typeparam name="TUserRole">用户所在组类型。</typeparam>
     /// <typeparam name="TRoleClaim">用户组声明类型。</typeparam>
     /// <typeparam name="TUserToken">用户标识类型。</typeparam>

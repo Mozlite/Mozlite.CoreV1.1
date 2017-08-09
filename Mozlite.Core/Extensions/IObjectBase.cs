@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mozlite.Extensions
+﻿namespace Mozlite.Extensions
 {
     /// <summary>
     /// 包含Id的对象接口。

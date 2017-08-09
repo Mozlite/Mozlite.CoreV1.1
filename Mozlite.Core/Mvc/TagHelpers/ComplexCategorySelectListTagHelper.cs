@@ -98,7 +98,7 @@ namespace Mozlite.Mvc.TagHelpers
                 return;
             }
             items.Add(new SelectListItem { Text = SelectText(category, isEnd, header, isFirst), Value = category.Id.ToString(), Selected = value == category.Id });
-            var children = category.ToList();
+            var children = category.Children.ToList();
             if (!isEnd)
                 header += "│ ";
             header += "\u3000";

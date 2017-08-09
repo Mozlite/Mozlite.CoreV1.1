@@ -368,6 +368,15 @@ namespace Mozlite.Properties {
         }
         
         /// <summary>
+        ///   查找类似 不支持当前属性类型：{0}。 的本地化字符串。
+        /// </summary>
+        internal static string NotSupportedPropertyType {
+            get {
+                return ResourceManager.GetString("NotSupportedPropertyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 第{0}页 的本地化字符串。
         /// </summary>
         internal static string NumberPage {

@@ -105,7 +105,7 @@ namespace Mozlite.Extensions.Identity
         public bool LockoutEnabled { get; set; }
 
         /// <summary>
-        /// 登陆失败次数。
+        /// 登入失败次数。
         /// </summary>
         [Ignore(Ignore.Update)]
         public int AccessFailedCount { get; set; }
@@ -118,7 +118,7 @@ namespace Mozlite.Extensions.Identity
         public string CreatedIP { get; set; }
 
         /// <summary>
-        /// 登陆IP。
+        /// 登入IP。
         /// </summary>
         [Size(20)]
         [Ignore(Ignore.Update)]
@@ -136,7 +136,7 @@ namespace Mozlite.Extensions.Identity
         public DateTimeOffset UpdatedDate { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 最后登录时间。
+        /// 最后登入时间。
         /// </summary>
         [Ignore(Ignore.Update)]
         public DateTimeOffset? LastLoginDate { get; set; }

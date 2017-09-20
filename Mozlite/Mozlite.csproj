@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+    <UserSecretsId>aspnet-Mozlite-AC1B13D4-DBD2-40D2-A11A-C1A65CF6B585</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview1-final" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0-preview1-final" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mozlite.Core\Mozlite.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using System.Runtime.Versioning;
-using Microsoft.Extensions.PlatformAbstractions;
+using System.Configuration;
+using System.Runtime.InteropServices;
 
 namespace Mozlite
 {
@@ -13,7 +14,8 @@ namespace Mozlite
         private CoreInfo()
         {
             Version = Assembly.GetEntryAssembly().GetName().Version;
-            FrameworkName = PlatformServices.Default.Application.RuntimeFramework;
+            FrameworkName = RuntimeInformation.FrameworkDescription;
+            OSName = RuntimeInformation.OSDescription;
         }
 
         /// <summary>
@@ -29,6 +31,11 @@ namespace Mozlite
         /// <summary>
         /// 框架版本。
         /// </summary>
-        public FrameworkName FrameworkName { get; }
+        public string FrameworkName { get; }
+
+        /// <summary>
+        /// 操作系统。
+        /// </summary>
+        public string OSName { get; set; }
     }
 }

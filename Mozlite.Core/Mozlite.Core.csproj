@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Mozlite</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -31,9 +31,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

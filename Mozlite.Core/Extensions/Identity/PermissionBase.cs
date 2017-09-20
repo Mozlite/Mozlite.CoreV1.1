@@ -51,7 +51,9 @@ namespace Mozlite.Extensions.Identity
 
             public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
             {
-                if (!await _authorizationService.AuthorizeAsync(context.HttpContext.User, context.ActionDescriptor, _requirement))
+                var result = await _authorizationService.AuthorizeAsync(context.HttpContext.User,
+                    context.ActionDescriptor, _requirement);
+                if (!result.Succeeded)
                     context.Result = new ChallengeResult();
             }
         }
@@ -177,7 +179,7 @@ namespace Mozlite.Extensions.Identity
         }
     }
 
-    public class PermissionManagerImpl : PermissionManager<IdentityUserRole> 
+    public class PermissionManagerImpl : PermissionManager<IdentityUserRole>
     {
         /// <summary>
         /// 初始化类<see cref="PermissionManager{TUserRole}"/>。

@@ -3,17 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <UserSecretsId>aspnet-Mozlite-AC1B13D4-DBD2-40D2-A11A-C1A65CF6B585</UserSecretsId>
+    <UserSecretsId>aspnet-Mozlite-50B14DDC-DB97-4A3B-B69B-426861D8A7E0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
   </ItemGroup>
+
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0-preview1-final" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mozlite.Core\Mozlite.Core.csproj" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0-preview2-final" />
   </ItemGroup>
 
 </Project>
